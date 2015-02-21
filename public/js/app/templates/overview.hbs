@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Overview</h2>
+        </div>
+    </div>
+    <div class="row extra-space">
+        <div class="col-md-12">
+            <a class="btn btn-primary" href="#new-survey" role="button">
+                <i class="fa fa-plus fa-fw"></i> Add survey
+            </a>
+            <a class="btn btn-info" role="button">
+                <i class="fa fa-file fa-fw"></i> Export all to CSV
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading"><h4>Surveys Created <small class="hidden-xs">Click a survey for more options</small></h4></div>
+                <div class="panel-body">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Survey Name</th>
+                            <th>Date Created</th>
+                            <th>Survey Status</th>
+                            <th># of Responses</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{#each survey}}
+                            <tr>
+                                <td>{{this.id}}</td>
+                                <td>{{this.name}}</td>
+                                <td>{{this.createdDate}}</td>
+                                <td>{{this.status}}</td>
+                                <td>{{this.responses}}</td>
+                            </tr>
+                        {{else}}
+                            <tr>
+                                <td colspan="5" class="text-center">No surveys yet. <a>Add one</a>!</td>
+                            </tr>
+                        {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

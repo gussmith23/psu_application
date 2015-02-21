@@ -1,0 +1,26 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="/#" class="navbar-brand">
+                <img alt="Brand" src="img/psu_white_short.png" height="44">
+            </a>
+        </div>
+        <div class="nav navbar-nav navbar-left hidden-xs">
+            <ul class="nav navbar-nav">
+                {{#unless isAuthenticated}}
+                    <li id="navHome"><a href="#">Home</a></li>
+                    <li id="navRegister"><a href="#register">Register</a></li>
+                    <li id="navLogin"><a href="#login">Login</a></li>
+                {{else}}
+                    <li id="navOverview"><a href="#overview">Overview</a></li>
+                    <li id="navAccount"><a href="#account">Account</a></li>
+                {{/unless}}
+            </ul>
+        </div>
+        <div class="nav navbar-nav navbar-right hidden-xs">
+            {{#if isAuthenticated}}
+                <button id="logoutButton" class="btn btn-default navbar-btn" type="submit">Logout</button>
+            {{/if}}
+        </div>
+    </div>
+</nav>

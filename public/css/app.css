@@ -1,0 +1,23 @@
+body {
+    padding-top: 84px;
+}
+
+.navbar-brand {
+    float: left;
+    padding: 10px 15px;
+    font-size: 18px;
+}
+
+.col-centered {
+    float: none;
+    margin: 0 auto;
+}
+
+.extra-space {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+tbody>tr {
+    cursor: pointer;
+}
