@@ -13,12 +13,14 @@ require.config({
         "jquerycookie": "../libs/plugins/jquery.cookie",
         "bootstrapValidator": "../libs/plugins/bootstrapValidator",
         "bootstrap-datepicker": "../libs/plugins/bootstrap-datepicker",
-        "crypto": "../libs/sha256"
+        "crypto": "../libs/sha256",
+        "sweetalert": "../libs/plugins/sweet-alert"
     },
     shim: {
         "bootstrap": ["jquery"],
         "bootstrapValidator": ["bootstrap"],
         "bootstrap-datepicker": ["bootstrap"],
+        "sweetalert": ["bootstrap"],
         "jqueryui": ["jquery"],
         "jquerycookie": ["jquery"],
         "backbone": {
@@ -48,7 +50,8 @@ require([
         "bootstrapValidator",
         "backbone.validateAll",
         "bootstrap-datepicker",
-        "crypto"
+        "crypto",
+        "sweetalert"
     ],
     function (App, AppRouter, Controller) {
         App.appRouter = new AppRouter({

@@ -107,15 +107,38 @@ define([
                     }
                 }).on('success.form.bv', function (e) {
                     e.preventDefault();
-                    var password = _this.ui.password[0].value;
-                    var hash = CryptoJS.SHA256(password);
-                    console.log(hash.toString());
+                    _this.register();
                 });
             },
 
             onDestroy: function () {
+                this.ui.registerForm.data('bootstrapValidator').destroy();
+            },
 
+            register: function () {
+                var _this = this;
+                var data = {
+                    "username": this.ui.username[0].value,
+                    "email": this.ui.email[0].value,
+                    "password": CryptoJS.SHA256(this.ui.password[0].value).toString(),
+                    "first_name": this.ui.firstName[0].value,
+                    "last_name": this.ui.lastName[0].value
+                };
+                $.post("/api/user", data).then(function (res) {
+                    window.location.hash = "#login";
+                    App.navRegion.currentView.render();
+                }, function (err) {
+                    swal("Error!", "Your account could not be registered. This could mean that the username or email you input is already in use.", "error");
+                    _this.ui.username[0].value = '';
+                    _this.ui.email[0].value = '';
+                    _this.ui.password[0].value = '';
+                    _this.ui.registerForm.data('bootstrapValidator').updateStatus('username', 'INVALID');
+                    _this.ui.registerForm.data('bootstrapValidator').updateStatus('email', 'INVALID');
+                    _this.ui.registerForm.data('bootstrapValidator').updateStatus('password', 'INVALID');
+                    console.log('error', err.responseText);
+                });
             }
+
 
         });
     }

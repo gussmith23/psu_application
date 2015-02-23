@@ -5,50 +5,54 @@
  */
 $app->post('/api/user', function () use ($app) {
 
-    $body = json_decode($app->request->getBody());
+    $body = $app->request->getBody();
 
     // get the params
-    $username = $body->username;
-    $email = $body->email;
-    $password = $body->password;
-    $firstName = $body->first_name;
-    $lastName = $body->last_name;
+    $username = $app->request->post('username');
+    $email = $app->request->post('email');
+    $password = $app->request->post('password');
+    $firstName = $app->request->post('first_name');
+    $lastName = $app->request->post('last_name');
 
     if ($username === '' || $email === '' || $password === '' || $firstName === '' || $lastName === '') {
-        $app->response->status(401);
+        $app->response->setStatus(401);
         echo json_encode(array(
             'error' => 'cannot_create'
         ));
-        exit();
-    }
 
-    if (User::where('email', '=', $email)->first() || User::where('username', '=', $username)->first()) {
-        $app->response->status(401);
-        echo json_encode(array(
-            'error' => 'cannot_create'
-        ));
     } else {
 
-        $salt = uniqid(mt_rand(), true);
-        $options = [
-            'salt' => $salt,
-            'cost' => 12
-        ];
-        $hash = password_hash($password, PASSWORD_BCRYPT, $options);
+        if (User::where('email', '=', $email)->first() || User::where('username', '=', $username)->first()) {
+            $app->response->status(401);
+            echo json_encode(array(
+                'error' => 'cannot_create'
+            ));
+        } else {
 
-        // create the user
-        $user = new User(array(
-            'username' => $username,
-            'email' => $email,
-            'password' => $hash,
-            'salt' => $salt,
-            'first_name' => $firstName,
-            'last_name' => $lastName
-        ));
-        $user->save();
+            $salt = uniqid(mt_rand(), true);
+            $options = [
+                'salt' => $salt,
+                'cost' => 12
+            ];
+            $hash = password_hash($password, PASSWORD_BCRYPT, $options);
 
-        $app->response->status(201);
-        echo '';
+            $data = array(
+                'username' => $username,
+                'email' => $email,
+                'password' => $hash,
+                'salt' => $salt,
+                'first_name' => $firstName,
+                'last_name' => $lastName
+            );
+
+            // create the user
+            $user = new User($data);
+            $user->save();
+
+            $app->response->status(201);
+            echo '';
+
+        }
 
     }
 

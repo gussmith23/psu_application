@@ -51,24 +51,29 @@ define([
                     }
                 }).on('success.form.bv', function (e) {
                     e.preventDefault();
-                    var data = {
-                        "grant_type": "password",
-                        "username": _this.ui.identification[0].value,
-                        "password": CryptoJS.SHA256(_this.ui.password[0].value).toString()
-                    };
-                    $.post(_this.session.get('tokenEndpoint'), data).then(function (res) {
-                        _this.session.setToken(res);
-                        window.location.hash = "#overview";
-                        App.navRegion.currentView.render();
-                    }, function (err) {
-                        console.log('error', err.responseText);
-                    });
+                    _this.login();
                 });
 
             },
 
             onDestroy: function () {
                 this.ui.loginForm.data('bootstrapValidator').destroy();
+            },
+
+            login: function () {
+                var _this = this;
+                var data = {
+                    "grant_type": "password",
+                    "username": this.ui.identification[0].value,
+                    "password": CryptoJS.SHA256(this.ui.password[0].value).toString()
+                };
+                $.post(this.session.get('tokenEndpoint'), data).then(function (res) {
+                    _this.session.setToken(res);
+                    window.location.hash = "#overview";
+                    App.navRegion.currentView.render();
+                }, function (err) {
+                    console.log('error', err.responseText);
+                });
             }
 
         });
