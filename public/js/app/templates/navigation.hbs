@@ -8,12 +8,12 @@
         <div class="nav navbar-nav navbar-left hidden-xs">
             <ul class="nav navbar-nav">
                 {{#unless isAuthenticated}}
-                    <li id="navHome"><a href="#">Home</a></li>
-                    <li id="navRegister"><a href="#register">Register</a></li>
-                    <li id="navLogin"><a href="#login">Login</a></li>
+                    <li id="navHome"><a href="/#">Home</a></li>
+                    <li id="navRegister"><a href="/#register">Register</a></li>
+                    <li id="navLogin"><a href="/#login">Login</a></li>
                 {{else}}
-                    <li id="navOverview"><a href="#overview">Overview</a></li>
-                    <li id="navAccount"><a href="#account">Account</a></li>
+                    <li id="navOverview"><a href="/#overview">Overview</a></li>
+                    <li id="navAccount"><a href="/#account">Account</a></li>
                 {{/unless}}
             </ul>
         </div>

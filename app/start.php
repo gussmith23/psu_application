@@ -25,7 +25,7 @@ Capsule::schema()->create('surveys', function ($table) {
     $table->string('survey_name');
     $table->string('survey_type'); // i.e. PSU, IST, etc.
     $table->string('survey_description');
-    $table->string('survey_notes');
+    $table->text('survey_notes');
     $table->timestamps();
 });
 

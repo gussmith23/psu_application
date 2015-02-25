@@ -20,24 +20,31 @@ define([
                 this.session = new Session();
             },
             index: function () {
+                App.navRegion.$el.show();
                 this.session.unauthenticatedRoute(App.contentRegion.show(new WelcomeView()));
             },
             register: function () {
+                App.navRegion.$el.show();
                 this.session.unauthenticatedRoute(App.contentRegion.show(new RegisterView()));
             },
             login: function () {
+                App.navRegion.$el.show();
                 this.session.unauthenticatedRoute(App.contentRegion.show(new LoginView()));
             },
             overview: function () {
+                App.navRegion.$el.show();
                 this.session.authenticatedRoute(App.contentRegion.show(new OverviewView()));
             },
             account: function () {
+                App.navRegion.$el.show();
                 this.session.authenticatedRoute(App.contentRegion.show(new AccountView()));
             },
             newSurvey: function () {
+                App.navRegion.$el.show();
                 this.session.authenticatedRoute(App.contentRegion.show(new NewSurveyView()));
             },
             survey: function () {
+                App.navRegion.$el.hide();
                 App.contentRegion.show(new SurveyView());
             }
         });
