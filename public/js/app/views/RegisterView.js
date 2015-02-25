@@ -137,6 +137,7 @@ define([
                     _this.ui.registerForm.data('bootstrapValidator').updateStatus('password', 'INVALID');
                     console.log('error', err.responseText);
                 });
+
             }
 
 

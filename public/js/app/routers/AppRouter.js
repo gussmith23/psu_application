@@ -12,7 +12,8 @@ define([
                 "login": "login",
                 "overview": "overview",
                 "account": "account",
-                "new-survey": "newSurvey"
+                "new-survey": "newSurvey",
+                "survey": "survey"
             }
         });
     });

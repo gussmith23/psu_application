@@ -15,7 +15,7 @@ require '../app/configs/database.php';
 //require '../app/start.php';
 
 // other stuff
-require '../app/authenticator.php';
+require '../app/utility/authenticator.php';
 
 // routes
 require '../app/routes/index.php';

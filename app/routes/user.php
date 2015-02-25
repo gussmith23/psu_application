@@ -5,8 +5,6 @@
  */
 $app->post('/api/user', function () use ($app) {
 
-    $body = $app->request->getBody();
-
     // get the params
     $username = $app->request->post('username');
     $email = $app->request->post('email');
