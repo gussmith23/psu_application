@@ -1,5 +1,6 @@
 body {
     padding-top: 84px;
+    padding-bottom: 84px;
 }
 
 .navbar-brand {
@@ -20,4 +21,8 @@ body {
 
 tbody>tr {
     cursor: pointer;
+}
+
+.form-divider {
+    border-top: 1px solid #ccc;
 }

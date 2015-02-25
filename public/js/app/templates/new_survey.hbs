@@ -15,21 +15,21 @@
         <form>
             <div class="col-md-6 col-centered well">
                 <div class="form-group">
-                    <h4>Survey Name</h4>
-                    <label for="surveyName">
-                        Make it useful and descriptive, like "Pittsburgh College Fair".
-                    </label>
+                    <label class="control-label" for="surveyName">Survey Name</label>
+                    <p class="help-block">
+                        Make it useful and descriptive, like "Penn State College Fair".
+                    </p>
                     <input type="text" class="form-control" id="surveyName" placeholder="Enter survey name">
                 </div>
                 <div class="form-group">
-                    <h4>Date Created</h4>
-                    <label for="surveyDate">
+                    <label class="control-label" for="surveyDate">Survey Date</label>
+                    <p class="help-block">
                         This should be the date of the event. It defaults to today, but you can change that if you
                         want.
-                    </label>
-                    <!--<input type="text" class="form-control" id="surveyDate" placeholder="Enter date">-->
+                    </p>
                     <input class="form-control" id="surveyDate" data-provide="datepicker" placeholder="MM/DD/YYYY">
                 </div>
+                <hr class="form-divider">
                 <a class="btn btn-primary" id="" role="button">
                     <i class="fa fa-plus fa-fw"></i> Create
                 </a>

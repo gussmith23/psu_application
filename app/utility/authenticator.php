@@ -6,11 +6,11 @@
  * @param $authBearerToken
  * @return bool
  */
-function checkBearerToken($authBearerToken) {
+function checkBearerToken ($authBearerToken) {
     $sessionHashBearer = "Bearer " . $_SESSION['access_token'];
-    if($authBearerToken === $sessionHashBearer) {
+    if ($authBearerToken === $sessionHashBearer) {
         return true;
     } else {
         return false;
     }
-}
+};

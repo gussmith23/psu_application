@@ -1,0 +1,177 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-10 col-md-7 col-centered">
+            <h2>Survey Name</h2>
+            <h5>Survey description.</h5>
+        </div>
+    </div>
+    <div class="row">
+        <form id="surveyForm" class="form-horizontal">
+            <div class="col-sm-10 col-md-7 col-centered well">
+                <div class="form-group">
+                    <label for="email" class="control-label col-sm-4">Email</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="email" placeholder="nittany.lion@psu.edu">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="firstName" class="control-label col-sm-4">First Name</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="firstName" placeholder="Nittany">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="middleInitial" class="control-label col-sm-4">Middle Initial</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="middleInitial" placeholder="V">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="lastName" class="control-label col-sm-4">Last Name</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="lastName" placeholder="Lion">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="address" class="control-label col-sm-4">Street Address</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="address" placeholder="Information Sciences and Technology Bldg">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="city" class="control-label col-sm-4">City</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="city" placeholder="University Park">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="state" class="control-label col-sm-4">State</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="state" placeholder="PA">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="zipCode" class="control-label col-sm-4">Zip Code</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="zipCode" placeholder="16802">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="telephone" class="control-label col-sm-4">Telephone</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="telephone" placeholder="(860) 555-1234">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="birthdate" class="control-label col-sm-4">Date of Birth</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" id="birthdate" data-provide="datepicker" placeholder="MM/DD/YYYY">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="gender" class="control-label col-sm-4">Gender</label>
+                    <div class="col-sm-8">
+                        <label class="radio-inline">
+                            <input type="radio" name="genderRadio" id="genderMale" value="male"> Male
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="genderRadio" id="genderFemale" value="female"> Female
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="highSchoolName" class="control-label col-sm-4">High School Name</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="highSchoolName">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="highSchoolYear" class="control-label col-sm-4">High School Year</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="highschoolyear">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="ethnicity" class="control-label col-sm-4">Ethnicity</label>
+                    <div class="col-sm-8">
+                        <!--<input type="text" class="form-control" id="ethnicity">-->
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label class="radio-inline">
+                                    <input type="radio" name="ethnicity" value="1"> American Indian
+                                </label>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="radio-inline">
+                                    <input type="radio" name="ethnicity" value="2"> Alaskan Native
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label class="radio-inline">
+                                    <input type="radio" name="ethnicity" value="3"> African/Black American
+                                </label>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="radio-inline">
+                                    <input type="radio" name="ethnicity" value="4"> Asian/Pacific American
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label class="radio-inline">
+                                    <input type="radio" name="ethnicity" value="5"> Latino/Hispanic American
+                                </label>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="radio-inline">
+                                    <input type="radio" name="ethnicity" value="6"> Puerto Rican
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label class="radio-inline">
+                                    <input type="radio" name="ethnicity" value="7"> White American
+                                </label>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="radio-inline">
+                                    <input type="radio" name="ethnicity" value="8"> Other
+                                </label>
+                            </div>
+                        </div>
+                        <div id="ethnicityOtherContainer" class="row" style="display: none;">
+                            <div class="col-sm-12 extra-space">
+                                <input type="text" class="form-control" id="ethnicityOther"  placeholder="Other">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <hr class="form-divider">
+                    </div>
+                    <div class="col-sm-12">
+                        <a class="btn btn-default" id="" role="button">
+                            <i class="fa fa-close fa-fw"></i> Cancel
+                        </a>
+                        <a class="btn btn-primary" id="" role="button">
+                            <i class="fa fa-check fa-fw"></i> Submit
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="col-sm-10 col-md-7 col-centered extra-space">-->
+                <!--<a class="btn btn-default" id="" role="button">-->
+                    <!--<i class="fa fa-close fa-fw"></i> Cancel-->
+                <!--</a>-->
+                <!--<a class="btn btn-primary" id="" role="button">-->
+                    <!--<i class="fa fa-check fa-fw"></i> Submit-->
+                <!--</a>-->
+            <!--</div>-->
+        </form>
+    </div>
+</div>
