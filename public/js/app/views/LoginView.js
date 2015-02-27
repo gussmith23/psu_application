@@ -69,7 +69,7 @@ define([
                 };
                 $.post(this.session.get('tokenEndpoint'), data).then(function (res) {
                     _this.session.setToken(res);
-                    window.location.hash = "overview";
+                    App.appRouter.navigate('overview', true);
                     App.navRegion.currentView.render();
                 }, function (err) {
                     console.log('error', err.responseText);

@@ -11,7 +11,7 @@
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrapValidator.min.css">
-    <link rel="stylesheet" href="css/bootstrap.flatly.css">
+<!--    <link rel="stylesheet" href="css/bootstrap.flatly.css">-->
     <link rel="stylesheet" href="css/datepicker3.css">
     <link rel="stylesheet" href="css/sweet-alert.css">
 

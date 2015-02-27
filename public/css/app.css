@@ -5,7 +5,7 @@ body {
 
 .navbar-brand {
     float: left;
-    padding: 7px 15px;
+    padding: 5px 15px;
     font-size: 18px;
 }
 
@@ -26,3 +26,7 @@ tbody>tr {
 .form-divider {
     border-top: 1px solid #ccc;
 }
+
+/*.navbar-default .navbar-text {*/
+    /*color: #ffffff;*/
+/*}*/

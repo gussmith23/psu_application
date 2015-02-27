@@ -1,25 +1,26 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <a href="/#" class="navbar-brand">
-                <img alt="Brand" src="img/psu_white_short.png" height="44">
+            <a href="/" class="navbar-brand">
+                <img alt="Brand" src="img/psu_2tone_short.png" height="40">
             </a>
         </div>
         <div class="nav navbar-nav navbar-left hidden-xs">
             <ul class="nav navbar-nav">
                 {{#unless isAuthenticated}}
-                    <li id="navHome"><a href="/#">Home</a></li>
-                    <li id="navRegister"><a href="/#register">Register</a></li>
-                    <li id="navLogin"><a href="/#login">Login</a></li>
+                    <li id="navHome"><a href="/">Home</a></li>
+                    <li id="navRegister"><a href="/register">Register</a></li>
+                    <li id="navLogin"><a href="/login">Login</a></li>
                 {{else}}
-                    <li id="navOverview"><a href="/#overview">Overview</a></li>
-                    <li id="navAccount"><a href="/#account">Account</a></li>
+                    <li id="navOverview"><a href="/overview">Overview</a></li>
+                    <li id="navAccount"><a href="/account">Account</a></li>
                 {{/unless}}
             </ul>
         </div>
         <div class="nav navbar-nav navbar-right hidden-xs">
             {{#if isAuthenticated}}
-                <button id="logoutButton" class="btn btn-info navbar-btn" type="submit">Logout</button>
+                <p class="navbar-text white">Welcome back, <a href="/account">{{firstName}} {{lastName}}</a></p>
+                <button id="logoutButton" class="btn btn-primary navbar-btn" type="submit">Logout</button>
             {{/if}}
         </div>
     </div>

@@ -3,17 +3,24 @@ define([
         'marionette',
         'handlebars',
         'text!templates/navigation.hbs',
-        'models/Session'
+        'models/Session',
+        'models/User'
     ],
-    function (App, Marionette, Handlebars, template, Session) {
+    function (App, Marionette, Handlebars, template, Session, User) {
         //ItemView provides some default rendering logic
         return Marionette.ItemView.extend({
 
             initialize: function () {
                 this.session = new Session();
+                if(this.session.isAuthenticated()) {
+                    this.model.on('sync', this.render);
+                    this.model.fetch();
+                }
             },
 
             template: Handlebars.compile(template),
+
+            model: new User(),
 
             templateHelpers: function () {
                 var _this = this;
@@ -25,11 +32,11 @@ define([
             },
 
             ui: {
-                "nav": "#navHome",
-                "nav#login": "#navLogin",
-                "nav#register": "#navRegister",
-                "nav#overview": "#navOverview",
-                "nav#account": "#navAccount",
+                "nav/": "#navHome",
+                "nav/login": "#navLogin",
+                "nav/register": "#navRegister",
+                "nav/overview": "#navOverview",
+                "nav/account": "#navAccount",
                 "logoutButton": "#logoutButton"
             },
 
@@ -50,14 +57,14 @@ define([
                     _.each(_this.ui, function(ul) {
                         ul.removeClass('active');
                     });
-                    _this.ui['nav' + window.location.hash].addClass('active');
+                    _this.ui['nav' + window.location.pathname].addClass('active');
                 });
             },
 
             logout: function () {
                 this.session.revokeToken();
                 window.location.reload(); // force reload
-                window.location.hash = "";
+                App.appRouter.navigate('', true);
             }
 
         });

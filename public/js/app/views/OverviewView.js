@@ -13,7 +13,10 @@ define([
             templateHelpers: function () {
                 var _this = this;
                 return {
-                    survey: _this.getSurveys()
+                    survey: _this.getSurveys(),
+                    linkto: function (href) {
+                        App.appRouter.location(href, true);
+                    }
                 }
             },
 

@@ -52,8 +52,7 @@ require([
         "bootstrap-datepicker",
         "crypto",
         "sweetalert"
-    ],
-    function (App, AppRouter, Controller) {
+    ], function (App, AppRouter, Controller) {
         App.appRouter = new AppRouter({
             controller: new Controller()
         });

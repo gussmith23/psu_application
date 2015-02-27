@@ -1,8 +1,9 @@
 define([
         'jquery',
-        'backbone'
+        'backbone',
+        'App'
     ],
-    function ($, Backbone) {
+    function ($, Backbone, App) {
         return Backbone.Model.extend({
             defaults: {
                 access_token: null,
@@ -33,10 +34,10 @@ define([
             },
             authenticatedRoute: function (routeCallback) {
                 if(this.isAuthenticated()) return routeCallback;
-                return window.location.hash = "";
+                return App.appRouter.navigate('', true);
             },
             unauthenticatedRoute: function (routeCallback) {
-                if(this.isAuthenticated()) return window.location.hash = "#overview";
+                if(this.isAuthenticated()) return App.appRouter.navigate('overview', true);
                 return routeCallback;
             }
         });

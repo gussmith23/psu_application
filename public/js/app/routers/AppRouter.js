@@ -13,7 +13,7 @@ define([
                 "overview": "overview",
                 "account": "account",
                 "new-survey": "newSurvey",
-                "survey": "survey"
+                "survey/:id": "survey"
             }
         });
     });

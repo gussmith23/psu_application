@@ -125,8 +125,8 @@ define([
                     "last_name": this.ui.lastName[0].value
                 };
                 $.post("/api/user", data).then(function (res) {
-                    window.location.hash = "login";
                     App.navRegion.currentView.render();
+                    App.appRouter.navigate('login', true);
                 }, function (err) {
                     swal("Error!", "Your account could not be registered. This could mean that the username or email you input is already in use.", "error");
                     _this.ui.username[0].value = '';
