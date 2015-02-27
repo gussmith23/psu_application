@@ -43,9 +43,9 @@ define([
                 App.navRegion.$el.show();
                 this.session.authenticatedRoute(App.contentRegion.show(new NewSurveyView()));
             },
-            survey: function () {
+            survey: function (permalink) {
                 App.navRegion.$el.hide();
-                App.contentRegion.show(new SurveyView());
+                App.contentRegion.show(new SurveyView(permalink));
             }
         });
     });

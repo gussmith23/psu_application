@@ -8,6 +8,11 @@ define([
     function (App, Marionette, Handlebars, template, Session) {
         //ItemView provides some default rendering logic
         return Marionette.ItemView.extend({
+
+            initialize: function() {
+                console.log('id', 123);
+            },
+
             // Template HTML string
             template: Handlebars.compile(template),
 
