@@ -57,7 +57,9 @@ define([
                     _.each(_this.ui, function(ul) {
                         ul.removeClass('active');
                     });
-                    _this.ui['nav' + window.location.pathname].addClass('active');
+                    if(_this.ui['nav' + window.location.pathname]) {
+                        _this.ui['nav' + window.location.pathname].addClass('active');
+                    }
                 });
             },
 

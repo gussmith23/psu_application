@@ -13,7 +13,7 @@ define([
                 createdAt: null,
                 updatedAt: null
             },
-            urlRoute: '/api/users',
+            urlRoute: '/api/user',
             url: function () {
                 return this.urlRoute;
             }

@@ -1,5 +1,5 @@
 require.config({
-    baseUrl: "./js/app",
+    baseUrl: "/js/app",
     paths: {
         "jquery": "../libs/jquery",
         "jqueryui": "../libs/jqueryui",

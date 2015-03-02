@@ -27,6 +27,6 @@ tbody>tr {
     border-top: 1px solid #ccc;
 }
 
-/*.navbar-default .navbar-text {*/
-    /*color: #ffffff;*/
-/*}*/
+.blue {
+    color: #428bca;
+}

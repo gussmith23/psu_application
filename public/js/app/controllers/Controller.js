@@ -45,7 +45,8 @@ define([
             },
             survey: function (permalink) {
                 App.navRegion.$el.hide();
-                App.contentRegion.show(new SurveyView(permalink));
+                console.log(permalink);
+                App.contentRegion.show(new SurveyView());
             }
         });
     });
