@@ -17,7 +17,6 @@ $app->post('/api/user', function () use ($app) {
         echo json_encode(array(
             'error' => 'cannot_create'
         ));
-        return;
     } else {
 
         if (User::where('email', '=', $email)->first() || User::where('username', '=', $username)->first()) {
@@ -25,7 +24,6 @@ $app->post('/api/user', function () use ($app) {
             echo json_encode(array(
                 'error' => 'cannot_create'
             ));
-            return;
         } else {
 
             $salt = uniqid(mt_rand(), true);
@@ -50,7 +48,6 @@ $app->post('/api/user', function () use ($app) {
 
             $app->response->status(201);
             echo '';
-            return;
 
         }
 
@@ -62,14 +59,13 @@ $app->post('/api/user', function () use ($app) {
 /**
  *  Get currently logged in user
  */
-$app->get('/api/users', function () use ($app) {
+$app->get('/api/user', function () use ($app) {
     $authBearerToken = $app->request->headers->get('Authorization');
     if (!checkBearerToken($authBearerToken)) {
         $app->response->status(400);
         echo json_encode(array(
             'error' => 'invalid_bearer_token'
         ));
-        return;
     }
     $user = User::where('username', '=', $_SESSION['user'])->first();
     echo json_encode(array(
@@ -81,7 +77,6 @@ $app->get('/api/users', function () use ($app) {
         'createdAt' => $user->created_at,
         'updatedAt' => $user->updated_at
     ));
-    return;
 });
 
 
@@ -89,7 +84,7 @@ $app->get('/api/users', function () use ($app) {
  *  Update currently logged in user
  */
 $app->put('/api/user', function () use ($app) {
-    return;
+
 });
 
 
@@ -97,5 +92,5 @@ $app->put('/api/user', function () use ($app) {
  *  Delete currently logged in user.
  */
 $app->delete('/api/user', function () use ($app){
-    return;
+
 });

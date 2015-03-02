@@ -11,9 +11,9 @@ define([
         return Marionette.ItemView.extend({
 
             initialize: function () {
+                this.model.on('sync', this.render);
                 this.session = new Session();
                 if(this.session.isAuthenticated()) {
-                    this.model.on('sync', this.render);
                     this.model.fetch();
                 }
             },

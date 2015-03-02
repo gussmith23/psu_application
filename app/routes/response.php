@@ -17,7 +17,6 @@ $app->get('/api/survey/response/:survey_id', function ($survey_id) use ($app) {
         echo json_encode(array(
             'error' => 'invalid_bearer_token'
         ));
-        return;
     }
 });
 
@@ -32,7 +31,6 @@ $app->get('/api/survey/response/:survey_id/:response_id', function ($survey_id, 
         echo json_encode(array(
             'error' => 'invalid_bearer_token'
         ));
-        return;
     }
 });
 
@@ -56,7 +54,6 @@ $app->put('/api/survey/response/:survey_id/:response_id', function ($survey_id, 
         echo json_encode(array(
             'error' => 'invalid_bearer_token'
         ));
-        return;
     }
 });
 
@@ -71,6 +68,5 @@ $app->delete('/api/survey/response/:survey_id/:response_id', function ($survey_i
         echo json_encode(array(
             'error' => 'invalid_bearer_token'
         ));
-        return;
     }
 });

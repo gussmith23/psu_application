@@ -12,14 +12,16 @@
  * a survey if it is either 1) not active or 2) non existent.
  */
 $app->get('/api/survey/:permalink', function ($permalink) use ($app) {
-    if(Survey::where('survey_permalink', '=', $permalink)->first() || Survey::where('survey_status', '=', 'open')->first()) {
-        return;
+    if (Survey::where('survey_permalink', '=', $permalink)->first() && Survey::where('survey_status', '=', 'open')->first()) {
+        $app->response->status(400);
+        echo json_encode(array(
+            'status' => 'yay'
+        ));
     } else {
         $app->response->status(400);
         echo json_encode(array(
             'error' => 'invalid_survey'
         ));
-        return;
     }
 });
 
@@ -34,7 +36,6 @@ $app->get('/api/survey', function () use ($app) {
         echo json_encode(array(
             'error' => 'invalid_bearer_token'
         ));
-        return;
     }
 });
 
@@ -49,7 +50,6 @@ $app->get('/api/survey/:id', function ($id) use ($app) {
         echo json_encode(array(
             'error' => 'invalid_bearer_token'
         ));
-        return;
     }
 });
 
@@ -64,7 +64,6 @@ $app->post('/api/survey/:id', function ($id) use ($app) {
         echo json_encode(array(
             'error' => 'invalid_bearer_token'
         ));
-        return;
     }
 });
 
@@ -79,7 +78,6 @@ $app->put('/api/survey/:id', function ($id) use ($app) {
         echo json_encode(array(
             'error' => 'invalid_bearer_token'
         ));
-        return;
     }
 });
 
@@ -94,6 +92,7 @@ $app->delete('/api/survey/:id', function ($id) use ($app) {
         echo json_encode(array(
             'error' => 'invalid_bearer_token'
         ));
-        return;
+    } else {
+
     }
 });

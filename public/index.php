@@ -21,6 +21,8 @@ require '../app/utility/authenticator.php';
 require '../app/routes/index.php';
 require '../app/routes/session.php';
 require '../app/routes/user.php';
+require '../app/routes/survey.php';
+require '../app/routes/response.php';
 
 // default catch-all route
 require '../app/routes/catchAll.php';

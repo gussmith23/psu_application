@@ -6,7 +6,7 @@ define([
     ],
     function (App, Marionette, Handlebars, template) {
         //ItemView provides some default rendering logic
-        return Marionette.Layout.extend({
+        return Marionette.LayoutView.extend({
             // Template HTML string
             template: Handlebars.compile(template),
             regions: {

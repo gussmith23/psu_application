@@ -12,7 +12,8 @@ define([
                 "overview": "overview",
                 "account": "account",
                 "new-survey": "newSurvey",
-                "survey/:permalink": "survey"
+                "survey/:permalink": "survey",
+                "*notFound": "notFound"
             }
         });
     });
