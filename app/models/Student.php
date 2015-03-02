@@ -22,17 +22,17 @@ class Student extends \Illuminate\Database\Eloquent\Model
 
     public function responsePSU()
     {
-        return $this->hasOne('SurveyResponsePSU');
+        return $this->hasOne('SurveyResponsePSU', 'id', 'id_survey_response_psu');
     }
 
     public function responseIST()
     {
-        return $this->hasOne('SurveyResponseIST');
+        return $this->hasOne('SurveyResponseIST', 'id', 'id_survey_response_ist');
     }
 
     public function responseStatusReport()
     {
-        return $this->hasOne('StatusReport');
+        return $this->hasOne('StatusReport', 'id', 'id_status_report');
     }
 
 }
