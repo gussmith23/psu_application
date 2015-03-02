@@ -69,7 +69,7 @@ $app->get('/api/users', function () use ($app) {
         echo json_encode(array(
             'error' => 'invalid_bearer_token'
         ));
-        exit();
+        return;
     }
     $user = User::where('username', '=', $_SESSION['user'])->first();
     echo json_encode(array(

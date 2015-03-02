@@ -1,9 +1,5 @@
 <?php
 
-/**
- * Put all your schema maps here
- */
-
 use Illuminate\Database\Capsule\Manager as Capsule;
 
 Capsule::schema()->create('users', function ($table) {
@@ -26,6 +22,7 @@ Capsule::schema()->create('surveys', function ($table) {
     $table->string('survey_type'); // i.e. PSU, IST, etc.
     $table->string('survey_description');
     $table->text('survey_notes');
+    $table->string('survey_status')->default('closed'); // active, closed
     $table->timestamps();
 });
 

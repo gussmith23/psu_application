@@ -6,41 +6,71 @@
  * Time: 1:33 AM
  */
 
+
 /**
- *  Get all survey responses
+ *  Get all responses to a survey
  */
 $app->get('/api/survey/response/:survey_id', function ($survey_id) use ($app) {
-
+    $authBearerToken = $app->request->headers->get('Authorization');
+    if (!checkBearerToken($authBearerToken)) {
+        $app->response->status(400);
+        echo json_encode(array(
+            'error' => 'invalid_bearer_token'
+        ));
+        return;
+    }
 });
 
 
 /**
- *  Get a survey response
+ *  Get a response to a survey
  */
 $app->get('/api/survey/response/:survey_id/:response_id', function ($survey_id, $response_id) use ($app) {
-
+    $authBearerToken = $app->request->headers->get('Authorization');
+    if (!checkBearerToken($authBearerToken)) {
+        $app->response->status(400);
+        echo json_encode(array(
+            'error' => 'invalid_bearer_token'
+        ));
+        return;
+    }
 });
 
 
 /**
- * Create a survey response
+ * Create a response to a survey
  */
-$app->post('/api/survey/response/:survey_id/:response_id', function ($survey_id, $response_id) use ($app) {
-
+$app->post('/api/survey/response/:permalink', function ($permalink) use ($app) {
+    // Does this route need authentication? If not, it might be a good
+    // idea to require the permalink to be able to post.
 });
 
 
 /**
- * Update a survey response
+ * Update a response to a survey
  */
 $app->put('/api/survey/response/:survey_id/:response_id', function ($survey_id, $response_id) use ($app) {
-
+    $authBearerToken = $app->request->headers->get('Authorization');
+    if (!checkBearerToken($authBearerToken)) {
+        $app->response->status(400);
+        echo json_encode(array(
+            'error' => 'invalid_bearer_token'
+        ));
+        return;
+    }
 });
 
 
 /**
- * Delete a survey response
+ * Delete a response to a survey
  */
 $app->delete('/api/survey/response/:survey_id/:response_id', function ($survey_id, $response_id) use ($app) {
-
+    $authBearerToken = $app->request->headers->get('Authorization');
+    if (!checkBearerToken($authBearerToken)) {
+        $app->response->status(400);
+        echo json_encode(array(
+            'error' => 'invalid_bearer_token'
+        ));
+        return;
+    }
 });
