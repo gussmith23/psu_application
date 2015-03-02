@@ -16,7 +16,23 @@ class Survey extends \Illuminate\Database\Eloquent\Model
         'survey_name',
         'survey_type',
         'survey_description',
-        'survey_notes'
+        'survey_notes',
+        'survey_status'
     ];
+
+    public function users()
+    {
+        return $this->belongsToMany('User');
+    }
+
+    public function responsesPSU()
+    {
+        return $this->hasMany('SurveyResponsesPSU');
+    }
+
+    public function responsesIST()
+    {
+        return $this->hasMany('SurveyResponsesIST');
+    }
 
 }

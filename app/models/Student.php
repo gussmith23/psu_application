@@ -20,4 +20,19 @@ class Student extends \Illuminate\Database\Eloquent\Model
         'id_status_report'
     ];
 
+    public function responsePSU()
+    {
+        return $this->hasOne('SurveyResponsePSU');
+    }
+
+    public function responseIST()
+    {
+        return $this->hasOne('SurveyResponseIST');
+    }
+
+    public function responseStatusReport()
+    {
+        return $this->hasOne('StatusReport');
+    }
+
 }

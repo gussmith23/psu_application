@@ -8,7 +8,23 @@ define([
 
         return Marionette.LayoutView.extend({
 
-            template: Handlebars.compile(template)
+            template: Handlebars.compile(template),
+
+            ui: {
+                "surveyForm": "#surveyForm"
+            },
+
+            events: {
+                "change @ui.surveyForm": "checkAttributes"
+            },
+
+            checkAttributes: function () {
+                if(document.getElementById('surveyForm').ethnicity.value == 8) {
+                    document.getElementById('ethnicityOtherContainer').style.display = 'block';
+                } else {
+                    document.getElementById('ethnicityOtherContainer').style.display = 'none';
+                }
+            }
 
         });
 

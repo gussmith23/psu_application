@@ -17,7 +17,7 @@ define([
               OverviewView, AccountView, NewSurveyView, SurveyView, ErrorView) {
 
         return Backbone.Marionette.Controller.extend({
-            
+
             initialize: function (options) {
                 App.navRegion.show(new NavigationView());
                 this.session = new Session();

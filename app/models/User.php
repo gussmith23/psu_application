@@ -11,7 +11,13 @@ class User extends \Illuminate\Database\Eloquent\Model
         'password',
         'salt',
         'first_name',
-        'last_name'
+        'last_name',
+        'role'
     ];
+
+    public function surveys()
+    {
+        return $this->belongsToMany('Survey');
+    }
 
 }
