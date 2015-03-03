@@ -11,10 +11,11 @@ define([
         'views/AccountView',
         'views/NewSurveyView',
         'views/SurveyView',
-        'views/ErrorView'
+        'views/ErrorView',
+        'views/ManageView'
     ],
     function (App, Backbone, Marionette, Session, RegisterView, NavigationView, WelcomeView, LoginView,
-              OverviewView, AccountView, NewSurveyView, SurveyView, ErrorView) {
+              OverviewView, AccountView, NewSurveyView, SurveyView, ErrorView, ManageView) {
 
         return Backbone.Marionette.Controller.extend({
 
@@ -57,6 +58,13 @@ define([
                 App.navRegion.$el.hide();
                 App.contentRegion.show(new SurveyView({
                     permalink: permalink
+                }));
+            },
+
+            manage: function (id) {
+                App.navRegion.$el.show();
+                App.contentRegion.show(new ManageView({
+                    id: id
                 }));
             },
 

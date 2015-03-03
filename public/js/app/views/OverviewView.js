@@ -10,11 +10,20 @@ define([
             // Template HTML string
             template: Handlebars.compile(template),
 
+            events: {
+                'click #survey-row': 'linkTo'
+            },
+
             templateHelpers: function () {
                 var _this = this;
                 return {
                     survey: _this.getSurveys()
                 }
+            },
+
+            linkTo: function (event) {
+                var url = $(event.target).context.parentNode.attributes.getNamedItem('link-to').value;
+                App.appRouter.navigate(url, true);
             },
 
             getSurveys: function () {

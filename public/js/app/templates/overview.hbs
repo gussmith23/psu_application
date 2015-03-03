@@ -30,7 +30,7 @@
                         </thead>
                         <tbody>
                         {{#each survey}}
-                            <tr>
+                            <tr id="survey-row" link-to="survey/manage/{{this.id}}">
                                 <td>{{this.name}}</td>
                                 <td>{{this.createdDate}}</td>
                                 <td>{{this.status}}</td>
