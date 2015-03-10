@@ -6,7 +6,7 @@
 
     <meta charset="utf-8">
     <title>PSU Application</title>
-    <meta name="description" content="Lightweight Marionette and Require.js Boilerplate Project">
+    <meta name="description" content="">
     <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width">
 
     <link rel="stylesheet" href="/css/bootstrap.min.css">
