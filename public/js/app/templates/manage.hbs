@@ -1,13 +1,50 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h1 class="text-center">Manage</h1>
-            <p class="text-center">Manage the survey here.</p>
-            <p>id: {{id}}</p>
-            <p>survey_description: {{survey_description}}</p>
-            <p>survey_name: {{survey_name}}</p>
-            <p>survey_notes: {{survey_notes}}</p>
-            <p>survey_permalink: {{survey_permalink}}</p>
+            <h1>Manage Survey</h1>
+            <p>&nbsp;</p>
+            <!--<p>id: {{id}}</p>-->
+            <!--<p>survey_description: {{survey_description}}</p>-->
+            <!--<p>survey_name: {{survey_name}}</p>-->
+            <!--<p>survey_notes: {{survey_notes}}</p>-->
+            <!--<p>survey_permalink: {{survey_permalink}}</p>-->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Survey Information</div>
+                        <div class="panel-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="survey_name">Survey Name</label>
+                                    <input type="text" class="form-control" id="survey_name" value="{{survey_name}}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="survey_permalink">Survey Permalink</label>
+                                    <p class="help-block">
+                                        This is the URL that will be used to access the survey.
+                                    </p>
+                                    <input type="text" class="form-control" id="survey_permalink" value="{{survey_permalink}}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="survey_description">Survey Description</label>
+                                    <p class="help-block">
+                                        Keep it short and sweet.
+                                    </p>
+                                    <input type="text" class="form-control" id="survey_description" value="{{survey_description}}">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Survey Notes</div>
+                        <div class="panel-body">
+                            <textarea class="form-control" rows="10">{{survey_notes}}</textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
