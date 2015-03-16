@@ -20,6 +20,22 @@ define([
             'click @ui.item': 'linkTo'
         },
 
+        templateHelpers: function () {
+            var _this = this;
+            return {
+                createdDateString: function () {
+                    var ds = _this.model.get('created_at');
+                    var date = new Date(ds.replace(' ', 'T') + 'Z');
+                    return date.toLocaleString();
+                },
+                updatedDateString: function () {
+                    var ds = _this.model.get('updated_at');
+                    var date = new Date(ds.replace(' ', 'T') + 'Z');
+                    return date.toLocaleString();
+                }
+            }
+        },
+
         onRender: function () {
             if (this.model.get('survey_status') === 'open') {
                 $(this.el).addClass('success');

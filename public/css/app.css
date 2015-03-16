@@ -30,3 +30,19 @@ tbody>tr {
 .blue {
     color: #428bca;
 }
+
+.response-card {
+    background-color: #F5F5F5;
+    box-shadow: 0 1px 1px 0 #BDBDBD;
+    border-radius: 1px;
+    padding: 20px;
+    height: 120px;
+    line-height: 80px;
+    margin-bottom: 30px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.response-card:hover {
+    background-color: #EEEEEE;
+}
