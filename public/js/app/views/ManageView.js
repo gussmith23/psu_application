@@ -1,19 +1,19 @@
 define([
-        'App',
-        'marionette',
-        'handlebars',
-        'text!templates/manage.hbs'
-    ],
-    function (App, Marionette, Handlebars, template) {
+    'App',
+    'marionette',
+    'handlebars',
+    'text!templates/manage.hbs'
+], function (App, Marionette, Handlebars, template) {
 
-        return Marionette.ItemView.extend({
+    return Marionette.ItemView.extend({
 
-            initialize: function(params) {
-                this.id = params.id;
-            },
+        initialize: function () {
+            this.model.on('sync', this.render);
+            this.model.fetch();
+        },
 
-            template: Handlebars.compile(template)
-
-        });
+        template: Handlebars.compile(template)
 
     });
+
+});

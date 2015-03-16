@@ -12,12 +12,13 @@ class User extends \Illuminate\Database\Eloquent\Model
         'salt',
         'first_name',
         'last_name',
-        'role'
+        'role',
+        'survey_id'
     ];
 
     public function surveys()
     {
-        return $this->belongsToMany('Survey');
+        return $this->belongsToMany('Survey', 'user_survey_join');
     }
 
 }

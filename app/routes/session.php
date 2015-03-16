@@ -12,7 +12,7 @@ $app->post('/api/token', function () use ($app) {
         $user = User::where('username', '=', $username)->orWhere('email', '=', $username)->first();
         if($user && password_verify($password, $user->password)) {
             $sessionHash = hash('sha256', $user->username . uniqid(mt_rand(), true));
-            $_SESSION['user'] = $user->username;
+            $_SESSION['user'] = $user->id;
             $_SESSION['access_token'] = $sessionHash;
             echo json_encode(array(
                 'access_token' => $sessionHash

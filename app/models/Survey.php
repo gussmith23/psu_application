@@ -17,12 +17,13 @@ class Survey extends \Illuminate\Database\Eloquent\Model
         'survey_type',
         'survey_description',
         'survey_notes',
-        'survey_status'
+        'survey_status',
+        'user_id'
     ];
 
     public function users()
     {
-        return $this->belongsToMany('User');
+        return $this->belongsToMany('User', 'user_survey_join');
     }
 
     public function responsesPSU()

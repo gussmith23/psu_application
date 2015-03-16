@@ -19,30 +19,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading"><h4>Surveys Created <small class="hidden-xs">Click a survey for more options</small></h4></div>
                 <div class="panel-body">
-                    <table class="table table-hover">
-                        <thead>
-                        <tr>
-                            <th>Survey Name</th>
-                            <th>Date Created</th>
-                            <th>Survey Status</th>
-                            <th># of Responses</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {{#each survey}}
-                            <tr id="survey-row" link-to="survey/manage/{{this.id}}">
-                                <td>{{this.name}}</td>
-                                <td>{{this.createdDate}}</td>
-                                <td>{{this.status}}</td>
-                                <td>{{this.responses}}</td>
-                            </tr>
-                        {{else}}
-                            <tr>
-                                <td colspan="5" class="text-center">No surveys yet. <a>Add one</a>!</td>
-                            </tr>
-                        {{/each}}
-                        </tbody>
-                    </table>
+                    <div id="surveys-table"></div>
                 </div>
             </div>
         </div>

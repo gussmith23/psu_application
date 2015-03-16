@@ -11,9 +11,10 @@
  * This route is used to make sure that a survey exists. We don't want a user to be able to access
  * a survey if it is either 1) not active or 2) non existent.
  */
-$app->get('/api/survey/:permalink', function ($permalink) use ($app) {
+$app->get('/survey/:permalink', function ($permalink) use ($app) {
     if (Survey::where('survey_permalink', '=', $permalink)->first() && Survey::where('survey_status', '=', 'open')->first()) {
-        $app->response->status(400);
+//    if (Survey::where('survey_permalink', '=', $permalink)->first()) {
+        $app->response->status(200);
         echo json_encode(array(
             'status' => 'yay'
         ));
@@ -36,6 +37,10 @@ $app->get('/api/survey', function () use ($app) {
         echo json_encode(array(
             'error' => 'invalid_bearer_token'
         ));
+    } else {
+        $app->response->status(200);
+        $surveys = User::find($_SESSION['user'])->surveys()->get();
+        echo json_encode($surveys);
     }
 });
 
@@ -50,6 +55,10 @@ $app->get('/api/survey/:id', function ($id) use ($app) {
         echo json_encode(array(
             'error' => 'invalid_bearer_token'
         ));
+    } else {
+        $survey = Survey::where('id', '=', $id)->first();
+        $app->response->status(200);
+        echo json_encode($survey);
     }
 });
 

@@ -3,9 +3,9 @@ define([
     'backbone'
 ], function ($, Backbone) {
     return Backbone.Model.extend({
-        urlRoute: '/api/user',
+        urlRoute: '/api/survey/',
         url: function () {
-            return this.urlRoute;
+            return this.urlRoute + this.id;
         }
     });
 });

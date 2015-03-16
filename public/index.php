@@ -5,7 +5,7 @@ date_default_timezone_set('America/New_York');
 require '../vendor/autoload.php';
 
 $app = new \Slim\Slim();
-$app->add(new \Slim\Middleware\SessionCookie(array('secret' => 'Y29sb2c=')));
+$app->add(new \Slim\Middleware\SessionCookie(array('secret' => uniqid(rand(), true))));
 
 // config
 require '../app/configs/config.php';
@@ -13,6 +13,7 @@ require '../app/configs/database.php';
 
 // create the tables and stuff
 //require '../app/start.php';
+//require '../app/seeder.php';
 
 // other stuff
 require '../app/utility/authenticator.php';

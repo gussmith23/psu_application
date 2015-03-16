@@ -67,7 +67,7 @@ $app->get('/api/user', function () use ($app) {
             'error' => 'invalid_bearer_token'
         ));
     }
-    $user = User::where('username', '=', $_SESSION['user'])->first();
+    $user = User::find($_SESSION['user'])->first();
     echo json_encode(array(
         'id' => $user->id,
         'username' => $user->username,

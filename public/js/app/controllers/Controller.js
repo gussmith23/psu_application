@@ -3,6 +3,7 @@ define([
         'backbone',
         'marionette',
         'models/Session',
+        'models/Survey',
         'views/RegisterView',
         'views/NavigationView',
         'views/WelcomeView',
@@ -14,7 +15,7 @@ define([
         'views/ErrorView',
         'views/ManageView'
     ],
-    function (App, Backbone, Marionette, Session, RegisterView, NavigationView, WelcomeView, LoginView,
+    function (App, Backbone, Marionette, Session, Survey, RegisterView, NavigationView, WelcomeView, LoginView,
               OverviewView, AccountView, NewSurveyView, SurveyView, ErrorView, ManageView) {
 
         return Backbone.Marionette.Controller.extend({
@@ -41,7 +42,7 @@ define([
 
             overview: function () {
                 App.navRegion.$el.show();
-                this.session.authenticatedRoute(App.contentRegion.show(new OverviewView()));
+                this.session.authenticatedRoute(App.contentRegion.show(new OverviewView({})));
             },
 
             account: function () {
@@ -64,15 +65,13 @@ define([
             manage: function (id) {
                 App.navRegion.$el.show();
                 App.contentRegion.show(new ManageView({
-                    id: id
+                    model: new Survey({ id: id })
                 }));
             },
 
             notFound: function () {
                 App.navRegion.$el.show();
-                App.contentRegion.show(new ErrorView({
-
-                }));
+                App.contentRegion.show(new ErrorView({}));
             }
 
         });

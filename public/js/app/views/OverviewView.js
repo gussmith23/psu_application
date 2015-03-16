@@ -2,11 +2,13 @@ define([
         'App',
         'marionette',
         'handlebars',
-        'text!templates/overview.hbs'
+        'text!templates/overview.hbs',
+        'views/components/SurveyCollectionView',
+        'collections/Surveys'
     ],
-    function (App, Marionette, Handlebars, template) {
+    function (App, Marionette, Handlebars, template, SurveyCollectionView, Surveys) {
         //ItemView provides some default rendering logic
-        return Marionette.ItemView.extend({
+        return Marionette.LayoutView.extend({
             // Template HTML string
             template: Handlebars.compile(template),
 
@@ -14,49 +16,12 @@ define([
                 'click #survey-row': 'linkTo'
             },
 
-            templateHelpers: function () {
-                var _this = this;
-                return {
-                    survey: _this.getSurveys()
-                }
+            regions: {
+                surveysTable: '#surveys-table'
             },
 
-            linkTo: function (event) {
-                var url = $(event.target).context.parentNode.attributes.getNamedItem('link-to').value;
-                App.appRouter.navigate(url, true);
-            },
-
-            getSurveys: function () {
-                return [
-                    {
-                        id: 1,
-                        name: 'Survey 1',
-                        createdDate: 'January 1, 2015',
-                        status: 'closed',
-                        responses: 76
-                    },
-                    {
-                        id: 2,
-                        name: 'Survey 2',
-                        createdDate: 'January 1, 2015',
-                        status: 'open',
-                        responses: 4
-                    },
-                    {
-                        id: 3,
-                        name: 'Survey 3',
-                        createdDate: 'January 1, 2015',
-                        status: 'closed',
-                        responses: 54
-                    },
-                    {
-                        id: 4,
-                        name: 'Survey 4',
-                        createdDate: 'January 1, 2015',
-                        status: 'closed',
-                        responses: 37
-                    }
-                ];
+            onRender: function () {
+                this.surveysTable.show(new SurveyCollectionView({ collection: new Surveys() }));
             }
 
         });
