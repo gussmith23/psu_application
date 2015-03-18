@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default">
     <div class="container">
         <div class="navbar-header">
             <a href="/" class="navbar-brand">
@@ -7,21 +7,13 @@
         </div>
         <div class="nav navbar-nav navbar-left hidden-xs">
             <ul class="nav navbar-nav">
-                {{#unless isAuthenticated}}
-                    <li id="navHome"><a href="/">Home</a></li>
-                    <li id="navRegister"><a href="/register">Register</a></li>
-                    <li id="navLogin"><a href="/login">Login</a></li>
-                {{else}}
-                    <li id="navOverview"><a href="/overview">Overview</a></li>
-                    <li id="navAccount"><a href="/account">Account</a></li>
-                {{/unless}}
+                <li id="navOverview"><a href="/overview">Overview</a></li>
+                <li id="navAccount"><a href="/account">Account</a></li>
             </ul>
         </div>
         <div class="nav navbar-nav navbar-right hidden-xs">
-            {{#if isAuthenticated}}
-                <!--<p id="greeting" class="navbar-text white">Welcome back, <a href="/account">{{firstName}} {{lastName}}</a></p>-->
-                <button id="logoutButton" class="btn btn-primary navbar-btn" type="submit">Logout</button>
-            {{/if}}
+            <!--<p id="greeting" class="navbar-text white">Welcome back, <a href="/account">{{firstName}} {{lastName}}</a></p>-->
+            <button id="logoutButton" class="btn btn-primary navbar-btn" type="submit">Logout</button>
         </div>
     </div>
 </nav>

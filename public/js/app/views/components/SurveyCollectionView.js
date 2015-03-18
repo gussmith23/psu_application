@@ -1,30 +1,36 @@
 define([
-        'App',
-        'marionette',
-        'handlebars',
-        'text!templates/components/survey_collection_table.hbs',
-        'views/components/SurveyItemView'
-    ],
-    function (App, Marionette, Handlebars, template, SurveyItemView) {
-        //ItemView provides some default rendering logic
-        return Marionette.CompositeView.extend({
+    'App',
+    'backbone',
+    'marionette',
+    'handlebars',
+    'text!templates/components/survey_collection_table.hbs',
+    'views/components/SurveyItemView',
+    'views/components/SurveyCollectionEmptyView',
+    'views/components/SurveyLoadingView'
+], function (App, Backbone, Marionette, Handlebars, template, SurveyItemView, SurveyCollectionEmptyView, LoadingView) {
 
-            tagName: 'table',
+    return Marionette.CompositeView.extend({
 
-            template: Handlebars.compile(template),
+        tagName: 'table',
 
-            childView: SurveyItemView,
+        template: Handlebars.compile(template),
 
-            childViewContainer: "tbody",
+        childView: SurveyItemView,
 
-            onAttach: function () {
-                this.collection.fetch();
-            },
+        emptyView: SurveyCollectionEmptyView,
 
-            onRender: function () {
-                $(this.el).attr('class', 'table table-hover');
-            }
+        childViewContainer: "tbody",
 
-        });
-    }
-);
+        loadingView: LoadingView,
+
+        initialize: function (options) {
+            this.sort = options.sort || '';
+            if(options.fetch) this.collection.fetch();
+        },
+
+        onRender: function () {
+            $(this.el).attr('class', 'table table-hover');
+        }
+
+    });
+});

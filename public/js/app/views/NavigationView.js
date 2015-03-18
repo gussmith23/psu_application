@@ -9,25 +9,9 @@ define([
     //ItemView provides some default rendering logic
     return Marionette.ItemView.extend({
 
-        initialize: function () {
-            this.session = new Session();
-        },
-
         template: Handlebars.compile(template),
 
-        templateHelpers: function () {
-            var _this = this;
-            return {
-                isAuthenticated: function () {
-                    return _this.session.isAuthenticated();
-                }
-            }
-        },
-
         ui: {
-            "nav/": "#navHome",
-            "nav/login": "#navLogin",
-            "nav/register": "#navRegister",
             "nav/overview": "#navOverview",
             "nav/account": "#navAccount",
             "logoutButton": "#logoutButton"
@@ -38,7 +22,7 @@ define([
         },
 
         onShow: function () {
-            this.setActiveTab();
+            //this.setActiveTab();
         },
 
         /**
@@ -57,9 +41,11 @@ define([
         },
 
         logout: function () {
-            this.session.revokeToken();
-            window.location.reload(); // force reload
-            App.appRouter.navigate('', true);
+            //this.session.revokeToken();
+            //App.controller.revokeToken();
+            App.vent.trigger('session:logout');
+            //App.appRouter.navigate('', true);
+            //window.location.reload(); // force reload
         }
 
     });

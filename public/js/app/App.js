@@ -15,6 +15,8 @@ define(
         // create the app
         var App = new Backbone.Marionette.Application();
 
+        App.vent = _.extend({}, Backbone.Events);
+
         // add the basic regions
         App.addRegions({
             contentRegion: "#contentRegion",

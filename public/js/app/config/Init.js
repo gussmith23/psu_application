@@ -6,6 +6,7 @@ require.config({
         "underscore": "../libs/lodash",
         "backbone": "../libs/backbone",
         "marionette": "../libs/backbone.marionette",
+        "marionetteloading": "../libs/marionette.loading",
         "handlebars": "../libs/handlebars",
         "backbone.validateAll": "../libs/plugins/Backbone.validateAll",
         "bootstrap": "../libs/plugins/bootstrap",
@@ -31,6 +32,7 @@ require.config({
             "deps": ["underscore", "backbone", "jquery"],
             "exports": "Marionette"
         },
+        "marionetteloading": ['marionette'],
         "handlebars": {
             "exports": "Handlebars"
         },
@@ -40,21 +42,22 @@ require.config({
 
 
 require([
-        "App",
-        "routers/AppRouter",
-        "controllers/Controller",
-        "jquery",
-        "jqueryui",
-        "jquerycookie",
-        "bootstrap",
-        "bootstrapValidator",
-        "backbone.validateAll",
-        "bootstrap-datepicker",
-        "crypto",
-        "sweetalert"
-    ], function (App, AppRouter, Controller) {
-        App.appRouter = new AppRouter({
-            controller: new Controller()
-        });
-        App.start();
+    "App",
+    "routers/AppRouter",
+    "controllers/Controller",
+    "jquery",
+    "jqueryui",
+    "jquerycookie",
+    "bootstrap",
+    "bootstrapValidator",
+    "backbone.validateAll",
+    "bootstrap-datepicker",
+    "crypto",
+    "sweetalert",
+    "marionetteloading"
+], function (App, AppRouter, Controller) {
+    App.appRouter = new AppRouter({
+        controller: new Controller()
     });
+    App.start();
+});

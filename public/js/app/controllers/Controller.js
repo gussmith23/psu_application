@@ -21,57 +21,61 @@ define([
         return Backbone.Marionette.Controller.extend({
 
             initialize: function (options) {
-                App.navRegion.show(new NavigationView());
                 this.session = new Session();
+                var _this = this;
+                App.vent.on('session:logout', function () {
+                    _this.session.revokeToken();
+                    App.appRouter.navigate('', true);
+                });
             },
 
             index: function () {
-                App.navRegion.$el.show();
-                this.session.unauthenticatedRoute(App.contentRegion.show(new WelcomeView()));
+                App.navRegion.empty();
+                this.session.unauthenticatedRoute(App.contentRegion.show(new LoginView()));
             },
 
             register: function () {
-                App.navRegion.$el.show();
+                App.navRegion.empty();
                 this.session.unauthenticatedRoute(App.contentRegion.show(new RegisterView()));
             },
 
             login: function () {
-                App.navRegion.$el.show();
+                App.navRegion.empty();
                 this.session.unauthenticatedRoute(App.contentRegion.show(new LoginView()));
             },
 
             overview: function () {
-                App.navRegion.$el.show();
                 this.session.authenticatedRoute(App.contentRegion.show(new OverviewView({})));
+                App.navRegion.show(new NavigationView());
             },
 
             account: function () {
-                App.navRegion.$el.show();
                 this.session.authenticatedRoute(App.contentRegion.show(new AccountView()));
+                App.navRegion.show(new NavigationView());
             },
 
             newSurvey: function () {
-                App.navRegion.$el.show();
                 this.session.authenticatedRoute(App.contentRegion.show(new NewSurveyView()));
+                App.navRegion.show(new NavigationView());
             },
 
             survey: function (permalink) {
-                App.navRegion.$el.hide();
+                App.navRegion.empty();
                 App.contentRegion.show(new SurveyView({
                     permalink: permalink
                 }));
             },
 
             manage: function (id) {
-                App.navRegion.$el.show();
                 App.contentRegion.show(new ManageView({
                     model: new Survey({ id: id })
                 }));
+                App.navRegion.show(new NavigationView());
             },
 
             notFound: function () {
-                App.navRegion.$el.show();
                 App.contentRegion.show(new ErrorView({}));
+                App.navRegion.show(new NavigationView());
             }
 
         });

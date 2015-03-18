@@ -70,6 +70,7 @@ define([
                 $.post(this.session.get('tokenEndpoint'), data).then(function (res) {
                     _this.session.setToken(res);
                     App.appRouter.navigate('overview', true);
+                    App.navRegion.currentView.render();
                     console.log(App.navRegion);
                 }, function (err) {
                     console.log('error', err.responseText);
