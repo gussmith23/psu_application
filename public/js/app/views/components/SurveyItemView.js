@@ -13,7 +13,7 @@ define([
         tagName: 'tr',
 
         ui: {
-            'item': 'td'
+            'item': '#edit-button'
         },
 
         events: {
@@ -32,6 +32,13 @@ define([
                     var ds = _this.model.get('updated_at');
                     var date = new Date(ds.replace(' ', 'T') + 'Z');
                     return date.toLocaleString();
+                },
+                badgeClass: function () {
+                    if(_this.model.get('survey_status') == 'open') {
+                        return 'success';
+                    } else {
+                        return 'alert';
+                    }
                 }
             }
         },

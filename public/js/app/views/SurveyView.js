@@ -4,10 +4,11 @@ define([
         'handlebars',
         'text!templates/survey.hbs',
         'models/Session',
+        'models/Survey',
         'views/PSUSurveyView',
         'views/ErrorView'
     ],
-    function (App, Marionette, Handlebars, template, Session, PSUSurveyView, ErrorView) {
+    function (App, Marionette, Handlebars, template, Session, Survey, PSUSurveyView, ErrorView) {
         //ItemView provides some default rendering logic
         return Marionette.LayoutView.extend({
 
@@ -24,9 +25,12 @@ define([
 
             checkForSurvey: function (permalink) {
                 var _this = this;
-                var url = '/api/survey/' + permalink;
+                var url = '/api/survey/has/' + permalink;
                 $.get(url).then(function (result) {
-                    _this.main.show(new PSUSurveyView());
+                    console.log(result);
+                    _this.main.show(new PSUSurveyView({
+                        model: new Survey(result)
+                    }));
                 }, function (err) {
                     _this.main.show(new ErrorView({
                         message: "Cannot access survey."

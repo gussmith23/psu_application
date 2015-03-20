@@ -6,7 +6,6 @@ define([
         'models/Survey',
         'views/RegisterView',
         'views/NavigationView',
-        'views/WelcomeView',
         'views/LoginView',
         'views/OverviewView',
         'views/AccountView',
@@ -15,7 +14,7 @@ define([
         'views/ErrorView',
         'views/ManageView'
     ],
-    function (App, Backbone, Marionette, Session, Survey, RegisterView, NavigationView, WelcomeView, LoginView,
+    function (App, Backbone, Marionette, Session, Survey, RegisterView, NavigationView, LoginView,
               OverviewView, AccountView, NewSurveyView, SurveyView, ErrorView, ManageView) {
 
         return Backbone.Marionette.Controller.extend({
@@ -27,40 +26,41 @@ define([
                     _this.session.revokeToken();
                     App.appRouter.navigate('', true);
                 });
+                App.navRegion.show(new NavigationView());
             },
 
             index: function () {
-                App.navRegion.empty();
+                App.navRegion.$el.hide();
                 this.session.unauthenticatedRoute(App.contentRegion.show(new LoginView()));
             },
 
             register: function () {
-                App.navRegion.empty();
+                App.navRegion.$el.hide();
                 this.session.unauthenticatedRoute(App.contentRegion.show(new RegisterView()));
             },
 
             login: function () {
-                App.navRegion.empty();
+                App.navRegion.$el.hide();
                 this.session.unauthenticatedRoute(App.contentRegion.show(new LoginView()));
             },
 
             overview: function () {
                 this.session.authenticatedRoute(App.contentRegion.show(new OverviewView({})));
-                App.navRegion.show(new NavigationView());
+                App.navRegion.$el.show();
             },
 
             account: function () {
                 this.session.authenticatedRoute(App.contentRegion.show(new AccountView()));
-                App.navRegion.show(new NavigationView());
+                App.navRegion.$el.show();
             },
 
             newSurvey: function () {
                 this.session.authenticatedRoute(App.contentRegion.show(new NewSurveyView()));
-                App.navRegion.show(new NavigationView());
+                App.navRegion.$el.show();
             },
 
             survey: function (permalink) {
-                App.navRegion.empty();
+                App.navRegion.$el.hide();
                 App.contentRegion.show(new SurveyView({
                     permalink: permalink
                 }));
@@ -70,12 +70,12 @@ define([
                 App.contentRegion.show(new ManageView({
                     model: new Survey({ id: id })
                 }));
-                App.navRegion.show(new NavigationView());
+                App.navRegion.$el.show();
             },
 
             notFound: function () {
                 App.contentRegion.show(new ErrorView({}));
-                App.navRegion.show(new NavigationView());
+                App.navRegion.$el.show();
             }
 
         });

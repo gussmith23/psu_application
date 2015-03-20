@@ -29,7 +29,7 @@ define([
         },
 
         onRender: function () {
-            $(this.el).attr('class', 'table table-hover');
+            $(this.el).attr('class', 'medium-12 columns');
         }
 
     });

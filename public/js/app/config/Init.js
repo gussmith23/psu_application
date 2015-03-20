@@ -9,19 +9,17 @@ require.config({
         "marionetteloading": "../libs/marionette.loading",
         "handlebars": "../libs/handlebars",
         "backbone.validateAll": "../libs/plugins/Backbone.validateAll",
-        "bootstrap": "../libs/plugins/bootstrap",
         "text": "../libs/plugins/text",
         "jquerycookie": "../libs/plugins/jquery.cookie",
-        "bootstrapValidator": "../libs/plugins/bootstrapValidator",
-        "bootstrap-datepicker": "../libs/plugins/bootstrap-datepicker",
+        "formValidation": "../libs/formValidation/formValidation.min",
+        "formValidationFoundation": "../libs/formValidation/framework/foundation.min",
         "crypto": "../libs/sha256",
-        "sweetalert": "../libs/plugins/sweet-alert"
+        "foundation": "../libs/foundation.min",
+        "modernizr": "../libs/modernizr-latest",
+        "fastclick": "../libs/plugins/fastclick",
+        "placeholder": "../libs/plugins/placeholder"
     },
     shim: {
-        "bootstrap": ["jquery"],
-        "bootstrapValidator": ["bootstrap"],
-        "bootstrap-datepicker": ["bootstrap"],
-        "sweetalert": ["bootstrap"],
         "jqueryui": ["jquery"],
         "jquerycookie": ["jquery"],
         "backbone": {
@@ -36,7 +34,10 @@ require.config({
         "handlebars": {
             "exports": "Handlebars"
         },
-        "backbone.validateAll": ["backbone"]
+        "backbone.validateAll": ["backbone"],
+        "foundation": ["jquery", "modernizr", "fastclick", "placeholder"],
+        "formValidation": ["jquery"],
+        "formValidationFoundation": ["formValidation"]
     }
 });
 
@@ -48,16 +49,21 @@ require([
     "jquery",
     "jqueryui",
     "jquerycookie",
-    "bootstrap",
-    "bootstrapValidator",
     "backbone.validateAll",
-    "bootstrap-datepicker",
     "crypto",
-    "sweetalert",
-    "marionetteloading"
+    "marionetteloading",
+    "foundation",
+    "formValidation",
+    "formValidationFoundation"
 ], function (App, AppRouter, Controller) {
     App.appRouter = new AppRouter({
         controller: new Controller()
     });
     App.start();
+    $('input').keyup(function(e){
+        if(e.keyCode == 13){
+            $(this).trigger('enter');
+        }
+    });
+    $(document).foundation();
 });

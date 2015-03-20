@@ -1,41 +1,43 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <h2>Overview</h2>
-        </div>
+<div class="row">
+    <div class="medium-12 columns">
+        <h1>Overview</h1>
     </div>
-    <div class="row extra-space">
-        <div class="col-md-12">
-            <a class="btn btn-primary" href="#new-survey" role="button">
-                <i class="fa fa-plus fa-fw"></i> Add survey
-            </a>
-            <a class="btn btn-info" role="button">
-                <i class="fa fa-file fa-fw"></i> Export all to CSV
-            </a>
-        </div>
-    </div>
+</div>
 
+<div class="row">
+    <div class="medium-12 columns">
+        <a href="new-survey" class="button small">Create New Survey</a>
+        <a href="#" class="button small">Export All Surveys</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="medium-12 columns">
+        <h4>Survey Filter Options <small>For filter use, see <a href="support">support</a></small></h4>
+    </div>
+</div>
+
+<!--<form>-->
     <div class="row">
-        <div class="col-md-12">
-            <form>
-                <div class="form-group">
-                    <div class="input-group">
-                        <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-search"></span></span>
-                        <input type="text" id="survey-search-field" class="form-control" placeholder="Search by name">
-                    </div>
+        <div class="medium-12 columns">
+            <div class="row collapse">
+                <div class="small-10 columns">
+                    <input id="survey-search-field" type="text" placeholder="Enter filter">
                 </div>
-            </form>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-heading"><h4>Surveys Created <small class="hidden-xs">Click a survey for more options</small></h4></div>
-                <div class="panel-body">
-                    <div id="surveys-table" class="table-responsive"></div>
+                <div class="small-2 columns">
+                    <a id="survey-search-button" class="button postfix">Search</a>
                 </div>
             </div>
         </div>
     </div>
+<!--</form>-->
+
+<div class="row">
+    <div class="medium-12 columns">
+        <h4>Surveys <small>Click a survey for more options</small></h4>
+    </div>
+</div>
+
+<div class="row">
+    <div id="surveys-table" class="medium-12 columns"></div>
 </div>

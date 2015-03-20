@@ -11,13 +11,12 @@
  * This route is used to make sure that a survey exists. We don't want a user to be able to access
  * a survey if it is either 1) not active or 2) non existent.
  */
-$app->get('/survey/:permalink', function ($permalink) use ($app) {
+$app->get('/api/survey/has/:permalink', function ($permalink) use ($app) {
+    $app->response->headers->set('Content-Type', 'application/json');
     if (Survey::where('survey_permalink', '=', $permalink)->first() && Survey::where('survey_status', '=', 'open')->first()) {
-//    if (Survey::where('survey_permalink', '=', $permalink)->first()) {
+        $survey = Survey::where('survey_permalink', '=', $permalink)->first();
         $app->response->status(200);
-        echo json_encode(array(
-            'status' => 'yay'
-        ));
+        echo json_encode($survey);
     } else {
         $app->response->status(400);
         echo json_encode(array(
@@ -31,6 +30,7 @@ $app->get('/survey/:permalink', function ($permalink) use ($app) {
  *  Get all surveys
  */
 $app->get('/api/survey', function () use ($app) {
+    $app->response->headers->set('Content-Type', 'application/json');
     $authBearerToken = $app->request->headers->get('Authorization');
     if (!checkBearerToken($authBearerToken)) {
         $app->response->status(400);
@@ -50,6 +50,7 @@ $app->get('/api/survey', function () use ($app) {
  */
 $app->get('/api/survey/:id', function ($id) use ($app) {
     $authBearerToken = $app->request->headers->get('Authorization');
+    $app->response->headers->set('Content-Type', 'application/json');
     if (!checkBearerToken($authBearerToken)) {
         $app->response->status(400);
         echo json_encode(array(
@@ -68,6 +69,7 @@ $app->get('/api/survey/:id', function ($id) use ($app) {
  */
 $app->post('/api/survey/:id', function ($id) use ($app) {
     $authBearerToken = $app->request->headers->get('Authorization');
+    $app->response->headers->set('Content-Type', 'application/json');
     if (!checkBearerToken($authBearerToken)) {
         $app->response->status(400);
         echo json_encode(array(
@@ -82,6 +84,7 @@ $app->post('/api/survey/:id', function ($id) use ($app) {
  */
 $app->put('/api/survey/:id', function ($id) use ($app) {
     $authBearerToken = $app->request->headers->get('Authorization');
+    $app->response->headers->set('Content-Type', 'application/json');
     if (!checkBearerToken($authBearerToken)) {
         $app->response->status(400);
         echo json_encode(array(
@@ -96,6 +99,7 @@ $app->put('/api/survey/:id', function ($id) use ($app) {
  */
 $app->delete('/api/survey/:id', function ($id) use ($app) {
     $authBearerToken = $app->request->headers->get('Authorization');
+    $app->response->headers->set('Content-Type', 'application/json');
     if (!checkBearerToken($authBearerToken)) {
         $app->response->status(400);
         echo json_encode(array(

@@ -19,7 +19,7 @@ define([
                 "registerForm": "#registerForm"
             },
 
-            onShow: function () {
+            onShowOLD: function () {
                 var _this = this;
                 this.ui.registerForm.bootstrapValidator({
                     framework: 'bootstrap',
@@ -111,7 +111,7 @@ define([
                 });
             },
 
-            onDestroy: function () {
+            onDestroyOLD: function () {
                 this.ui.registerForm.data('bootstrapValidator').destroy();
             },
 

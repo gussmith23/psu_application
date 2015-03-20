@@ -1,27 +1,46 @@
-<div class="container-fluid fill login-container">
+<div id="loginErrorModal" class="reveal-modal tiny" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+    <h2 id="text-center">Login error</h2>
+    <p class="lead">Oh no! Something went wrong.</p>
+    <p>There was a problem logging you in. Check your login and try again.</p>
+    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+</div>
+
+<div class="fill login-container">
     <div class="row">
-        <div class="col-lg-4 col-md-5 col-sm-7 col-centered login-image">
+        <div class="medium-6 medium-centered columns login-image">
 
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-4 col-md-5 col-sm-7 col-centered">
-            <div class="panel panel-default">
+        <div class="medium-6 medium-centered columns">
+            <div class="panel">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Login to get started</h3>
+                    <h3>Login to get started</h3>
                 </div>
+                <hr class="form-divider">
                 <div class="panel-body">
                     <form id="loginForm">
-                        <div class="form-group">
-                            <label for="identification" class="control-label">Username or Email</label>
-                            <input type="text" class="form-control" id="identification" name="identification" placeholder="Enter username or email">
+                        <div class="row">
+                            <div class="small-12 columns">
+                                <label for="identification">
+                                    Username or Email
+                                    <input type="text" id="identification" name="identification" placeholder="Enter username or email" />
+                                </label>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="password" class="control-label">Password</label>
-                            <input type="password" class="form-control" id="password" name="password" placeholder="Enter password">
+                        <div class="row">
+                            <div class="small-12 columns">
+                                <label for="password">
+                                    Password
+                                    <input type="password" id="password" name="password" placeholder="Enter password" />
+                                </label>
+                            </div>
                         </div>
-                        <hr class="form-divider">
-                        <button type="submit" class="btn btn-primary">Login</button>
+                        <div class="row">
+                            <div class="small-12 columns">
+                                <button type="submit" class="button">Log in</button>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>

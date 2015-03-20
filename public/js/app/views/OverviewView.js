@@ -14,12 +14,14 @@ define([
             template: Handlebars.compile(template),
 
             ui: {
-                'surveyRow': '#survey-row',
-                'searchField': '#survey-search-field'
+                'searchField': '#survey-search-field',
+                'searchButton': "#survey-search-button"
             },
 
+
             events: {
-                "keyup @ui.searchField": "updateFilter"
+                "enter @ui.searchField": "updateFilter",
+                "click @ui.searchButton": "updateFilter"
             },
 
             regions: {
@@ -33,7 +35,7 @@ define([
             /**
              * Used to do real-time updating of the surveys table
              */
-            updateFilter: _.debounce(function () {
+            updateFilter: function () {
                 var input = this.ui.searchField[0].value;
                 var collection = new Surveys();
                 var _this = this;
@@ -46,7 +48,7 @@ define([
                         _this.surveysTable.show(new SurveyCollectionView({ collection: newCollection, fetch: false }));
                     }
                 });
-            }, 250, false)
+            }
 
         });
     }

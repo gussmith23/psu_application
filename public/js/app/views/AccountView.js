@@ -1,35 +1,34 @@
 define([
-        'App',
-        'marionette',
-        'handlebars',
-        'text!templates/account.hbs',
-        'models/User'
-    ],
-    function (App, Marionette, Handlebars, template, User) {
-        //ItemView provides some default rendering logic
-        return Marionette.ItemView.extend({
+    'App',
+    'marionette',
+    'handlebars',
+    'text!templates/account.hbs',
+    'models/User'
+], function (App, Marionette, Handlebars, template, User) {
 
-            initialize: function () {
-                this.model.on('sync', this.render);
-                this.model.fetch();
-            },
+    return Marionette.ItemView.extend({
 
-            template: Handlebars.compile(template),
+        initialize: function () {
+            this.model.on('sync', this.render);
+            this.model.fetch();
+        },
 
-            model: new User(),
+        template: Handlebars.compile(template),
 
-            ui: {
-                "cancelButton": "#cancelButton"
-            },
+        model: new User(),
 
-            events: {
-                "click #cancelButton": "goBack"
-            },
+        ui: {
+            "cancelButton": "#cancelButton"
+        },
 
-            goBack: function () {
-                window.history.back();
-            }
+        events: {
+            "click #cancelButton": "goBack"
+        },
 
-        });
+        goBack: function () {
+            window.history.back();
+        }
 
     });
+
+});

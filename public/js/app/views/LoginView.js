@@ -18,21 +18,21 @@ define([
             ui: {
                 "loginForm": "#loginForm",
                 "identification": "#identification",
-                "password": "#password"
+                "password": "#password",
+                "loginButton": "#loginButton"
             },
 
-            events: {},
+            events: {
+                "click @ui.loginButton": "login",
+                "enter @ui.password": "login",
+                "enter @ui.identification": "login"
+            },
 
             onShow: function () {
                 var _this = this;
                 // setup bootstrap validator
-                this.ui.loginForm.bootstrapValidator({
-                    framework: 'bootstrap',
-                    feedbackIcons: {
-                        valid: 'glyphicon glyphicon-ok',
-                        invalid: 'glyphicon glyphicon-remove',
-                        validating: 'glyphicon glyphicon-refresh'
-                    },
+                this.ui.loginForm.formValidation({
+                    framework: 'foundation',
                     fields: {
                         identification: {
                             validators: {
@@ -49,7 +49,7 @@ define([
                             }
                         }
                     }
-                }).on('success.form.bv', function (e) {
+                }).on('success.form.fv', function (e) {
                     e.preventDefault();
                     _this.login();
                 });
@@ -57,7 +57,7 @@ define([
             },
 
             onDestroy: function () {
-                this.ui.loginForm.data('bootstrapValidator').destroy();
+                this.ui.loginForm.data('formValidation').destroy();
             },
 
             login: function () {
@@ -73,6 +73,7 @@ define([
                     App.navRegion.currentView.render();
                     console.log(App.navRegion);
                 }, function (err) {
+                    $('#loginErrorModal').foundation('reveal', 'open');
                     console.log('error', err.responseText);
                 });
             }

@@ -1,21 +1,6 @@
-.navbar-brand {
-    float: left;
-    padding: 5px 15px;
-    font-size: 18px;
-}
-
-.col-centered {
-    float: none;
-    margin: 0 auto;
-}
-
 .extra-space {
     padding-top: 15px;
     padding-bottom: 15px;
-}
-
-tbody>tr {
-    cursor: pointer;
 }
 
 .form-divider {
@@ -53,18 +38,32 @@ tbody>tr {
 }
 
 .login-container {
-    background-color: #286090;
+    background-color: #007095;
 }
 
 .login-image {
     margin: 0 auto;
     height: 15vw;
-    max-height: 200px;
-    min-height: 100px;
+    max-height: 180px;
+    min-height: 80px;
     background-image: url('/img/psu_white_short.png');
     background-repeat: no-repeat;
     background-size: contain;
     background-position-x: center;
-    margin-top: 60px;
-    margin-bottom: 30px;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+}
+
+.bigger-text {
+    font-size: 1.25em;
+    font-weight: 300;
+    margin: 25px 0 15px;
+}
+
+#edit-button {
+    cursor: pointer;
+}
+
+#edit-button:hover {
+    text-decoration: underline;
 }

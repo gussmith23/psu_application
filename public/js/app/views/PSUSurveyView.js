@@ -6,9 +6,13 @@ define([
     ],
     function (App, Marionette, Handlebars, template) {
 
-        return Marionette.LayoutView.extend({
+        return Marionette.ItemView.extend({
 
             template: Handlebars.compile(template),
+
+            initialize: function () {
+                console.log(this.model);
+            },
 
             ui: {
                 "surveyForm": "#surveyForm"

@@ -21,8 +21,14 @@ define([
             "click #logoutButton": "logout"
         },
 
+        onRender: function () {
+            //$(document).foundation();
+        },
+
         onShow: function () {
-            //this.setActiveTab();
+            $('.menuItem').click(function(evt) {
+                $('.toggle-topbar').click();
+            });
         },
 
         /**
