@@ -19,15 +19,10 @@ define([
                 "registerForm": "#registerForm"
             },
 
-            onShowOLD: function () {
+            onShow: function () {
                 var _this = this;
-                this.ui.registerForm.bootstrapValidator({
-                    framework: 'bootstrap',
-                    feedbackIcons: {
-                        valid: 'glyphicon glyphicon-ok',
-                        invalid: 'glyphicon glyphicon-remove',
-                        validating: 'glyphicon glyphicon-refresh'
-                    },
+                this.ui.registerForm.formValidation({
+                    framework: 'foundation',
                     fields: {
                         username: {
                             validators: {
@@ -111,8 +106,8 @@ define([
                 });
             },
 
-            onDestroyOLD: function () {
-                this.ui.registerForm.data('bootstrapValidator').destroy();
+            onDestroy: function () {
+                this.ui.registerForm.data('formValidation').destroy();
             },
 
             register: function () {

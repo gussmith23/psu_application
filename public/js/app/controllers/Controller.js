@@ -4,6 +4,7 @@ define([
         'marionette',
         'models/Session',
         'models/Survey',
+        'collections/SurveyUsers',
         'views/RegisterView',
         'views/NavigationView',
         'views/LoginView',
@@ -14,7 +15,7 @@ define([
         'views/ErrorView',
         'views/ManageView'
     ],
-    function (App, Backbone, Marionette, Session, Survey, RegisterView, NavigationView, LoginView,
+    function (App, Backbone, Marionette, Session, Survey, SurveyUsers, RegisterView, NavigationView, LoginView,
               OverviewView, AccountView, NewSurveyView, SurveyView, ErrorView, ManageView) {
 
         return Backbone.Marionette.Controller.extend({
@@ -68,7 +69,8 @@ define([
 
             manage: function (id) {
                 App.contentRegion.show(new ManageView({
-                    model: new Survey({ id: id })
+                    model: new Survey({ id: id }),
+                    collection: new SurveyUsers({ survey_id: id })
                 }));
                 App.navRegion.$el.show();
             },

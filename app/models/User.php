@@ -16,6 +16,11 @@ class User extends \Illuminate\Database\Eloquent\Model
         'survey_id'
     ];
 
+    protected $hidden = [
+        'password',
+        'salt'
+    ];
+
     public function surveys()
     {
         return $this->belongsToMany('Survey', 'user_survey_join');

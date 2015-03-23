@@ -63,6 +63,20 @@ $app->get('/api/survey/:id', function ($id) use ($app) {
     }
 });
 
+$app->get('/api/survey/users/:id', function ($id) use ($app) {
+    $authBearerToken = $app->request->headers->get('Authorization');
+    $app->response->headers->set('Content-Type', 'application/json');
+    if (!checkBearerToken($authBearerToken)) {
+        $app->response->status(400);
+        echo json_encode(array(
+            'error' => 'invalid_bearer_token'
+        ));
+    } else {
+        $users = Survey::find($id)->users()->get();
+        echo json_encode($users);
+    }
+});
+
 
 /**
  * Create a survey

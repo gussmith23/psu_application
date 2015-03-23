@@ -1,80 +1,130 @@
-<div class="container">
-
-    <div class="row">
-        <div class="col-md-12">
-            <h1>Manage Survey</h1>
-            <p>&nbsp;</p>
+<div id="manageAccessModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+    <h2 id="text-center">Manage Access</h2>
+    <p class="lead">These users have access to modify this survey.</p>
+    <table class="medium-12 columns">
+        <thead>
+        <tr>
+            <td>Username</td>
+            <td>Email</td>
+            <td>First name</td>
+            <td>Last name</td>
+        </tr>
+        </thead>
+        <tbody>
+            {{! body goes here }}
+        </tbody>
+    </table>
+    <h5>Give users access</h5>
+    <div class="row collapse">
+        <label>Search for user by username or email.</label>
+        <div class="small-10 columns">
+            <input type="text">
+        </div>
+        <div class="small-2 columns">
+            <a class="button postfix">Give Access</a>
         </div>
     </div>
+    <a class="close-reveal-modal" onclick="$('#manageAccessModal').foundation('reveal', 'close');" aria-label="Close">&#215;</a>
+</div>
 
-    <div class="row">
-        <div class="col-md-12">
+<div class="row">
+    <div class="medium-12 columns">
+        <h1>Manage</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="medium-12 columns">
+        <a class="button small">View survey responses</a>
+        <a id="manageAccessButton" class="button small">Manage access</a>
+        {{#if surveyIsOpen}}
+            <a class="button small" title="Survey is currently open">Close survey</a>
+        {{else}}
+            <a class="button small" title="Survey is currently closed">Open survey</a>
+        {{/if}}
+    </div>
+</div>
+
+<div class="row">
+    <div class="medium-12 columns">
+        <h4>{{survey_name}}</h4>
+    </div>
+</div>
+
+<div class="row">
+    <div class="medium-6 columns">
+        <div class="panel">
+            <div class="panel-heading"><h5>Survey Information</h5></div>
+            <hr class="form-divider">
+            <div class="panel-body">
+                <form>
+                    <div class="row">
+                        <div class="small-12 columns">
+                            <label>
+                                Survey Name
+                                <input type="text" id="survey_name" value="{{survey_name}}">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="small-12 columns">
+                            <label>
+                                Survey Permalink
+                                <input type="text" id="survey_permalink" value="{{survey_permalink}}" disabled>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="small-12 columns">
+                            <label>
+                                Survey Description
+                                <input type="text" id="survey_description" value="{{survey_description}}">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="medium-12 columns">
+                            <a class="button small">Update information</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="medium-6 columns">
+        <div class="panel">
+            <div class="panel-heading"><h5>Survey Notes</h5></div>
+            <hr class="form-divider">
+            <textarea class="form-control" rows="10">{{survey_notes}}</textarea>
             <div class="row">
-                <div class="col-md-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Survey Information</h3>
-                        </div>
-                        <div class="panel-body">
-                            <form>
-                                <div class="form-group">
-                                    <label for="survey_name">Survey Name</label>
-                                    <input type="text" class="form-control" id="survey_name" value="{{survey_name}}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="survey_permalink">Survey Permalink</label>
-                                    <p class="help-block">
-                                        This is the URL that will be used to access the survey.
-                                    </p>
-                                    <input type="text" class="form-control" id="survey_permalink" value="{{survey_permalink}}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="survey_description">Survey Description</label>
-                                    <p class="help-block">
-                                        Keep it short and sweet.
-                                    </p>
-                                    <input type="text" class="form-control" id="survey_description" value="{{survey_description}}">
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Survey Notes</h3>
-                        </div>
-                        <div class="panel-body">
-                            <textarea class="form-control" rows="10">{{survey_notes}}</textarea>
-                        </div>
-                    </div>
+                <div class="medium-12 columns">
+                    <a class="button small">Update notes</a>
                 </div>
             </div>
         </div>
     </div>
-
-    <div class="row">
-        <div class="col-sm-12">
-            <hr class="form-divider">
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-12">
-            <h1>Survey Responses</h1>
-            <p>&nbsp;</p>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-12">
-            <form>
-                <div class="input-group">
-                    <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-search"></span></span>
-                    <input type="text" class="form-control" placeholder="Search for a response">
-                </div>
-            </form>
-        </div>
-    </div>
-
 </div>
+
+<!--<div class="row">-->
+    <!--<div class="col-sm-12">-->
+        <!--<hr class="form-divider">-->
+    <!--</div>-->
+<!--</div>-->
+
+<!--<div class="row">-->
+    <!--<div class="col-md-12">-->
+        <!--<h1>Survey Responses</h1>-->
+        <!--<p>&nbsp;</p>-->
+    <!--</div>-->
+<!--</div>-->
+
+<!--<div class="row">-->
+    <!--<div class="col-md-12">-->
+        <!--<form>-->
+            <!--<div class="input-group">-->
+                <!--<span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-search"></span></span>-->
+                <!--<input type="text" class="form-control" placeholder="Search for a response">-->
+            <!--</div>-->
+        <!--</form>-->
+    <!--</div>-->
+<!--</div>-->
