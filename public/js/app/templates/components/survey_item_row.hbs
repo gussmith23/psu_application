@@ -1,5 +1,12 @@
-<td><span id="edit-button" class="round secondary label">Manage</span></td>
-<td><span class="round {{badgeClass}} label">{{survey_status}}</span></td>
+<td>
+    <span id="edit-button" class="round {{badgeClass}} label">
+        {{#if badgeClassBoolean}}
+            <i class="fa fa-check fa-fw"></i> Manage
+        {{else}}
+            <i class="fa fa-times fa-fw"></i> Manage
+        {{/if}}
+    </span>
+</td>
 <td>{{survey_name}}</td>
-<td>{{createdDateString}}</td>
-<td>{{survey_description}}</td>
+<td class="hide-for-small-down">{{createdDateString}}</td>
+<td class="hide-for-small-down">{{survey_description}}</td>

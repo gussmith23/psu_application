@@ -17,7 +17,8 @@ require.config({
         "foundation": "../libs/foundation.min",
         "modernizr": "../libs/modernizr-latest",
         "fastclick": "../libs/plugins/fastclick",
-        "placeholder": "../libs/plugins/placeholder"
+        "placeholder": "../libs/plugins/placeholder",
+        "responsivetable": "../libs/plugins/responsive-tables"
     },
     shim: {
         "jqueryui": ["jquery"],
@@ -37,7 +38,8 @@ require.config({
         "backbone.validateAll": ["backbone"],
         "foundation": ["jquery", "modernizr", "fastclick", "placeholder"],
         "formValidation": ["jquery"],
-        "formValidationFoundation": ["formValidation"]
+        "formValidationFoundation": ["formValidation"],
+        "responsivetable": ["foundation"]
     }
 });
 
@@ -54,7 +56,8 @@ require([
     "marionetteloading",
     "foundation",
     "formValidation",
-    "formValidationFoundation"
+    "formValidationFoundation",
+    "responsivetable"
 ], function (App, AppRouter, Controller) {
     App.appRouter = new AppRouter({
         controller: new Controller()

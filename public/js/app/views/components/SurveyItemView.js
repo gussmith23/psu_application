@@ -39,6 +39,9 @@ define([
                     } else {
                         return 'alert';
                     }
+                },
+                badgeClassBoolean: function () {
+                    return _this.model.get('survey_status') == 'open';
                 }
             }
         },
