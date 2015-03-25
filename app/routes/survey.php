@@ -31,8 +31,8 @@ $app->get('/api/survey/has/:permalink', function ($permalink) use ($app) {
  *  Get all surveys
  */
 $app->get('/api/survey', function () use ($app) {
-    $app->response->headers->set('Content-Type', 'application/json');
     $app->response->header('Access-Control-Allow-Origin', '*');
+    $app->response->headers->set('Content-Type', 'application/json');
     if (!ensureAuthenticated()) {
         $app->response->status(400);
         echo json_encode(array(
