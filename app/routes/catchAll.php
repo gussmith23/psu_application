@@ -11,5 +11,5 @@ $app->get('/:method', function($method) use ($app) {
 
 $app->options('/:method', function($method) use ($app) {
     $app->response->header('Access-Control-Allow-Origin', '*');
-    $app->response->header('Access-Control-Allow-Headers', 'X-Requested-With, X-Authentication, X-client, X-authentication'); //Allow JSON data to be consumed
+//    $app->response->header('Access-Control-Allow-Headers', 'X-Requested-With, X-Authentication, X-client, X-authentication'); //Allow JSON data to be consumed
 })->conditions(array('method' => '.+'));
