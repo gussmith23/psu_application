@@ -10,6 +10,7 @@ $app->add(new \Slim\Middleware\SessionCookie(array('secret' => uniqid(rand(), tr
 $app->options('/(:name+)', function() use ($app) {
     $app->response->header('Access-Control-Allow-Origin', '*');
     $app->response->header('Access-Control-Allow-Methods', 'PUT, DELETE, POST, GET');
+    $app->response->header('Access-Control-Allow-Headers', 'Authorization, X-Authorization');
 });
 
 // config
