@@ -5,6 +5,8 @@
  */
 $app->post('/api/user', function () use ($app) {
 
+    $app->response->headers->set('Content-Type', 'application/json');
+
     // get the params
     $username = $app->request->post('username');
     $email = $app->request->post('email');
@@ -38,6 +40,7 @@ $app->post('/api/user', function () use ($app) {
                 'email' => $email,
                 'password' => $hash,
                 'salt' => $salt,
+                'role' => 'request',
                 'first_name' => $firstName,
                 'last_name' => $lastName
             );
@@ -60,8 +63,8 @@ $app->post('/api/user', function () use ($app) {
  *  Get currently logged in user
  */
 $app->get('/api/user', function () use ($app) {
-    $authBearerToken = $app->request->headers->get('Authorization');
-    if (!checkBearerToken($authBearerToken)) {
+    $app->response->headers->set('Content-Type', 'application/json');
+    if (!ensureAuthenticated()) {
         $app->response->status(400);
         echo json_encode(array(
             'error' => 'invalid_bearer_token'
@@ -79,12 +82,21 @@ $app->get('/api/user', function () use ($app) {
     ));
 });
 
+/**
+ * Get users by role
+ */
+$app->get('/api/users/role/:role', function () use ($app) {
+    $app->response->headers->set('Content-Type', 'application/json');
+
+
+});
+
 
 /*
  *  Update currently logged in user
  */
 $app->put('/api/user', function () use ($app) {
-
+    $app->response->headers->set('Content-Type', 'application/json');
 });
 
 
@@ -92,5 +104,5 @@ $app->put('/api/user', function () use ($app) {
  *  Delete currently logged in user.
  */
 $app->delete('/api/user', function () use ($app){
-
+    $app->response->headers->set('Content-Type', 'application/json');
 });

@@ -52,6 +52,10 @@ define([
             }
         },
 
+        onShow: function () {
+            $(document).foundation();
+        },
+
         linkTo: function (event) {
             var url = '/survey/manage/' + this.model.get('id');
             App.appRouter.navigate(url, true);

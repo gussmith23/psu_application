@@ -11,8 +11,7 @@
  *  Get all responses to a survey
  */
 $app->get('/api/survey/response/:survey_id', function ($survey_id) use ($app) {
-    $authBearerToken = $app->request->headers->get('Authorization');
-    if (!checkBearerToken($authBearerToken)) {
+    if (!ensureAuthenticated()) {
         $app->response->status(400);
         echo json_encode(array(
             'error' => 'invalid_bearer_token'
@@ -25,8 +24,7 @@ $app->get('/api/survey/response/:survey_id', function ($survey_id) use ($app) {
  *  Get a response to a survey
  */
 $app->get('/api/survey/response/:survey_id/:response_id', function ($survey_id, $response_id) use ($app) {
-    $authBearerToken = $app->request->headers->get('Authorization');
-    if (!checkBearerToken($authBearerToken)) {
+    if (!ensureAuthenticated()) {
         $app->response->status(400);
         echo json_encode(array(
             'error' => 'invalid_bearer_token'
@@ -48,8 +46,7 @@ $app->post('/api/survey/response/:permalink', function ($permalink) use ($app) {
  * Update a response to a survey
  */
 $app->put('/api/survey/response/:survey_id/:response_id', function ($survey_id, $response_id) use ($app) {
-    $authBearerToken = $app->request->headers->get('Authorization');
-    if (!checkBearerToken($authBearerToken)) {
+    if (!ensureAuthenticated()) {
         $app->response->status(400);
         echo json_encode(array(
             'error' => 'invalid_bearer_token'
@@ -62,8 +59,7 @@ $app->put('/api/survey/response/:survey_id/:response_id', function ($survey_id, 
  * Delete a response to a survey
  */
 $app->delete('/api/survey/response/:survey_id/:response_id', function ($survey_id, $response_id) use ($app) {
-    $authBearerToken = $app->request->headers->get('Authorization');
-    if (!checkBearerToken($authBearerToken)) {
+    if (!ensureAuthenticated()) {
         $app->response->status(400);
         echo json_encode(array(
             'error' => 'invalid_bearer_token'

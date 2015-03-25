@@ -6,7 +6,7 @@ define(
         Backbone.sync = function (method, model, options) {
             if ($.cookie('access_token')) {
                 options.beforeSend = function (xhr) {
-                    xhr.setRequestHeader('Authorization', 'Bearer ' + $.cookie('access_token'));
+                    xhr.setRequestHeader('X-Authorization', 'Basic ' + $.cookie('access_token'));
                 };
             }
             sync(method, model, options);

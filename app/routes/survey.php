@@ -31,10 +31,11 @@ $app->get('/api/survey/has/:permalink', function ($permalink) use ($app) {
  */
 $app->get('/api/survey', function () use ($app) {
     $app->response->headers->set('Content-Type', 'application/json');
-    $authBearerToken = $app->request->headers->get('Authorization');
-    if (!checkBearerToken($authBearerToken)) {
+    if (!ensureAuthenticated()) {
         $app->response->status(400);
         echo json_encode(array(
+            'sent' => $authBearerToken,
+            'needed' => $_SESSION['access_token'],
             'error' => 'invalid_bearer_token'
         ));
     } else {
@@ -49,9 +50,8 @@ $app->get('/api/survey', function () use ($app) {
  *  Get a survey
  */
 $app->get('/api/survey/:id', function ($id) use ($app) {
-    $authBearerToken = $app->request->headers->get('Authorization');
     $app->response->headers->set('Content-Type', 'application/json');
-    if (!checkBearerToken($authBearerToken)) {
+    if (!ensureAuthenticated()) {
         $app->response->status(400);
         echo json_encode(array(
             'error' => 'invalid_bearer_token'
@@ -64,9 +64,8 @@ $app->get('/api/survey/:id', function ($id) use ($app) {
 });
 
 $app->get('/api/survey/users/:id', function ($id) use ($app) {
-    $authBearerToken = $app->request->headers->get('Authorization');
     $app->response->headers->set('Content-Type', 'application/json');
-    if (!checkBearerToken($authBearerToken)) {
+    if (!ensureAuthenticated()) {
         $app->response->status(400);
         echo json_encode(array(
             'error' => 'invalid_bearer_token'
@@ -82,9 +81,8 @@ $app->get('/api/survey/users/:id', function ($id) use ($app) {
  * Create a survey
  */
 $app->post('/api/survey/:id', function ($id) use ($app) {
-    $authBearerToken = $app->request->headers->get('Authorization');
     $app->response->headers->set('Content-Type', 'application/json');
-    if (!checkBearerToken($authBearerToken)) {
+    if (!ensureAuthenticated()) {
         $app->response->status(400);
         echo json_encode(array(
             'error' => 'invalid_bearer_token'
@@ -97,9 +95,8 @@ $app->post('/api/survey/:id', function ($id) use ($app) {
  * Update a survey
  */
 $app->put('/api/survey/:id', function ($id) use ($app) {
-    $authBearerToken = $app->request->headers->get('Authorization');
     $app->response->headers->set('Content-Type', 'application/json');
-    if (!checkBearerToken($authBearerToken)) {
+    if (!ensureAuthenticated()) {
         $app->response->status(400);
         echo json_encode(array(
             'error' => 'invalid_bearer_token'
@@ -112,9 +109,8 @@ $app->put('/api/survey/:id', function ($id) use ($app) {
  * Delete a survey
  */
 $app->delete('/api/survey/:id', function ($id) use ($app) {
-    $authBearerToken = $app->request->headers->get('Authorization');
     $app->response->headers->set('Content-Type', 'application/json');
-    if (!checkBearerToken($authBearerToken)) {
+    if (!ensureAuthenticated()) {
         $app->response->status(400);
         echo json_encode(array(
             'error' => 'invalid_bearer_token'

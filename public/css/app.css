@@ -67,3 +67,7 @@
 #edit-button:hover {
     text-decoration: underline;
 }
+
+.reveal-modal {
+    top: 45px !important;
+}
