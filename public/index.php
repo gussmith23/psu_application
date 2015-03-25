@@ -7,6 +7,10 @@ require '../vendor/autoload.php';
 $app = new \Slim\Slim();
 $app->add(new \Slim\Middleware\SessionCookie(array('secret' => uniqid(rand(), true))));
 
+$app->options('/(:name+)', function() use ($app) {
+    $app->response->header('Access-Control-Allow-Origin', '*');
+});
+
 // config
 require '../app/configs/config.php';
 require '../app/configs/database.php';
