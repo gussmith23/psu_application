@@ -31,6 +31,7 @@ function genPermalink()
         'email' => 'test@account.com',
         'password' => $hash,
         'salt' => $salt,
+        'role' => 'admin',
         'first_name' => 'Test',
         'last_name' => 'Account'
     ));
