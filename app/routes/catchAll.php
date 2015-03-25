@@ -9,7 +9,8 @@ $app->get('/:method', function($method) use ($app) {
 })->conditions(array('method' => '.+'));
 
 
-//$app->options('/(:name+)', function() use ($app) {
-//    $app->response->header('Access-Control-Allow-Origin', '*');
-////    $app->response->header('Access-Control-Allow-Headers', 'X-Requested-With, X-Authentication, X-client, X-authentication'); //Allow JSON data to be consumed
-//})->conditions(array('method' => '.+'));
+$app->options('/(:name+)', function() use ($app) {
+    $app->response->header('Access-Control-Allow-Origin', '*');
+    $app->response->header('Access-Control-Allow-Methods', "GET, POST, PUT, DELETE");
+    $app->response->header('Access-Control-Allow-Headers', 'X-Requested-With, X-Authentication, X-client, X-authentication'); //Allow JSON data to be consumed
+})->conditions(array('method' => '.+'));
