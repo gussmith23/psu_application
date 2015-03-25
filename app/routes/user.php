@@ -6,6 +6,7 @@
 $app->post('/api/user', function () use ($app) {
 
     $app->response->headers->set('Content-Type', 'application/json');
+    $app->response->header('Access-Control-Allow-Origin', '*');
 
     // get the params
     $username = $app->request->post('username');
@@ -64,6 +65,7 @@ $app->post('/api/user', function () use ($app) {
  */
 $app->get('/api/user', function () use ($app) {
     $app->response->headers->set('Content-Type', 'application/json');
+    $app->response->header('Access-Control-Allow-Origin', '*');
     if (!ensureAuthenticated()) {
         $app->response->status(400);
         echo json_encode(array(
@@ -87,8 +89,7 @@ $app->get('/api/user', function () use ($app) {
  */
 $app->get('/api/users/role/:role', function () use ($app) {
     $app->response->headers->set('Content-Type', 'application/json');
-
-
+    $app->response->header('Access-Control-Allow-Origin', '*');
 });
 
 
@@ -97,6 +98,7 @@ $app->get('/api/users/role/:role', function () use ($app) {
  */
 $app->put('/api/user', function () use ($app) {
     $app->response->headers->set('Content-Type', 'application/json');
+    $app->response->header('Access-Control-Allow-Origin', '*');
 });
 
 
@@ -105,4 +107,5 @@ $app->put('/api/user', function () use ($app) {
  */
 $app->delete('/api/user', function () use ($app){
     $app->response->headers->set('Content-Type', 'application/json');
+    $app->response->header('Access-Control-Allow-Origin', '*');
 });

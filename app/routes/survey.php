@@ -13,6 +13,7 @@
  */
 $app->get('/api/survey/has/:permalink', function ($permalink) use ($app) {
     $app->response->headers->set('Content-Type', 'application/json');
+    $app->response->header('Access-Control-Allow-Origin', '*');
     if (Survey::where('survey_permalink', '=', $permalink)->first() && Survey::where('survey_status', '=', 'open')->first()) {
         $survey = Survey::where('survey_permalink', '=', $permalink)->first();
         $app->response->status(200);
@@ -31,6 +32,7 @@ $app->get('/api/survey/has/:permalink', function ($permalink) use ($app) {
  */
 $app->get('/api/survey', function () use ($app) {
     $app->response->headers->set('Content-Type', 'application/json');
+    $app->response->header('Access-Control-Allow-Origin', '*');
     if (!ensureAuthenticated()) {
         $app->response->status(400);
         echo json_encode(array(
@@ -51,6 +53,7 @@ $app->get('/api/survey', function () use ($app) {
  */
 $app->get('/api/survey/:id', function ($id) use ($app) {
     $app->response->headers->set('Content-Type', 'application/json');
+    $app->response->header('Access-Control-Allow-Origin', '*');
     if (!ensureAuthenticated()) {
         $app->response->status(400);
         echo json_encode(array(
@@ -65,6 +68,7 @@ $app->get('/api/survey/:id', function ($id) use ($app) {
 
 $app->get('/api/survey/users/:id', function ($id) use ($app) {
     $app->response->headers->set('Content-Type', 'application/json');
+    $app->response->header('Access-Control-Allow-Origin', '*');
     if (!ensureAuthenticated()) {
         $app->response->status(400);
         echo json_encode(array(
@@ -82,6 +86,7 @@ $app->get('/api/survey/users/:id', function ($id) use ($app) {
  */
 $app->post('/api/survey/:id', function ($id) use ($app) {
     $app->response->headers->set('Content-Type', 'application/json');
+    $app->response->header('Access-Control-Allow-Origin', '*');
     if (!ensureAuthenticated()) {
         $app->response->status(400);
         echo json_encode(array(
@@ -96,6 +101,7 @@ $app->post('/api/survey/:id', function ($id) use ($app) {
  */
 $app->put('/api/survey/:id', function ($id) use ($app) {
     $app->response->headers->set('Content-Type', 'application/json');
+    $app->response->header('Access-Control-Allow-Origin', '*');
     if (!ensureAuthenticated()) {
         $app->response->status(400);
         echo json_encode(array(
@@ -110,6 +116,7 @@ $app->put('/api/survey/:id', function ($id) use ($app) {
  */
 $app->delete('/api/survey/:id', function ($id) use ($app) {
     $app->response->headers->set('Content-Type', 'application/json');
+    $app->response->header('Access-Control-Allow-Origin', '*');
     if (!ensureAuthenticated()) {
         $app->response->status(400);
         echo json_encode(array(

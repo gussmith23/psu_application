@@ -5,6 +5,7 @@
  */
 $app->post('/api/token', function () use ($app) {
     $app->response->header('Content-Type', 'application/json');
+    $app->response->header('Access-Control-Allow-Origin', '*');
     $body = $app->request->params();
     if ($body['grant_type'] === 'password') {
         $username = $body['username'];
@@ -36,6 +37,7 @@ $app->post('/api/token', function () use ($app) {
  */
 $app->post('/api/revoke', function () use ($app) {
     $body = $app->request->getBody();
+    $app->response->header('Access-Control-Allow-Origin', '*');
     if ($body['token_type_hint'] === 'access_token' || $body['token_type_hint'] === 'refresh_token') {
         if (isset($_SESSION['user']) && isset($_SESSION['access_token'])) {
             unset($_SESSION['user']);

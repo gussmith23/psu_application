@@ -94,4 +94,4 @@ function genPermalink()
     $survey->save();
 }
 
-User::find(1)->surveys()->attach([1,2,3,4,5]);
+User::find(1)->surveys()->attach([1, 2, 3, 4, 5]);
