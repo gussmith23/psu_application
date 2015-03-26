@@ -4,3 +4,5 @@ composer.lock
 app/storage/db.sqlite
 .DS_Store
 .idea
+node_modules
+migrations
