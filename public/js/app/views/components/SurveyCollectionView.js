@@ -21,11 +21,18 @@ define([
 
         childViewContainer: "tbody",
 
-        loadingView: LoadingView,
-
         initialize: function (options) {
+            var _this = this;
             this.sort = options.sort || '';
-            if(options.fetch) this.collection.fetch();
+            this.collection.on('request', function() {
+                //show loading here
+                _this.emptyView = LoadingView;
+            });
+            this.collection.on('reset', function() {
+                _this.emptyView = SurveyCollectionEmptyView;
+            });
+            if(options.fetch) this.collection.fetch({reset: true});
+            //if(options.fetch) this.collection.fetch();
         },
 
         onRender: function () {
