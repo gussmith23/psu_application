@@ -44,6 +44,9 @@ define([
                     });
                     var newCollection = new Surveys(filteredCollection);
                     _this.surveysTable.show(new SurveyCollectionView({ collection: newCollection, fetch: false }));
+                },
+                error: function (model, response, options) {
+                    App.vent.trigger('session:logout');
                 }
             });
         }, 250, false)

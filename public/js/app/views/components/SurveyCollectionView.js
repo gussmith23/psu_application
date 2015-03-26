@@ -25,14 +25,17 @@ define([
             var _this = this;
             this.sort = options.sort || '';
             this.collection.on('request', function() {
-                //show loading here
                 _this.emptyView = LoadingView;
             });
             this.collection.on('reset', function() {
                 _this.emptyView = SurveyCollectionEmptyView;
             });
-            if(options.fetch) this.collection.fetch({reset: true});
-            //if(options.fetch) this.collection.fetch();
+            if(options.fetch) this.collection.fetch({
+                reset: true,
+                error: function (model, response, options) {
+                    App.vent.trigger('session:logout');
+                }
+            });
         },
 
         onRender: function () {

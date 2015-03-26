@@ -10,7 +10,11 @@ define([
 
         initialize: function () {
             this.model.on('sync', this.render);
-            this.model.fetch();
+            this.model.fetch({
+                error: function (model, response, options) {
+                    App.vent.trigger('session:logout');
+                }
+            });
         },
 
         template: Handlebars.compile(template),
