@@ -15,8 +15,6 @@
     <link rel="stylesheet" href="/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/app.css">
 
-    <script type="text/javascript" src="/js/libs/require.js" data-main="/js/app/config/Init.js"></script>
-
 </head>
 
 <body>
@@ -24,6 +22,7 @@
         <div id="navRegion"></div>
         <div id="contentRegion"></div>
     </div>
+    <script type="text/javascript" src="/js/libs/require.js" data-main="/js/app/config/Init.js"></script>
 </body>
 
 </html>
