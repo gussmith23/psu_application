@@ -95,3 +95,4 @@ function genPermalink()
 }
 
 User::find(1)->surveys()->attach([1, 2, 3, 4, 5]);
+User::find(2)->surveys()->attach([1, 2, 3, 4, 5]);

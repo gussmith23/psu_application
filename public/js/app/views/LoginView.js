@@ -68,10 +68,14 @@ define([
                     "password": CryptoJS.SHA256(this.ui.password[0].value).toString()
                 };
                 $.post(this.session.get('tokenEndpoint'), data).then(function (res) {
-                    _this.session.setToken(res);
-                    App.appRouter.navigate('overview', true);
-                    App.navRegion.currentView.render();
-                    console.log(App.navRegion);
+                    if(res['role'] == 'user') {
+                        $('#loginRequestUserModal').foundation('reveal', 'open');
+                    } else {
+                        _this.session.setToken(res);
+                        App.appRouter.navigate('overview', true);
+                        App.navRegion.currentView.render();
+                        console.log(App.navRegion);
+                    }
                 }, function (err) {
                     $('#loginErrorModal').foundation('reveal', 'open');
                     console.log('error', err.responseText);

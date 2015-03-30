@@ -33,7 +33,8 @@ define([
             if(options.fetch) this.collection.fetch({
                 reset: true,
                 error: function (model, response, options) {
-                    App.vent.trigger('session:logout');
+                    var res = JSON.parse(response.responseText);
+                    if(res.error == "invalid_bearer_token") App.vent.trigger('session:logout');
                 }
             });
         },

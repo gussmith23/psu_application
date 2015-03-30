@@ -73,16 +73,9 @@ $app->get('/api/user', function () use ($app) {
         ));
     }
     $user = User::find($_SESSION['user'])->first();
-    echo json_encode(array(
-        'id' => $user->id,
-        'username' => $user->username,
-        'email' => $user->email,
-        'firstName' => $user->first_name,
-        'lastName' => $user->last_name,
-        'createdAt' => $user->created_at,
-        'updatedAt' => $user->updated_at
-    ));
+    echo json_encode($user);
 });
+
 
 /**
  * Get users by role

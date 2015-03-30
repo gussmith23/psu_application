@@ -1,32 +1,36 @@
-<div id="manageAccessModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-    <h2 id="text-center">Manage Access</h2>
-    <h5>These users have access to modify this survey.</h5>
-    <table class="medium-12 columns">
-        <thead>
-        <tr>
-            <td width="25"></td>
-            <td>Username</td>
-            <td>Email</td>
-            <td class="hide-for-small-down">First name</td>
-            <td class="hide-for-small-down">Last name</td>
-        </tr>
-        </thead>
-        <tbody>
-            {{! body goes here }}
-        </tbody>
-    </table>
-    <h5>Give users access</h5>
-    <div class="row collapse">
-        <label>Search for user by username or email.</label>
-        <div class="small-8 medium-9 columns">
-            <input type="text" placeholder="Enter username or email">
-        </div>
-        <div class="small-4 medium-3 columns">
-            <a class="button postfix">Give Access</a>
-        </div>
-    </div>
-    <a class="close-reveal-modal" onclick="$('#manageAccessModal').foundation('reveal', 'close');" aria-label="Close">&#215;</a>
-</div>
+<!--<div id="manageAccessModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true"-->
+     <!--role="dialog">-->
+    <!--<h2 id="text-center">Manage Access</h2>-->
+    <!--<h5>These users have access to modify this survey.</h5>-->
+    <!--<table class="medium-12 columns">-->
+        <!--<thead>-->
+        <!--<tr>-->
+            <!--<td width="25"></td>-->
+            <!--<td>Username</td>-->
+            <!--<td>Email</td>-->
+            <!--<td class="hide-for-small-down">First name</td>-->
+            <!--<td class="hide-for-small-down">Last name</td>-->
+        <!--</tr>-->
+        <!--</thead>-->
+        <!--<tbody>-->
+        <!--{{! body goes here }}-->
+        <!--</tbody>-->
+    <!--</table>-->
+    <!--<h5>Give users access</h5>-->
+
+    <!--<div class="row collapse">-->
+        <!--<label>Search for user by username or email.</label>-->
+
+        <!--<div class="small-8 medium-9 columns">-->
+            <!--<input id="giveAccessField" type="text" placeholder="Enter username or email">-->
+        <!--</div>-->
+        <!--<div class="small-4 medium-3 columns">-->
+            <!--<a id="giveAccessButton" class="button postfix">Give Access</a>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<a class="close-reveal-modal" onclick="$('#manageAccessModal').foundation('reveal', 'close');" aria-label="Close">-->
+        <!--&#215;</a>-->
+<!--</div>-->
 
 <div class="row">
     <div class="medium-12 columns">
@@ -37,12 +41,18 @@
 <div class="row">
     <div class="medium-12 columns">
         <a class="button small">View survey responses</a>
-        <a id="manageAccessButton" class="button small">Manage access</a>
+        <!--<a id="manageAccessButton" class="button small">Manage access</a>-->
         {{#if surveyIsOpen}}
-            <a class="button small" title="Survey is currently open">Close survey</a>
+            <a id="surveyStatusButton" class="button alert small" title="Survey is currently open">Close survey</a>
         {{else}}
-            <a class="button small" title="Survey is currently closed">Open survey</a>
+            <a id="surveyStatusButton" class="button success small" title="Survey is currently closed">Open survey</a>
         {{/if}}
+    </div>
+</div>
+
+<div class="row">
+    <div class="medium-12 columns">
+        <hr class="divider">
     </div>
 </div>
 
@@ -52,43 +62,41 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row" data-equalizer>
     <div class="medium-6 columns">
         <div class="panel">
             <div class="panel-heading"><h5>Survey Information</h5></div>
             <hr class="form-divider">
             <div class="panel-body">
-                <form>
-                    <div class="row">
-                        <div class="small-12 columns">
-                            <label>
-                                Survey Name
-                                <input type="text" id="survey_name" value="{{survey_name}}">
-                            </label>
-                        </div>
+                <div class="row">
+                    <div class="small-12 columns">
+                        <label>
+                            Survey Name
+                            <input type="text" id="survey_name" value="{{survey_name}}">
+                        </label>
                     </div>
-                    <div class="row">
-                        <div class="small-12 columns">
-                            <label>
-                                Survey Permalink
-                                <input type="text" id="survey_permalink" value="{{survey_permalink}}" disabled>
-                            </label>
-                        </div>
+                </div>
+                <div class="row">
+                    <div class="small-12 columns">
+                        <label>
+                            Survey Permalink
+                            <input type="text" id="survey_permalink" value="{{survey_permalink}}" disabled>
+                        </label>
                     </div>
-                    <div class="row">
-                        <div class="small-12 columns">
-                            <label>
-                                Survey Description
-                                <input type="text" id="survey_description" value="{{survey_description}}">
-                            </label>
-                        </div>
+                </div>
+                <div class="row">
+                    <div class="small-12 columns">
+                        <label>
+                            Survey Description
+                            <input type="text" id="survey_description" value="{{survey_description}}">
+                        </label>
                     </div>
-                    <div class="row">
-                        <div class="medium-12 columns">
-                            <a class="button small">Update information</a>
-                        </div>
+                </div>
+                <div class="row">
+                    <div class="medium-12 columns">
+                        <a id="saveInfoButton" class="button small">Update information</a>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
@@ -96,36 +104,54 @@
         <div class="panel">
             <div class="panel-heading"><h5>Survey Notes</h5></div>
             <hr class="form-divider">
-            <textarea class="form-control" rows="10">{{survey_notes}}</textarea>
+            <textarea id="survey_notes" class="form-control" rows="10">{{survey_notes}}</textarea>
+
             <div class="row">
                 <div class="medium-12 columns">
-                    <a class="button small">Update notes</a>
+                    <a id="saveNotesButton" class="button small">Update notes</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<!--<div class="row">-->
-    <!--<div class="col-sm-12">-->
-        <!--<hr class="form-divider">-->
-    <!--</div>-->
-<!--</div>-->
+<div class="row">
+    <div class="medium-12 columns">
+        <hr class="divider">
+    </div>
+</div>
 
-<!--<div class="row">-->
-    <!--<div class="col-md-12">-->
-        <!--<h1>Survey Responses</h1>-->
-        <!--<p>&nbsp;</p>-->
-    <!--</div>-->
-<!--</div>-->
+<div class="row">
+    <div class="medium-12 columns">
+        <div class="panel">
+            <h4>Manage Access</h4>
+            <p>These users have access to modify this survey.</p>
+            <table class="medium-12 columns">
+                <thead>
+                <tr>
+                    <td width="25"></td>
+                    <td>Username</td>
+                    <td>Email</td>
+                    <td class="hide-for-small-down">First name</td>
+                    <td class="hide-for-small-down">Last name</td>
+                </tr>
+                </thead>
+                <tbody>
+                {{! body goes here }}
+                </tbody>
+            </table>
+            <h5>Give users access</h5>
 
-<!--<div class="row">-->
-    <!--<div class="col-md-12">-->
-        <!--<form>-->
-            <!--<div class="input-group">-->
-                <!--<span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-search"></span></span>-->
-                <!--<input type="text" class="form-control" placeholder="Search for a response">-->
-            <!--</div>-->
-        <!--</form>-->
-    <!--</div>-->
-<!--</div>-->
+            <div class="row collapse">
+                <label>Search for user by username or email.</label>
+
+                <div class="small-8 medium-9 columns">
+                    <input id="giveAccessField" type="text" placeholder="Enter username or email">
+                </div>
+                <div class="small-4 medium-3 columns">
+                    <a id="giveAccessButton" class="button postfix">Give Access</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

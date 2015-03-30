@@ -18,7 +18,9 @@ require.config({
         "modernizr": "../libs/modernizr-latest",
         "fastclick": "../libs/plugins/fastclick",
         "placeholder": "../libs/plugins/placeholder",
-        "responsivetable": "../libs/plugins/responsive-tables"
+        "responsivetable": "../libs/plugins/responsive-tables",
+        "spin": "../libs/spin",
+        "ladda": "../libs/ladda"
     },
     shim: {
         "jqueryui": ["jquery"],

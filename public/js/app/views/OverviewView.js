@@ -46,7 +46,8 @@ define([
                     _this.surveysTable.show(new SurveyCollectionView({ collection: newCollection, fetch: false }));
                 },
                 error: function (model, response, options) {
-                    App.vent.trigger('session:logout');
+                    var res = JSON.parse(response.responseText);
+                    if(res.error == "invalid_bearer_token") App.vent.trigger('session:logout');
                 }
             });
         }, 250, false)

@@ -1,8 +1,15 @@
 <div id="loginErrorModal" class="reveal-modal tiny" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-    <h2 id="text-center">Login error</h2>
+    <h2 id="text-center">Login Error</h2>
     <p class="lead">Oh no! Something went wrong.</p>
     <p>There was a problem logging you in. Check your login and try again.</p>
-    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+    <a class="close-reveal-modal" onclick="$('#loginErrorModal').foundation('reveal', 'close');" aria-label="Close">&#215;</a>
+</div>
+
+<div id="loginRequestUserModal" class="reveal-modal tiny" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+    <h2 id="text-center">Account Error</h2>
+    <p class="lead">Oh no! Something went wrong.</p>
+    <p>Your account is still in the process of being approved. Contact and admin expedite account approval.</p>
+    <a class="close-reveal-modal" onclick="$('#loginRequestUserModal').foundation('reveal', 'close');" aria-label="Close">&#215;</a>
 </div>
 
 <div class="fill login-container">

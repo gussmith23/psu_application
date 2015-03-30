@@ -16,6 +16,7 @@ $app->post('/api/token', function () use ($app) {
             $_SESSION['user'] = $user->id;
             $_SESSION['access_token'] = $sessionHash;
             echo json_encode(array(
+                'role' => $user->role,
                 'access_token' => $sessionHash
             ));
         } else {
