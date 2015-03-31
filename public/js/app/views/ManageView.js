@@ -37,7 +37,8 @@ define([
             "surveyNameField": "#survey_name",
             "surveyPermalinkField": "#survey_permalink",
             "surveyDescriptionField": "#survey_description",
-            "surveyNotesField": "#survey_notes"
+            "surveyNotesField": "#survey_notes",
+            "surveyStatusField": "#survey_status"
         },
 
         events: {
@@ -71,7 +72,8 @@ define([
             this.model.set({
                 'survey_name': this.ui.surveyNameField[0].value,
                 'survey_permalink': this.ui.surveyPermalinkField[0].value,
-                'survey_description': this.ui.surveyDescriptionField[0].value
+                'survey_description': this.ui.surveyDescriptionField[0].value,
+                'survey_status': this.ui.surveyStatusField[0].value
             });
             this.model.save({ wait: true });
         },

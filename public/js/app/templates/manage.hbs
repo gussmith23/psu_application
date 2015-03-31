@@ -1,64 +1,8 @@
-<!--<div id="manageAccessModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true"-->
-     <!--role="dialog">-->
-    <!--<h2 id="text-center">Manage Access</h2>-->
-    <!--<h5>These users have access to modify this survey.</h5>-->
-    <!--<table class="medium-12 columns">-->
-        <!--<thead>-->
-        <!--<tr>-->
-            <!--<td width="25"></td>-->
-            <!--<td>Username</td>-->
-            <!--<td>Email</td>-->
-            <!--<td class="hide-for-small-down">First name</td>-->
-            <!--<td class="hide-for-small-down">Last name</td>-->
-        <!--</tr>-->
-        <!--</thead>-->
-        <!--<tbody>-->
-        <!--{{! body goes here }}-->
-        <!--</tbody>-->
-    <!--</table>-->
-    <!--<h5>Give users access</h5>-->
-
-    <!--<div class="row collapse">-->
-        <!--<label>Search for user by username or email.</label>-->
-
-        <!--<div class="small-8 medium-9 columns">-->
-            <!--<input id="giveAccessField" type="text" placeholder="Enter username or email">-->
-        <!--</div>-->
-        <!--<div class="small-4 medium-3 columns">-->
-            <!--<a id="giveAccessButton" class="button postfix">Give Access</a>-->
-        <!--</div>-->
-    <!--</div>-->
-    <!--<a class="close-reveal-modal" onclick="$('#manageAccessModal').foundation('reveal', 'close');" aria-label="Close">-->
-        <!--&#215;</a>-->
-<!--</div>-->
-
 <div class="row">
     <div class="medium-12 columns">
         <h1>Manage</h1>
-    </div>
-</div>
-
-<div class="row">
-    <div class="medium-12 columns">
-        <a class="button small">View survey responses</a>
-        <!--<a id="manageAccessButton" class="button small">Manage access</a>-->
-        {{#if surveyIsOpen}}
-            <a id="surveyStatusButton" class="button alert small" title="Survey is currently open">Close survey</a>
-        {{else}}
-            <a id="surveyStatusButton" class="button success small" title="Survey is currently closed">Open survey</a>
-        {{/if}}
-    </div>
-</div>
-
-<div class="row">
-    <div class="medium-12 columns">
-        <hr class="divider">
-    </div>
-</div>
-
-<div class="row">
-    <div class="medium-12 columns">
         <h4>{{survey_name}}</h4>
+        <hr>
     </div>
 </div>
 
@@ -66,7 +10,7 @@
     <div class="medium-6 columns">
         <div class="panel">
             <div class="panel-heading"><h5>Survey Information</h5></div>
-            <hr class="form-divider">
+            <hr>
             <div class="panel-body">
                 <div class="row">
                     <div class="small-12 columns">
@@ -93,6 +37,17 @@
                     </div>
                 </div>
                 <div class="row">
+                    <div class="small-12 columns">
+                        <label>
+                            Survey Status
+                            <select id="survey_status">
+                                <option value="open" {{#if surveyIsOpen}}selected{{/if}}>Open</option>
+                                <option value="closed" {{#unless surveyIsOpen}}selected{{/unless}}>Closed</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="medium-12 columns">
                         <a id="saveInfoButton" class="button small">Update information</a>
                     </div>
@@ -103,7 +58,7 @@
     <div class="medium-6 columns">
         <div class="panel">
             <div class="panel-heading"><h5>Survey Notes</h5></div>
-            <hr class="form-divider">
+            <hr>
             <textarea id="survey_notes" class="form-control" rows="10">{{survey_notes}}</textarea>
 
             <div class="row">
@@ -115,16 +70,12 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="medium-12 columns">
-        <hr class="divider">
-    </div>
-</div>
 
 <div class="row">
     <div class="medium-12 columns">
         <div class="panel">
             <h4>Manage Access</h4>
+            <hr>
             <p>These users have access to modify this survey.</p>
             <table class="medium-12 columns">
                 <thead>
