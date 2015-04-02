@@ -4,6 +4,8 @@ define([
     'marionette',
     'models/Session',
     'models/Survey',
+    'models/Account',
+    'collections/RequestUsers',
     'collections/SurveyUsers',
     'views/RegisterView',
     'views/NavigationView',
@@ -14,7 +16,7 @@ define([
     'views/SurveyView',
     'views/ErrorView',
     'views/ManageView'
-], function (App, Backbone, Marionette, Session, Survey, SurveyUsers, RegisterView, NavigationView, LoginView,
+], function (App, Backbone, Marionette, Session, Survey, Account, RequestUsers, SurveyUsers, RegisterView, NavigationView, LoginView,
              OverviewView, AccountView, NewSurveyView, SurveyView, ErrorView, ManageView) {
 
     return Backbone.Marionette.Controller.extend({
@@ -56,7 +58,10 @@ define([
         },
 
         account: function () {
-            this.session.authenticatedRoute(App.contentRegion.show(new AccountView()));
+            this.session.authenticatedRoute(App.contentRegion.show(new AccountView({
+                model: new Account(),
+                collection: new RequestUsers()
+            })));
             App.navRegion.$el.show();
         },
 
@@ -73,10 +78,10 @@ define([
         },
 
         manage: function (id) {
-            App.contentRegion.show(new ManageView({
+            this.session.authenticatedRoute(App.contentRegion.show(new ManageView({
                 model: new Survey({ id: id }),
                 collection: new SurveyUsers({ survey_id: id })
-            }));
+            })));
             App.navRegion.$el.show();
         },
 

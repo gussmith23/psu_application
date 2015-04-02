@@ -6,11 +6,11 @@
             <i class="fa fa-times fa-fw"></i>
         {{/if}}
     </span>
-    <ul id="drop{{id}}" data-dropdown-content class="f-dropdown" aria-hidden="true">
-        <li><a id="edit-button">Manage survey</a></li>
-        <li><a id="">View Responses</a></li>
-    </ul>
+    <!--<ul id="drop{{id}}" data-dropdown-content class="f-dropdown" aria-hidden="true">-->
+        <!--<li><a id="edit-button">Manage survey</a></li>-->
+        <!--<li><a href="/survey/responses/{{id}}">View all responses</a></li>-->
+    <!--</ul>-->
 </td>
-<td data-dropdown="drop{{id}}"><a>{{survey_name}}</a></td>
+<td><a data-dropdown="drop{{id}}" href="/survey/manage/{{id}}">{{survey_name}}</a></td>
 <td class="hide-for-small-down">{{createdDateString}}</td>
 <td class="hide-for-small-down">{{survey_description}}</td>

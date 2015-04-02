@@ -18,8 +18,7 @@ define([
             ui: {
                 "loginForm": "#loginForm",
                 "identification": "#identification",
-                "password": "#password",
-                "loginButton": "#loginButton"
+                "password": "#password"
             },
 
             events: {
@@ -68,12 +67,13 @@ define([
                     "password": CryptoJS.SHA256(this.ui.password[0].value).toString()
                 };
                 $.post(this.session.get('tokenEndpoint'), data).then(function (res) {
-                    if(res['role'] == 'user') {
+                    if(res['role'] == ('request')) {
                         $('#loginRequestUserModal').foundation('reveal', 'open');
+                    } else if (res['role'] == ('user')) {
+                        $('#loginErrorModal').foundation('reveal', 'open');
                     } else {
                         _this.session.setToken(res);
                         App.appRouter.navigate('overview', true);
-                        //App.navRegion.currentView.render();
                     }
                 }, function (err) {
                     $('#loginErrorModal').foundation('reveal', 'open');

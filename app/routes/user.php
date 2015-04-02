@@ -6,7 +6,6 @@
 $app->post('/api/user', function () use ($app) {
 
     $app->response->headers->set('Content-Type', 'application/json');
-    $app->response->header('Access-Control-Allow-Origin', '*');
 
     // get the params
     $username = $app->request->post('username');
@@ -51,7 +50,9 @@ $app->post('/api/user', function () use ($app) {
             $user->save();
 
             $app->response->status(201);
-            echo '';
+            echo json_encode([
+                'status' => 200
+            ]);
 
         }
 
@@ -80,8 +81,17 @@ $app->get('/api/user', function () use ($app) {
 /**
  * Get users by role
  */
-$app->get('/api/users/role/:role', function () use ($app) {
+$app->get('/api/users/role/:role', function ($role) use ($app) {
     $app->response->headers->set('Content-Type', 'application/json');
+    if (!ensureAuthenticated()) {
+        $app->response->status(400);
+        echo json_encode(array(
+            'error' => 'invalid_bearer_token'
+        ));
+    } else {
+        $users = User::where('role', '=', $role)->get();
+        echo json_encode($users);
+    }
 });
 
 
@@ -104,7 +114,7 @@ $app->put('/api/user', function () use ($app) {
         $user->last_name = $data->last_name;
         $user->save();
         echo json_encode(array(
-            'status'=> '200'
+            'status' => '200'
         ));
     }
 });
@@ -113,6 +123,67 @@ $app->put('/api/user', function () use ($app) {
 /*
  *  Delete currently logged in user.
  */
-$app->delete('/api/user', function () use ($app){
+$app->delete('/api/user', function () use ($app) {
     $app->response->headers->set('Content-Type', 'application/json');
+    if (!ensureAuthenticated()) {
+        $app->response->status(400);
+        echo json_encode(array(
+            'error' => 'invalid_bearer_token'
+        ));
+    } else {
+
+    }
+});
+
+
+$app->get('/api/user/:id', function ($id) use ($app) {
+    $app->response->headers->set('Content-Type', 'application/json');
+    if (!ensureAuthenticated()) {
+        $app->response->status(400);
+        echo json_encode(array(
+            'error' => 'invalid_bearer_token'
+        ));
+    } else {
+        $user = User::where('id', '=', $id)->get();
+        echo json_encode($user);
+    }
+});
+
+
+$app->put('/api/user/:id', function ($id) use ($app) {
+    $app->response->headers->set('Content-Type', 'application/json');
+    if (!ensureAuthenticated()) {
+        $app->response->status(400);
+        echo json_encode(array(
+            'error' => 'invalid_bearer_token'
+        ));
+    } else {
+        $data = json_decode($app->request->getBody());
+        $user = User::where('id', '=', $id)->first();
+        $user->username = $data->username;
+        $user->email = $data->email;
+        $user->role = $data->role;
+        $user->first_name = $data->first_name;
+        $user->last_name = $data->last_name;
+        $user->save();
+        echo json_encode([
+            'status' => 200
+        ]);
+    }
+});
+
+$app->delete('/api/user/:id', function ($id) use ($app) {
+    $app->response->headers->set('Content-Type', 'application/json');
+    if (!ensureAuthenticated()) {
+        $app->response->status(400);
+        echo json_encode(array(
+            'error' => 'invalid_bearer_token'
+        ));
+    } else {
+        $user = User::where('id', '=', $id)->first();
+        $user->delete();
+        echo json_encode([
+            'status' => 200
+        ]);
+    }
 });

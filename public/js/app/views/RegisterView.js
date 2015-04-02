@@ -11,15 +11,16 @@ define([
             template: Handlebars.compile(template),
 
             ui: {
+                "registerForm": "#registerForm",
                 "username": "#username",
                 "email": "#email",
                 "password": "#password",
                 "firstName": "#firstName",
-                "lastName": "#lastName",
-                "registerForm": "#registerForm"
+                "lastName": "#lastName"
             },
 
             onShow: function () {
+                debugger;
                 var _this = this;
                 this.ui.registerForm.formValidation({
                     framework: 'foundation',
@@ -100,8 +101,9 @@ define([
                             }
                         }
                     }
-                }).on('success.form.bv', function (e) {
+                }).on('success.form.fv', function (e) {
                     e.preventDefault();
+                    debugger;
                     _this.register();
                 });
             },
@@ -112,6 +114,7 @@ define([
 
             register: function () {
                 var _this = this;
+                debugger;
                 var data = {
                     "username": this.ui.username[0].value,
                     "email": this.ui.email[0].value,
@@ -119,11 +122,10 @@ define([
                     "first_name": this.ui.firstName[0].value,
                     "last_name": this.ui.lastName[0].value
                 };
+
                 $.post("/api/user", data).then(function (res) {
-                    App.navRegion.currentView.render();
                     App.appRouter.navigate('login', true);
                 }, function (err) {
-                    swal("Error!", "Your account could not be registered. This could mean that the username or email you input is already in use.", "error");
                     _this.ui.username[0].value = '';
                     _this.ui.email[0].value = '';
                     _this.ui.password[0].value = '';

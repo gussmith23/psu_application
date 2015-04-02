@@ -3,10 +3,11 @@ define([
     'marionette',
     'handlebars',
     'text!templates/account.hbs',
-    'models/User'
-], function (App, Marionette, Handlebars, template, User) {
+    'views/account_request_components/RequestItemView',
+    'views/account_request_components/RequestEmptyView'
+], function (App, Marionette, Handlebars, template, RequestItemView, RequestEmptyView) {
 
-    return Marionette.ItemView.extend({
+    return Marionette.CompositeView.extend({
 
         initialize: function () {
             this.model.on('sync', this.render);
@@ -18,11 +19,23 @@ define([
                     if(res.error == "invalid_bearer_token") App.vent.trigger('session:logout');
                 }
             });
+            this.collection.on('sync', this.render);
+            this.collection.fetch({
+                reset: true,
+                error: function (model, response, options) {
+                    var res = JSON.parse(response.responseText);
+                    if(res.error == "invalid_bearer_token") App.vent.trigger('session:logout');
+                }
+            })
         },
 
         template: Handlebars.compile(template),
 
-        model: new User(),
+        childView: RequestItemView,
+
+        emptyView: RequestEmptyView,
+
+        childViewContainer: "tbody",
 
         ui: {
             "updateButton": "#updateButton",
