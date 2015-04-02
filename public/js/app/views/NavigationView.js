@@ -51,7 +51,7 @@ define([
             //App.controller.revokeToken();
             App.vent.trigger('session:logout');
             //App.appRouter.navigate('', true);
-            window.location.reload(); // force reload
+            //window.location.reload(); // force reload
         }
 
     });

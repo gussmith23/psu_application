@@ -71,9 +71,10 @@ $app->get('/api/user', function () use ($app) {
         echo json_encode(array(
             'error' => 'invalid_bearer_token'
         ));
+    } else {
+        $user = User::where('id', '=', $_SESSION['user'])->first();
+        echo json_encode($user);
     }
-    $user = User::find($_SESSION['user'])->first();
-    echo json_encode($user);
 });
 
 
@@ -82,7 +83,6 @@ $app->get('/api/user', function () use ($app) {
  */
 $app->get('/api/users/role/:role', function () use ($app) {
     $app->response->headers->set('Content-Type', 'application/json');
-    $app->response->header('Access-Control-Allow-Origin', '*');
 });
 
 
@@ -91,7 +91,6 @@ $app->get('/api/users/role/:role', function () use ($app) {
  */
 $app->put('/api/user', function () use ($app) {
     $app->response->headers->set('Content-Type', 'application/json');
-    $app->response->header('Access-Control-Allow-Origin', '*');
 });
 
 
@@ -100,5 +99,4 @@ $app->put('/api/user', function () use ($app) {
  */
 $app->delete('/api/user', function () use ($app){
     $app->response->headers->set('Content-Type', 'application/json');
-    $app->response->header('Access-Control-Allow-Origin', '*');
 });

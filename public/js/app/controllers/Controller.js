@@ -23,8 +23,14 @@ define([
             this.session = new Session();
             var _this = this;
             App.vent.on('session:logout', function () {
-                _this.session.revokeToken();
-                App.appRouter.navigate('', true);
+                $.ajax({
+                    type: 'POST',
+                    url: '/api/revoke',
+                    success: function (res) {
+                        _this.session.revokeToken();
+                        App.appRouter.navigate('', true);
+                    }
+                });
             });
             App.navRegion.show(new NavigationView());
         },

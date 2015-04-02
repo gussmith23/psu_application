@@ -33,7 +33,6 @@ define([
             "giveAccessButton": "#giveAccessButton",
             "giveAccessField": "#giveAccessField",
             "manageAccessButton": "#manageAccessButton",
-            "surveyStatusButton": "#surveyStatusButton",
             "surveyNameField": "#survey_name",
             "surveyPermalinkField": "#survey_permalink",
             "surveyDescriptionField": "#survey_description",
@@ -43,7 +42,6 @@ define([
 
         events: {
             "click @ui.manageAccessButton": "showAccessModal",
-            "click @ui.surveyStatusButton": "changeSurveyStatus",
             "click @ui.saveInfoButton": "saveSurveyInfo",
             "click @ui.saveNotesButton": "saveSurveyNotes",
             "click @ui.giveAccessButton": "giveAccess"
@@ -61,10 +59,21 @@ define([
             var _this = this;
             var url = '/api/survey/users/' + this.model.get('id');
             console.log('click', url);
-            $.post(url, { 'identification': _this.ui.giveAccessField[0].value }).then(function (result) {
-                _this.collection.add(result);
-            }, function (err) {
-                console.log(err);
+            $.ajax({
+                type: 'POST',
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader('X-Authorization', 'Basic ' + $.cookie('access_token'));
+                },
+                url: url,
+                data: { 'identification': _this.ui.giveAccessField[0].value },
+                success: function (res) {
+                    _this.collection.add(res);
+                    _this.ui.giveAccessField[0].value = '';
+                },
+                error: function (err) {
+                    console.log(err);
+                    if (err.error == "invalid_bearer_token") App.vent.trigger('session:logout');
+                }
             });
         },
 
@@ -75,23 +84,24 @@ define([
                 'survey_description': this.ui.surveyDescriptionField[0].value,
                 'survey_status': this.ui.surveyStatusField[0].value
             });
-            this.model.save({ wait: true });
+            this.model.save(null, {
+                success: function (model, response, options) {
+                    alert('Survey information updated');
+                },
+                wait: true
+            });
         },
 
         saveSurveyNotes: function () {
             this.model.set({
                 'survey_notes': this.ui.surveyNotesField[0].value
             });
-            this.model.save({ wait: true });
-        },
-
-        changeSurveyStatus: function () {
-            if (this.model.get('survey_status') == 'open') {
-                this.model.set('survey_status', 'closed');
-            } else {
-                this.model.set('survey_status', 'open');
-            }
-            this.model.save();
+            this.model.save(null, {
+                success: function (model, response, options) {
+                    alert('Survey notes updated');
+                },
+                wait: true
+            });
         },
 
         showAccessModal: function () {

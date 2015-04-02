@@ -11,7 +11,6 @@
  *  Get all responses to a survey
  */
 $app->get('/api/survey/response/:survey_id', function ($survey_id) use ($app) {
-    $app->response->header('Access-Control-Allow-Origin', '*');
     if (!ensureAuthenticated()) {
         $app->response->status(400);
         echo json_encode(array(
@@ -25,7 +24,6 @@ $app->get('/api/survey/response/:survey_id', function ($survey_id) use ($app) {
  *  Get a response to a survey
  */
 $app->get('/api/survey/response/:survey_id/:response_id', function ($survey_id, $response_id) use ($app) {
-    $app->response->header('Access-Control-Allow-Origin', '*');
     if (!ensureAuthenticated()) {
         $app->response->status(400);
         echo json_encode(array(
@@ -39,7 +37,6 @@ $app->get('/api/survey/response/:survey_id/:response_id', function ($survey_id, 
  * Create a response to a survey
  */
 $app->post('/api/survey/response/:permalink', function ($permalink) use ($app) {
-    $app->response->header('Access-Control-Allow-Origin', '*');
     // Does this route need authentication? If not, it might be a good
     // idea to require the permalink to be able to post.
 });
@@ -49,7 +46,6 @@ $app->post('/api/survey/response/:permalink', function ($permalink) use ($app) {
  * Update a response to a survey
  */
 $app->put('/api/survey/response/:survey_id/:response_id', function ($survey_id, $response_id) use ($app) {
-    $app->response->header('Access-Control-Allow-Origin', '*');
     if (!ensureAuthenticated()) {
         $app->response->status(400);
         echo json_encode(array(
@@ -63,7 +59,6 @@ $app->put('/api/survey/response/:survey_id/:response_id', function ($survey_id, 
  * Delete a response to a survey
  */
 $app->delete('/api/survey/response/:survey_id/:response_id', function ($survey_id, $response_id) use ($app) {
-    $app->response->header('Access-Control-Allow-Origin', '*');
     if (!ensureAuthenticated()) {
         $app->response->status(400);
         echo json_encode(array(

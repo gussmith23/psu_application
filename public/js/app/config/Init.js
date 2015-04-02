@@ -19,8 +19,7 @@ require.config({
         "fastclick": "../libs/plugins/fastclick",
         "placeholder": "../libs/plugins/placeholder",
         "responsivetable": "../libs/plugins/responsive-tables",
-        "spin": "../libs/spin",
-        "ladda": "../libs/ladda"
+        "foundationDatePicker": "../libs/foundation-datepicker"
     },
     shim: {
         "jqueryui": ["jquery"],
@@ -41,7 +40,7 @@ require.config({
         "foundation": ["jquery", "modernizr", "fastclick", "placeholder"],
         "formValidation": ["jquery"],
         "formValidationFoundation": ["formValidation"],
-        "responsivetable": ["foundation"]
+        "foundationDatePicker": ["foundation"]
     }
 });
 
@@ -59,7 +58,7 @@ require([
     "foundation",
     "formValidation",
     "formValidationFoundation",
-    "responsivetable"
+    "foundationDatePicker"
 ], function (App, AppRouter, Controller) {
     App.appRouter = new AppRouter({
         controller: new Controller()

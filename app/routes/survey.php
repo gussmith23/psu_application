@@ -39,7 +39,7 @@ $app->get('/api/survey', function () use ($app) {
     } else {
         $app->response->status(200);
         $surveys = User::find($_SESSION['user'])->surveys()->get();
-        echo json_encode($surveys);
+        echo json_encode($surveys->reverse());
     }
 });
 
@@ -73,16 +73,21 @@ $app->get('/api/survey/users/:id', function ($id) use ($app) {
         ));
     } else {
         $users = Survey::find($id)->users()->get();
-        $user = User::find($_SESSION['user'])->first();
-        for($i = 0; $i<sizeof($users); $i++) {
-            if($users[$i]['id'] == $user->id) {
-                unset($users[$i]);
+        $user = User::where('id', '=', $_SESSION['user'])->first();
+        $users_minus_self = [];
+        for ($i = 0; $i < sizeof($users); $i++) {
+            if ($users[$i]->id != $user->id) {
+                array_push($users_minus_self, $users[$i]);
             }
         }
-        echo json_encode($users);
+        echo json_encode($users_minus_self);
     }
 });
 
+
+/**
+ * attach user to survey
+ */
 $app->post('/api/survey/users/:id', function ($id) use ($app) {
     $app->response->headers->set('Content-Type', 'application/json');
     if (!ensureAuthenticated()) {
@@ -93,7 +98,7 @@ $app->post('/api/survey/users/:id', function ($id) use ($app) {
     } else {
         $identification = $app->request->post('identification');
         $user = User::where('username', '=', $identification)->orWhere('email', '=', $identification)->first();
-        if($user) {
+        if ($user) {
             User::find($user->id)->surveys()->attach([$id]);
             echo json_encode($user);
         } else {
@@ -102,6 +107,25 @@ $app->post('/api/survey/users/:id', function ($id) use ($app) {
                 'error' => 'user_does_not_exist'
             ));
         }
+    }
+});
+
+/**
+ * detach user to survey
+ */
+$app->delete('/api/survey/users/:id', function ($id) use ($app) {
+    $app->response->headers->set('Content-Type', 'application/json');
+    if (!ensureAuthenticated()) {
+        $app->response->status(400);
+        echo json_encode(array(
+            'error' => 'invalid_bearer_token'
+        ));
+    } else {
+        $userId = $app->request->delete('id');
+        User::find($userId)->surveys()->detach($id);
+        echo json_encode(array(
+            'ok' => 'successfully_detached'
+        ));
     }
 });
 
@@ -139,6 +163,9 @@ $app->put('/api/survey/:id', function ($id) use ($app) {
         $survey->survey_notes = $json->survey_notes;
         $survey->survey_status = $json->survey_status;
         $survey->save();
+        echo json_encode(array(
+            'status'=> '200'
+        ));
     }
 });
 

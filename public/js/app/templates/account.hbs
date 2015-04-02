@@ -6,35 +6,44 @@
 </div>
 
 <div class="row">
-    <div class="medium-6 columns">
+    <div class="medium-4 columns">
+        <div>
+            <ul class="side-nav">
+                <li>Account Actions</li>
+                <li><a onclick="confirm('Are you sure you want to deactivate your account?\n\nNOTE: THIS DOES NOT DELETE YOUR ACCOUNT. CONTACT DATABASE ADMIN TO DELETE YOUR ACCOUNT.')">Deactivate account</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="medium-8 columns">
         <div class="panel">
-            <div class="panel-heading"><h5>Update or modify your account</h5></div>
+            <h4>Update or modify your account</h4>
             <hr class="form-divider">
-            <div class="panel-body">
-                <div class="row">
-                    <div class="small-12 columns">
-                        <label>Username</label>
-                        <input id="" type="text" placeholder="Enter username" value="{{username}}">
-                    </div>
-                    <div class="small-12 columns">
-                        <label>Email</label>
-                        <input id="" type="text" placeholder="Enter email" value="{{email}}">
-                    </div>
-                    <div class="small-12 columns">
-                        <label>First Name</label>
-                        <input id="" type="text" placeholder="Enter first name" value="{{first_name}}">
-                    </div>
-                    <div class="small-12 columns">
-                        <label>Last Name</label>
-                        <input id="" type="text" placeholder="Enter last name" value="{{last_name}}">
-                    </div>
+            <div class="row">
+                <div class="small-12 columns">
+                    <label>Username</label>
+                    <input id="" type="text" placeholder="Enter username" value="{{username}}">
+                </div>
+                <div class="small-12 columns">
+                    <label>Email</label>
+                    <input id="" type="text" placeholder="Enter email" value="{{email}}">
+                </div>
+                <div class="small-12 columns">
+                    <label>First Name</label>
+                    <input id="" type="text" placeholder="Enter first name" value="{{first_name}}">
+                </div>
+                <div class="small-12 columns">
+                    <label>Last Name</label>
+                    <input id="" type="text" placeholder="Enter last name" value="{{last_name}}">
                 </div>
             </div>
         </div>
     </div>
-    <div class="medium-6 columns">
+</div>
+<div class="row">
+    <div class="medium-4 columns"></div>
+    <div class="medium-8 columns">
         <div class="panel">
-            <div class="panel-heading"><h5>Accounts requesting access</h5></div>
+            <h4>Accounts requesting access</h4>
             <hr class="form-divider">
         </div>
     </div>

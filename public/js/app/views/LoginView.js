@@ -23,9 +23,8 @@ define([
             },
 
             events: {
-                "click @ui.loginButton": "login",
-                "enter @ui.password": "login",
-                "enter @ui.identification": "login"
+                //"enter @ui.password": "login",
+                //"enter @ui.identification": "login"
             },
 
             onShow: function () {
@@ -61,6 +60,7 @@ define([
             },
 
             login: function () {
+                if(!this.ui.loginForm.data('formValidation').isValid()) return;
                 var _this = this;
                 var data = {
                     "grant_type": "password",
@@ -73,8 +73,7 @@ define([
                     } else {
                         _this.session.setToken(res);
                         App.appRouter.navigate('overview', true);
-                        App.navRegion.currentView.render();
-                        console.log(App.navRegion);
+                        //App.navRegion.currentView.render();
                     }
                 }, function (err) {
                     $('#loginErrorModal').foundation('reveal', 'open');

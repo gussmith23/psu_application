@@ -1,55 +1,52 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 col-centered">
-            <h2>Add a new survey</h2>
-        </div>
-    </div>
-    <div class="row extra-space">
-        <div class="col-md-6 col-centered">
-            <a class="btn btn-default" href="#overview" role="button">
-                <i class="fa fa-chevron-left fa-fw"></i> Cancel
-            </a>
-        </div>
-    </div>
-    <div class="row">
-        <form>
-            <div class="col-md-6 col-centered well">
-                <div class="form-group">
-                    <label class="control-label" for="surveyName">Survey Name</label>
-                    <p class="help-block">
-                        Make it useful and descriptive, like "Penn State College Fair".
-                    </p>
-                    <input type="text" class="form-control" id="surveyName" placeholder="Enter survey name">
-                </div>
-                <div class="form-group">
-                    <label class="control-label" for="surveyDate">Survey Date</label>
-                    <p class="help-block">
-                        This should be the date of the event. It defaults to today, but you can change that if you
-                        want.
-                    </p>
-                    <input class="form-control" id="surveyDate" data-provide="datepicker" placeholder="MM/DD/YYYY">
-                </div>
-                <div class="form-group">
-                    <label class="control-label" for="surveyType">Survey Type</label>
-                    <p class="help-block">Choose survey type.</p>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <label class="radio-inline">
-                                <input type="radio" name="ethnicity" value="IST"> IST
-                            </label>
-                        </div>
-                        <div class="col-sm-6">
-                            <label class="radio-inline">
-                                <input type="radio" name="ethnicity" value="PSU"> PSU
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <hr class="form-divider">
-                <a class="btn btn-primary" id="" role="button">
-                    <i class="fa fa-plus fa-fw"></i> Create
-                </a>
-            </div>
-        </form>
+<div class="row">
+    <div class="medium-12 columns">
+        <h1>Add a new survey</h1>
+        <hr>
     </div>
 </div>
+
+<div class="row">
+    <div class="medium-4 columns">
+        <div>
+            <ul class="side-nav">
+                <li>Account Actions</li>
+                <li><a>Cancel and go back</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="medium-8 columns">
+        <div class="panel">
+            <div class="row">
+                <div class="small-12 columns">
+                    <h5>Survey Name</h5>
+                    <label>
+                        Make it useful and descriptive, like <i>Penn State College Fair</i>.
+                        <input type="text" id="surveyName" placeholder="Enter survey name">
+                    </label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="small-12 columns">
+                    <h5>Survey Description</h5>
+                    <label>
+                        What's the purpose of this survey?
+                        <input type="text" id="surveyDescription" placeholder="Enter survey description">
+                    </label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="small-12 columns">
+                    <h5>Survey Date</h5>
+                    <label>
+                        This should be the date of the event. It defaults to today, but you can change it if you want.
+                        <input id="surveyDate" size="16" type="text" value="{{mm}}}/{{dd}}/{{yyyy}}"
+                               data-date-format="mm/dd/yyyy">
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

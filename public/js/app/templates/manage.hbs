@@ -7,9 +7,19 @@
 </div>
 
 <div class="row" data-equalizer>
-    <div class="medium-6 columns">
+    <div class="medium-4 columns">
+        <div>
+            <ul class="side-nav">
+                <li>Survey Actions</li>
+                <li><a>View all responses (45)</a></li>
+                <li><a>Export responses</a></li>
+                <li><a onclick="confirm('Are you sure you want to delete this survey?\n\nDeleting the survey will cause all survey responses to be deleted.')">Delete survey</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="medium-8 columns">
         <div class="panel">
-            <div class="panel-heading"><h5>Survey Information</h5></div>
+            <div class="panel-heading"><h4>Survey Information</h4></div>
             <hr>
             <div class="panel-body">
                 <div class="row">
@@ -55,9 +65,12 @@
             </div>
         </div>
     </div>
-    <div class="medium-6 columns">
+</div>
+<div class="row">
+    <div class="medium-4 columns"></div>
+    <div class="medium-8 columns">
         <div class="panel">
-            <div class="panel-heading"><h5>Survey Notes</h5></div>
+            <div class="panel-heading"><h4>Survey Notes</h4></div>
             <hr>
             <textarea id="survey_notes" class="form-control" rows="10">{{survey_notes}}</textarea>
 
@@ -72,7 +85,8 @@
 
 
 <div class="row">
-    <div class="medium-12 columns">
+    <div class="medium-4 columns"></div>
+    <div class="medium-8 columns">
         <div class="panel">
             <h4>Manage Access</h4>
             <hr>

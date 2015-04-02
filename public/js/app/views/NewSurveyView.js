@@ -18,8 +18,23 @@ define([
             "click #backButton": "goBack"
         },
 
-        goBack: function () {
-            window.history.back();
+        templateHelpers: function () {
+            var date = new Date();
+            return {
+                mm: function () {
+                    return date.getMonth();
+                },
+                dd: function () {
+                    return date.getDay();
+                },
+                yyyy: function () {
+                    return date.getYear() + 1900;
+                }
+            }
+        },
+
+        onShow: function () {
+            $('#surveyDate').fdatepicker();
         }
 
     });

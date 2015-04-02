@@ -26,6 +26,7 @@ define([
                 return this.set({access_token: null});
             },
             setToken: function (data) {
+                console.log(data);
                 this.set({access_token: data['access_token']});
                 return $.cookie('access_token', this.get('access_token'));
             },
