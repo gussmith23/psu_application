@@ -9,8 +9,9 @@
     <div class="medium-4 columns">
         <div>
             <ul class="side-nav">
-                <li>Account Actions</li>
-                <li><a>Cancel and go back</a></li>
+                <li>New Survey Actions</li>
+                <li><a>Clear fields</a></li>
+                <li><a>Autofill fields</a></li>
             </ul>
         </div>
     </div>
@@ -36,14 +37,19 @@
                 </div>
             </div>
 
+            <!--<div class="row">-->
+                <!--<div class="small-12 columns">-->
+                    <!--<h5>Survey Date</h5>-->
+                    <!--<label>-->
+                        <!--This should be the date of the event. It defaults to today, but you can change it if you want.-->
+                        <!--<input id="surveyDate" size="16" type="text" value="{{mm}}}/{{dd}}/{{yyyy}}"-->
+                               <!--data-date-format="mm/dd/yyyy">-->
+                    <!--</label>-->
+                <!--</div>-->
+            <!--</div>-->
             <div class="row">
-                <div class="small-12 columns">
-                    <h5>Survey Date</h5>
-                    <label>
-                        This should be the date of the event. It defaults to today, but you can change it if you want.
-                        <input id="surveyDate" size="16" type="text" value="{{mm}}}/{{dd}}/{{yyyy}}"
-                               data-date-format="mm/dd/yyyy">
-                    </label>
+                <div class="medium-12 columns">
+                    <a id="updateButton" class="button small">Create survey</a>
                 </div>
             </div>
         </div>

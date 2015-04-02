@@ -1,12 +1,16 @@
 <td>
-    <span id="edit-button" class="round {{badgeClass}} label">
+    <span class="round {{badgeClass}} label">
         {{#if badgeClassBoolean}}
-            <i class="fa fa-check fa-fw"></i> Manage
+            <i class="fa fa-check fa-fw"></i>
         {{else}}
-            <i class="fa fa-times fa-fw"></i> Manage
+            <i class="fa fa-times fa-fw"></i>
         {{/if}}
     </span>
+    <ul id="drop{{id}}" data-dropdown-content class="f-dropdown" aria-hidden="true">
+        <li><a id="edit-button">Manage survey</a></li>
+        <li><a id="">View Responses</a></li>
+    </ul>
 </td>
-<td>{{survey_name}}</td>
+<td data-dropdown="drop{{id}}"><a>{{survey_name}}</a></td>
 <td class="hide-for-small-down">{{createdDateString}}</td>
 <td class="hide-for-small-down">{{survey_description}}</td>

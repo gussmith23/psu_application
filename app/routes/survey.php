@@ -38,7 +38,7 @@ $app->get('/api/survey', function () use ($app) {
         ));
     } else {
         $app->response->status(200);
-        $surveys = User::find($_SESSION['user'])->surveys()->get();
+        $surveys = User::find($_SESSION['user'])->surveys()->take(100)->get();
         echo json_encode($surveys->reverse());
     }
 });
@@ -155,13 +155,13 @@ $app->put('/api/survey/:id', function ($id) use ($app) {
             'error' => 'invalid_bearer_token'
         ));
     } else {
-        $json = json_decode($app->request->getBody());
+        $data = json_decode($app->request->getBody());
         $survey = Survey::where('id', '=', $id)->first();
-        $survey->survey_permalink = $json->survey_permalink;
-        $survey->survey_name = $json->survey_name;
-        $survey->survey_description = $json->survey_description;
-        $survey->survey_notes = $json->survey_notes;
-        $survey->survey_status = $json->survey_status;
+        $survey->survey_permalink = $data->survey_permalink;
+        $survey->survey_name = $data->survey_name;
+        $survey->survey_description = $data->survey_description;
+        $survey->survey_notes = $data->survey_notes;
+        $survey->survey_status = $data->survey_status;
         $survey->save();
         echo json_encode(array(
             'status'=> '200'

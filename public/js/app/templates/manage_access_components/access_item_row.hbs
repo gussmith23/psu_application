@@ -1,4 +1,9 @@
-<td><a id="revokeAccessButton"><i class="fa fa-times"></i></a></td>
+<td>
+    <a data-dropdown="drop{{id}}"><i class="fa fa-cogs"></i></a>
+    <ul id="drop{{id}}" data-dropdown-content class="f-dropdown" aria-hidden="true">
+        <li><a id="revokeAccessButton">Revoke access</a></li>
+    </ul>
+</td>
 <td>{{username}}</td>
 <td>{{email}}</td>
 <td class="hide-for-small-down">{{first_name}}</td>

@@ -10,7 +10,7 @@
         <div>
             <ul class="side-nav">
                 <li>Account Actions</li>
-                <li><a onclick="confirm('Are you sure you want to deactivate your account?\n\nNOTE: THIS DOES NOT DELETE YOUR ACCOUNT. CONTACT DATABASE ADMIN TO DELETE YOUR ACCOUNT.')">Deactivate account</a></li>
+                <li><a id="deactivateButton">Deactivate account</a></li>
             </ul>
         </div>
     </div>
@@ -21,19 +21,24 @@
             <div class="row">
                 <div class="small-12 columns">
                     <label>Username</label>
-                    <input id="" type="text" placeholder="Enter username" value="{{username}}">
+                    <input id="usernameField" type="text" placeholder="Enter username" value="{{username}}">
                 </div>
                 <div class="small-12 columns">
                     <label>Email</label>
-                    <input id="" type="text" placeholder="Enter email" value="{{email}}">
+                    <input id="emailField" type="text" placeholder="Enter email" value="{{email}}">
                 </div>
                 <div class="small-12 columns">
                     <label>First Name</label>
-                    <input id="" type="text" placeholder="Enter first name" value="{{first_name}}">
+                    <input id="firstNameField" type="text" placeholder="Enter first name" value="{{first_name}}">
                 </div>
                 <div class="small-12 columns">
                     <label>Last Name</label>
-                    <input id="" type="text" placeholder="Enter last name" value="{{last_name}}">
+                    <input id="lastNameField" type="text" placeholder="Enter last name" value="{{last_name}}">
+                </div>
+            </div>
+            <div class="row">
+                <div class="medium-12 columns">
+                    <a id="updateButton" class="button small">Update account</a>
                 </div>
             </div>
         </div>
@@ -43,8 +48,24 @@
     <div class="medium-4 columns"></div>
     <div class="medium-8 columns">
         <div class="panel">
-            <h4>Accounts requesting access</h4>
-            <hr class="form-divider">
+            <h4>Accounts requesting activation</h4>
+            <hr>
+            <div>
+                <table class="medium-12 columns" style="float: none;">
+                    <thead>
+                    <tr>
+                        <td width="25"></td>
+                        <td>Username</td>
+                        <td>Email</td>
+                        <td class="hide-for-small-down">First name</td>
+                        <td class="hide-for-small-down">Last name</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{! body goes here }}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

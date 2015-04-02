@@ -22,10 +22,10 @@ define([
             var date = new Date();
             return {
                 mm: function () {
-                    return date.getMonth();
+                    return date.getMonth() + 1;
                 },
                 dd: function () {
-                    return date.getDay();
+                    return date.getDate();
                 },
                 yyyy: function () {
                     return date.getYear() + 1900;

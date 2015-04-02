@@ -41,6 +41,7 @@ define([
 
         onRender: function () {
             $(this.el).attr('class', 'medium-12 columns');
+            $(document).foundation();
         }
 
     });

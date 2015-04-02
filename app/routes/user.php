@@ -65,7 +65,6 @@ $app->post('/api/user', function () use ($app) {
  */
 $app->get('/api/user', function () use ($app) {
     $app->response->headers->set('Content-Type', 'application/json');
-    $app->response->header('Access-Control-Allow-Origin', '*');
     if (!ensureAuthenticated()) {
         $app->response->status(400);
         echo json_encode(array(
@@ -91,6 +90,23 @@ $app->get('/api/users/role/:role', function () use ($app) {
  */
 $app->put('/api/user', function () use ($app) {
     $app->response->headers->set('Content-Type', 'application/json');
+    if (!ensureAuthenticated()) {
+        $app->response->status(400);
+        echo json_encode(array(
+            'error' => 'invalid_bearer_token'
+        ));
+    } else {
+        $data = json_decode($app->request->getBody());
+        $user = User::where('id', '=', $_SESSION['user'])->first();
+        $user->username = $data->username;
+        $user->email = $data->email;
+        $user->first_name = $data->first_name;
+        $user->last_name = $data->last_name;
+        $user->save();
+        echo json_encode(array(
+            'status'=> '200'
+        ));
+    }
 });
 
 
