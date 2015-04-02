@@ -52,6 +52,17 @@ define([
             "click @ui.deactivateButton": "deactivateAccount"
         },
 
+        templateHelpers: function () {
+            var _this = this;
+            return {
+                disabled: function () {
+                    if(_this.model.get('username') == 'adminaccount') {
+                        return 'disabled';
+                    }
+                }
+            }
+        },
+
         goBack: function () {
             window.history.back();
         },
@@ -71,17 +82,21 @@ define([
         },
 
         deactivateAccount: function () {
-            var message = 'Are you sure you want to deactivate your account?\n\nNOTE: THIS DOES NOT DELETE YOUR ACCOUNT. CONTACT DATABASE ADMIN TO DELETE YOUR ACCOUNT.';
-            if(confirm(message)) {
-                this.model.set({
-                    role: 'deactivated'
-                });
-                this.model.save(null, {
-                    success: function (model, response, options) {
-                        alert('Account deactivated. You will now be logged out.');
-                        App.vent.trigger('session:logout');
-                    }
-                });
+            if(this.model.get('username') == 'adminaccount') {
+                alert('This account is the super admin account and cannot be deactivated.');
+            } else {
+                var message = 'Are you sure you want to deactivate your account?\n\nNOTE: THIS DOES NOT DELETE YOUR ACCOUNT. CONTACT DATABASE ADMIN TO DELETE YOUR ACCOUNT.';
+                if (confirm(message)) {
+                    this.model.set({
+                        role: 'deactivated'
+                    });
+                    this.model.save(null, {
+                        success: function (model, response, options) {
+                            alert('Account deactivated. You will now be logged out.');
+                            App.vent.trigger('session:logout');
+                        }
+                    });
+                }
             }
         }
 

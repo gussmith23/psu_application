@@ -44,7 +44,8 @@ define([
             "click @ui.manageAccessButton": "showAccessModal",
             "click @ui.saveInfoButton": "saveSurveyInfo",
             "click @ui.saveNotesButton": "saveSurveyNotes",
-            "click @ui.giveAccessButton": "giveAccess"
+            "click @ui.giveAccessButton": "giveAccess",
+            "keyup @ui.surveyPermalinkField": "replaceSpaces"
         },
 
         template: Handlebars.compile(template),
@@ -54,6 +55,12 @@ define([
         emptyView: AccessEmptyView,
 
         childViewContainer: "tbody",
+
+        replaceSpaces: function () {
+            console.log('test');
+            var str = this.ui.surveyPermalinkField[0].value;
+            this.ui.surveyPermalinkField[0].value = str.replace(/\s/g, '-');
+        },
 
         giveAccess: function () {
             var _this = this;
