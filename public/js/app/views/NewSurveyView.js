@@ -3,8 +3,8 @@ define([
     'marionette',
     'handlebars',
     'text!templates/new_survey.hbs',
-    'models/Session'
-], function (App, Marionette, Handlebars, template, Session) {
+    'models/Survey'
+], function (App, Marionette, Handlebars, template, Survey) {
     //ItemView provides some default rendering logic
     return Marionette.ItemView.extend({
 
@@ -15,13 +15,15 @@ define([
             "autoFillButton": "#autoFillButton",
             "clearButton": "#clearButton",
             "surveyNameField": "#surveyName",
-            "surveyDescriptionField": "#surveyDescription"
+            "surveyDescriptionField": "#surveyDescription",
+            "createButton": "#createButton"
         },
 
         events: {
             "click @ui.backButton": "goBack",
             "click @ui.autoFillButton": "autoFillFields",
-            "click @ui.clearButton": "clearFields"
+            "click @ui.clearButton": "clearFields",
+            "click @ui.createButton": "createSurvey"
         },
 
         templateHelpers: function () {
@@ -41,6 +43,28 @@ define([
 
         onShow: function () {
             $('#surveyDate').fdatepicker();
+        },
+
+        createSurvey: function() {
+            var data = {
+                'survey_name': this.ui.surveyNameField[0].value,
+                'survey_description': this.ui.surveyDescriptionField[0].value
+            };
+            $.ajax({
+                type: 'POST',
+                data: data,
+                url: '/api/survey',
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader('X-Authorization', 'Basic ' + $.cookie('access_token'));
+                },
+                success: function (res) {
+                    //console.log(res);
+                    App.appRouter.navigate('survey/manage/' + res.data, true);
+                },
+                error: function (err) {
+                    console.error(err);
+                }
+            });
         },
 
         autoFillFields: function () {
@@ -67,8 +91,7 @@ define([
                 "wood", "dream", "cherry", "tree", "fog", "frost", "voice", "paper",
                 "frog", "smoke", "star"
             ];
-            var generatedName = adjs[Math.floor(Math.random()*adjs.length)].capitalizeFirstLetter() + ' ' + nouns[Math.floor(Math.random()*nouns.length)].capitalizeFirstLetter() + ' -- ' + date.toDateString();
-            this.ui.surveyNameField[0].value = generatedName;
+            this.ui.surveyNameField[0].value = adjs[Math.floor(Math.random() * adjs.length)].capitalizeFirstLetter() + ' ' + nouns[Math.floor(Math.random() * nouns.length)].capitalizeFirstLetter() + ' -- ' + date.toDateString();
             this.ui.surveyDescriptionField[0].value = 'Survey from ' + date.toDateString();
         },
 

@@ -28,12 +28,12 @@ class Survey extends \Illuminate\Database\Eloquent\Model
 
     public function responsesPSU()
     {
-        return $this->hasMany('SurveyResponsesPSU');
+        return $this->hasMany('SurveyResponsePSU');
     }
 
     public function responsesIST()
     {
-        return $this->hasMany('SurveyResponsesIST');
+        return $this->hasMany('SurveyResponseIST');
     }
 
 }

@@ -54,12 +54,6 @@
     margin-bottom: 5vh;
 }
 
-.bigger-text {
-    font-size: 1.25em;
-    font-weight: 300;
-    margin: 25px 0 15px;
-}
-
 #edit-button {
     cursor: pointer;
 }
@@ -70,4 +64,15 @@
 
 .reveal-modal {
     top: 45px !important;
+}
+
+.survey-row {
+    margin-top: 15px !important;
+    margin-bottom: 15px !important;
+}
+
+.required {
+    color: #F44336;
+    font-size: 1.5em;
+    line-height: 0.75em;
 }

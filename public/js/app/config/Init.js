@@ -21,6 +21,7 @@ require.config({
         "responsivetable": "../libs/plugins/responsive-tables",
         "foundationDatePicker": "../libs/foundation-datepicker"
     },
+    wrapShim: true,
     shim: {
         "jqueryui": ["jquery"],
         "jquerycookie": ["jquery"],

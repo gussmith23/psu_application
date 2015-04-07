@@ -5,10 +5,10 @@ define([
         'text!templates/survey.hbs',
         'models/Session',
         'models/Survey',
-        'views/PSUSurveyView',
+        'views/ISTSurveyView',
         'views/ErrorView'
     ],
-    function (App, Marionette, Handlebars, template, Session, Survey, PSUSurveyView, ErrorView) {
+    function (App, Marionette, Handlebars, template, Session, Survey, ISTSurveyView, ErrorView) {
         //ItemView provides some default rendering logic
         return Marionette.LayoutView.extend({
 
@@ -27,8 +27,7 @@ define([
                 var _this = this;
                 var url = '/api/survey/has/' + permalink;
                 $.get(url).then(function (result) {
-                    console.log(result);
-                    _this.main.show(new PSUSurveyView({
+                    _this.main.show(new ISTSurveyView({
                         model: new Survey(result)
                     }));
                 }, function (err) {

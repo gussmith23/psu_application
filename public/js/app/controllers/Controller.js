@@ -7,6 +7,7 @@ define([
     'models/Account',
     'collections/RequestUsers',
     'collections/SurveyUsers',
+    'collections/SurveyResponses',
     'views/RegisterView',
     'views/NavigationView',
     'views/LoginView',
@@ -15,9 +16,10 @@ define([
     'views/NewSurveyView',
     'views/SurveyView',
     'views/ErrorView',
-    'views/ManageView'
-], function (App, Backbone, Marionette, Session, Survey, Account, RequestUsers, SurveyUsers, RegisterView, NavigationView, LoginView,
-             OverviewView, AccountView, NewSurveyView, SurveyView, ErrorView, ManageView) {
+    'views/ManageView',
+    'views/ResponsesView'
+], function (App, Backbone, Marionette, Session, Survey, Account, RequestUsers, SurveyUsers, SurveyResponses, RegisterView, NavigationView, LoginView,
+             OverviewView, AccountView, NewSurveyView, SurveyView, ErrorView, ManageView, ResponsesView) {
 
     return Backbone.Marionette.Controller.extend({
 
@@ -33,6 +35,7 @@ define([
                         App.appRouter.navigate('', true);
                     }
                 });
+                App.navRegion.$el.hide();
             });
             App.navRegion.show(new NavigationView());
         },
@@ -81,6 +84,13 @@ define([
             this.session.authenticatedRoute(App.contentRegion.show(new ManageView({
                 model: new Survey({ id: id }),
                 collection: new SurveyUsers({ survey_id: id })
+            })));
+            App.navRegion.$el.show();
+        },
+
+        responses: function (id) {
+            this.session.authenticatedRoute(App.contentRegion.show(new ResponsesView({
+                collection: new SurveyResponses({ survey_id: id })
             })));
             App.navRegion.$el.show();
         },

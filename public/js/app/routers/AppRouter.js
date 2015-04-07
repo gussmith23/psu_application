@@ -14,6 +14,7 @@ define([
                 "new-survey": "newSurvey",
                 "survey/:permalink": "survey",
                 "survey/manage/:id": "manage",
+                "survey/responses/:id": "responses",
                 "*notFound": "notFound"
             }
         });

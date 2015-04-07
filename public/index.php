@@ -22,7 +22,7 @@ require '../app/configs/database.php';
 //require '../app/seeder.php';
 
 // other stuff
-require '../app/utility/authenticator.php';
+require '../app/utility/utilityfunctions.php';
 
 // routes
 require '../app/routes/index.php';

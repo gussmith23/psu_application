@@ -1,0 +1,257 @@
+<div class="row" style="background-color: #ffffff">
+    <div class="medium-8 medium-offset-2 columns">
+
+
+        <div class="row">
+            <div class="col-sm-10 col-md-7 col-centered">
+                <h1>{{survey_name}}</h1>
+                <hr>
+            </div>
+        </div>
+
+        <form id="surveyForm">
+
+            <div class="survey-row row">
+                <div class="medium-12">
+                    <h2 class="text-center blue">Basic Information</h2>
+                </div>
+            </div>
+
+            <div class="survey-row row">
+                <div class="medium-4 small-12 columns">
+                    <h6 class="text-right small-only-text-left">Email <span class="required">*</span></h6>
+                </div>
+                <div class="medium-8 small-12 columns">
+                    <input type="text" id="email">
+                </div>
+            </div>
+
+            <div class="survey-row row">
+                <div class="medium-4 small-12 columns">
+                    <h6 class="text-right small-only-text-left">First Name <span class="required">*</span></h6>
+                </div>
+                <div class="medium-8 small-12 columns">
+                    <input type="text" id="firstName">
+                </div>
+            </div>
+
+            <div class="survey-row row">
+                <div class="medium-4 small-12 columns">
+                    <h6 class="text-right small-only-text-left">Middle Initial</h6>
+                </div>
+                <div class="medium-8 small-12 columns">
+                    <input type="text" id="middleInitial">
+                </div>
+            </div>
+
+            <div class="survey-row row">
+                <div class="medium-4 small-12 columns">
+                    <h6 class="text-right small-only-text-left">Last Name <span class="required">*</span></h6>
+                </div>
+                <div class="medium-8 small-12 columns">
+                    <input type="text" id="lastName">
+                </div>
+            </div>
+
+            <div class="survey-row row">
+                <div class="medium-4 small-12 columns">
+                    <h6 class="text-right small-only-text-left">Street Address <span class="required">*</span></h6>
+                </div>
+                <div class="medium-8 small-12 columns">
+                    <input type="text" id="address">
+                </div>
+            </div>
+
+            <div class="survey-row row">
+                <div class="medium-4 small-12 columns">
+                    <h6 class="text-right small-only-text-left">City <span class="required">*</span></h6>
+                </div>
+                <div class="medium-8 small-12 columns">
+                    <input type="text" id="city">
+                </div>
+            </div>
+
+            <div class="survey-row row">
+                <div class="medium-4 small-12 columns">
+                    <h6 class="text-right small-only-text-left">State <span class="required">*</span></h6>
+                </div>
+                <div class="medium-8 small-12 columns">
+                    <input type="text" id="state">
+                </div>
+            </div>
+
+            <div class="survey-row row">
+                <div class="medium-4 small-12 columns">
+                    <h6 class="text-right small-only-text-left">Zip Code <span class="required">*</span></h6>
+                </div>
+                <div class="medium-8 small-12 columns">
+                    <input type="text" id="zipCode">
+                </div>
+            </div>
+
+            <div class="survey-row row">
+                <div class="medium-4 small-12 columns">
+                    <h6 class="text-right small-only-text-left">Telephone <span class="required">*</span></h6>
+                </div>
+                <div class="medium-8 small-12 columns">
+                    <input type="text" id="telephone" placeholder="(860) 555-1234">
+                </div>
+            </div>
+
+            <div class="survey-row row">
+                <div class="medium-4 small-12 columns">
+                    <h6 class="text-right small-only-text-left">Date of Birth <span class="required">*</span></h6>
+                </div>
+                <div class="medium-8 small-12 columns">
+                    <input type="text" id="birthdate" placeholder="mm-dd-yyyy" data-date-format="mm-dd-yyyy">
+                </div>
+            </div>
+
+            <div class="survey-row row">
+                <div class="medium-4 small-12 columns">
+                    <h6 class="text-right small-only-text-left">Gender <span class="required">*</span></h6>
+                </div>
+                <div class="medium-8 small-12 columns">
+                    <label>
+                        <input type="radio" name="genderRadio" id="genderMale" value="male"> Male
+                    </label>
+                    <label>
+                        <input type="radio" name="genderRadio" id="genderFemale" value="female"> Female
+                    </label>
+                </div>
+            </div>
+
+            <div class="survey-row row">
+                <div class="medium-4 small-12 columns">
+                    <h6 class="text-right small-only-text-left">High School Name <span class="required">*</span></h6>
+                </div>
+                <div class="medium-8 small-12 columns">
+                    <input type="text" id="highSchoolName">
+                </div>
+            </div>
+
+            <div class="survey-row row">
+                <div class="medium-4 small-12 columns">
+                    <h6 class="text-right small-only-text-left">High School Year <span class="required">*</span></h6>
+                </div>
+                <div class="medium-8 small-12 columns">
+                    <input type="text" id="highSchoolYear">
+                </div>
+            </div>
+
+            <div class="survey-row row">
+                <div class="medium-4 small-12 columns">
+                    <h6 class="text-right small-only-text-left">Ethnicity <span class="required">*</span></h6>
+                </div>
+                <div class="medium-8 small-12 columns">
+                    <label>
+                        <input type="radio" name="ethnicity" value="American India"> American Indian
+                    </label>
+                    <label>
+                        <input type="radio" name="ethnicity" value="Alaskan Native"> Alaskan Native
+                    </label>
+                    <label>
+                        <input type="radio" name="ethnicity" value="African/Black American"> African/Black American
+                    </label>
+                    <label>
+                        <input type="radio" name="ethnicity" value="Asian/Pacific American"> Asian/Pacific American
+                    </label>
+                    <label>
+                        <input type="radio" name="ethnicity" value="Latino/Hispanic American"> Latino/Hispanic American
+                    </label>
+                    <label>
+                        <input type="radio" name="ethnicity" value="Puerto Rican"> Puerto Rican
+                    </label>
+                    <label>
+                        <input type="radio" name="ethnicity" value="White American"> White American
+                    </label>
+                    <label>
+                        <input type="radio" name="ethnicity" value="Other"> Other
+                    </label>
+                    <label id="ethnicityOtherContainer" style="display: none;">
+                        <input type="text" id="ethnicityOther">
+                    </label>
+                </div>
+            </div>
+
+            <div class="survey-row row">
+                <div class="medium-12 columns">
+                    <h2 class="text-center blue">What undergraduate programs would you like to learn more
+                        about?</h2>
+                </div>
+            </div>
+
+            <div class="survey-row row">
+                <div class="medium-4 small-12 columns">
+                    <h6 class="text-right small-only-text-left">Information Sciences & Technology (B.S.)</h6>
+                </div>
+                <div class="medium-8 small-12 columns">
+                    <label>
+                        <input type="checkbox" name="interestIST" value="ISDEV">
+                        Information Systems: Design & Development
+                    </label>
+                    <label>
+                        <input type="checkbox" name="interestIST" value="ITINT">
+                        Information Technology: Integration & Application
+                    </label>
+                    <label>
+                        <input type="checkbox" name="interestIST" value="ISPP">
+                        Information Context: People, Organizations, and Society
+                    </label>
+                </div>
+            </div>
+
+            <div class="survey-row row">
+                <div class="medium-4 small-12 columns">
+                    <h6 class="text-right small-only-text-left">Security and Risk Analysis (B.S.)</h6>
+                </div>
+                <div class="medium-8 small-12 columns">
+                    <label>
+                        <input type="checkbox" name="interestSRA" value="IAM">
+                        Intelligence Analysis and Modeling
+                    </label>
+                    <label>
+                        <input type="checkbox" name="interestSRA" value="ICS">
+                        Information and Cyber Security
+                    </label>
+                    <label>
+                        <input type="checkbox" name="interestSRA" value="SFR">
+                        Social Factors and Risk
+                    </label>
+                </div>
+            </div>
+
+            <div class="survey-row row">
+                <div class="medium-4 small-12 columns">
+                    <h6 class="text-right small-only-text-left">Are you interested in graduate programs?</h6>
+                </div>
+                <div class="medium-8 small-12 columns">
+                    <label>
+                        <input type="radio" name="interestGraduate" value="yes"> Yes
+                    </label>
+                    <label>
+                        <input type="radio" name="interestGraduate" value="no"> No
+                    </label>
+                </div>
+            </div>
+
+            <div class="survey-row row">
+                <div class="medium-4 small-12 columns">
+                    <h6 class="text-right small-only-text-left">Other information</h6>
+                </div>
+                <div class="medium-8 small-12 columns">
+                    <textarea id="otherInformation" rows="5"></textarea>
+                </div>
+            </div>
+
+            <div class="survey-row row">
+                <div class="medium-12 columns">
+                    <hr>
+                    <a id="clear" class="button secondary expand">Clear</a>
+                    <a id="submit" class="button expand">Submit</a>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

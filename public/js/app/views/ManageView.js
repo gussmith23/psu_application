@@ -37,7 +37,8 @@ define([
             "surveyPermalinkField": "#survey_permalink",
             "surveyDescriptionField": "#survey_description",
             "surveyNotesField": "#survey_notes",
-            "surveyStatusField": "#survey_status"
+            "surveyStatusField": "#survey_status",
+            "deleteSurvey": "#deleteSurvey"
         },
 
         events: {
@@ -45,7 +46,8 @@ define([
             "click @ui.saveInfoButton": "saveSurveyInfo",
             "click @ui.saveNotesButton": "saveSurveyNotes",
             "click @ui.giveAccessButton": "giveAccess",
-            "keyup @ui.surveyPermalinkField": "replaceSpaces"
+            "keyup @ui.surveyPermalinkField": "replaceSpaces",
+            "click @ui.deleteSurvey": "deleteSurvey"
         },
 
         template: Handlebars.compile(template),
@@ -60,6 +62,26 @@ define([
             console.log('test');
             var str = this.ui.surveyPermalinkField[0].value;
             this.ui.surveyPermalinkField[0].value = str.replace(/\s/g, '-');
+        },
+
+        deleteSurvey: function () {
+            var _this = this;
+            var ok = confirm('Are you sure you want to delete this survey?\n\nDeleting the survey will cause all survey responses to be deleted.');
+            if(ok) {
+                $.ajax({
+                    type: 'DELETE',
+                    url: '/api/survey/' + _this.model.get('id'),
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('X-Authorization', 'Basic ' + $.cookie('access_token'));
+                    },
+                    success: function (res) {
+                        App.appRouter.navigate('overview', true);
+                    },
+                    error: function (err) {
+                        alert('There was a problem deleting the survey.');
+                    }
+                });
+            }
         },
 
         giveAccess: function () {

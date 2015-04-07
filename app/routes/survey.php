@@ -124,6 +124,7 @@ $app->delete('/api/survey/users/:id', function ($id) use ($app) {
         $userId = $app->request->delete('id');
         User::find($userId)->surveys()->detach($id);
         echo json_encode(array(
+            'status' => 200,
             'ok' => 'successfully_detached'
         ));
     }
@@ -133,13 +134,35 @@ $app->delete('/api/survey/users/:id', function ($id) use ($app) {
 /**
  * Create a survey
  */
-$app->post('/api/survey/:id', function ($id) use ($app) {
+$app->post('/api/survey', function () use ($app) {
     $app->response->headers->set('Content-Type', 'application/json');
     if (!ensureAuthenticated()) {
         $app->response->status(400);
         echo json_encode(array(
             'error' => 'invalid_bearer_token'
         ));
+    } else {
+        $permalink = genPermalink();
+        while(true) {
+            $permalink = genPermalink();
+            $survey = Survey::where('survey_permalink', '=', $permalink)->first();
+            if($survey == null) break;
+        }
+        $data = [
+            'survey_permalink' => $permalink,
+            'survey_name' => $app->request->post('survey_name'),
+            'survey_description' => $app->request->post('survey_description'),
+            'survey_notes' => 'Enter some notes about the survey',
+            'survey_type' => 'IST',
+            'survey_status' => 'closed'
+        ];
+        $survey = new Survey($data);
+        $survey->save();
+        User::find($_SESSION['user'])->surveys()->attach([$survey->id]);
+        echo json_encode([
+            'status' => 200,
+            'data' => $survey->id
+        ]);
     }
 });
 
@@ -181,6 +204,19 @@ $app->delete('/api/survey/:id', function ($id) use ($app) {
             'error' => 'invalid_bearer_token'
         ));
     } else {
-
+        $survey = Survey::where('id', '=', $id)->first();
+        if($survey != null) {
+            $survey->delete();
+            echo json_encode([
+                'status' => 200
+            ]);
+        } else {
+            $app->response->status(400);
+            echo json_encode([
+                'error' => 'survey_does_not_exist'
+            ]);
+        }
     }
 });
+
+

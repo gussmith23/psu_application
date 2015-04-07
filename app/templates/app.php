@@ -11,7 +11,6 @@
 
     <link rel="stylesheet" href="/css/normalize.css">
     <link rel="stylesheet" href="/css/foundation.min.css">
-    <link rel="stylesheet" href="/css/responsive-tables.css">
     <link rel="stylesheet" href="/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/foundation-datepicker.css">
     <link rel="stylesheet" href="/css/app.css">
