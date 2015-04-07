@@ -3,11 +3,9 @@ define([
         'marionette',
         'handlebars',
         'text!templates/responses.hbs',
-        'views/response_components/ResponseItemView',
-        'views/response_components/ResponseEmptyView',
         'collections/SurveyResponses'
     ],
-    function (App, Marionette, Handlebars, template, ChildView, EmptyView, SurveyResponses) {
+    function (App, Marionette, Handlebars, template, SurveyResponses) {
 
         return Marionette.LayoutView.extend({
 
@@ -15,6 +13,14 @@ define([
 
             regions: {
                 tableRegion: "#tableRegion"
+            },
+
+            ui: {
+                deleteRowsButton: "#deleteRows"
+            },
+
+            events: {
+                "click @ui.deleteRowsButton": "deleteRows"
             },
 
             initialize: function (opts) {
@@ -158,10 +164,6 @@ define([
                     collection: this.responsesCollection
                 });
 
-                //this.tableRegion.show(responsesGrid);
-
-                //$('#tableRegion').append(responsesGrid.render().el);
-
                 this.responsesCollection.fetch({
                     reset: true,
                     success: function(collection, response, options) {
@@ -185,6 +187,11 @@ define([
 
             onRender: function () {
                 this.tableRegion.show(this.responsesGrid);
+                this.responsesGrid.clearSelectedModels();
+            },
+
+            deleteRows: function () {
+                console.log(this.responsesGrid.getSelectedModels());
             }
 
         });

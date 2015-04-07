@@ -88,5 +88,44 @@
 }
 
 tr.selected {
-    background-color: #FFFDE7;
+    background-color: #FFFDE7 !important;
+}
+
+.toolbar {
+    background-color: #ECEFF1;
+    padding: 8px 20px;
+    height: 50px;
+    border-top: 1px solid #B0BEC5;
+}
+
+.toolbar-item {
+    cursor: pointer;
+    height: 34px;
+    border-radius: 2px;
+    color: #9E9E9E;
+    border: 1px solid #ECEFF1;
+    list-style: none;
+    text-align: center;
+    padding: 5px 20px;
+    font-size: 0.8em;
+    display: table-cell;
+    line-height: 24px;
+    transition: border 250ms ease, box-shadow 250ms ease;
+}
+
+.toolbar-item:hover {
+    border: 1px solid #B0BEC5;
+    color: #616161;
+    box-shadow: 0 0 5px rgba(0,0,0,0.15);
+    padding: 5px 20px;
+    transition: border 50ms ease, box-shadow 50ms ease;
+}
+
+.toolbar-item:active {
+    box-shadow: none;
+}
+
+.toolbar ul {
+    margin: 0;
+    display: table-row;
 }
