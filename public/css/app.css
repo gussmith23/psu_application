@@ -76,3 +76,17 @@
     font-size: 1.5em;
     line-height: 0.75em;
 }
+
+.small-name a {
+    font-size: 0.8em;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.small-name a:hover {
+    text-decoration: underline;
+}
+
+tr.selected {
+    background-color: #FFFDE7;
+}

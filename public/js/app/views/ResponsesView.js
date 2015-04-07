@@ -162,8 +162,6 @@ define([
 
                 //$('#tableRegion').append(responsesGrid.render().el);
 
-                $('#tableRegion').append('hi');
-
                 this.responsesCollection.fetch({
                     reset: true,
                     success: function(collection, response, options) {
@@ -179,7 +177,7 @@ define([
                 this.model.fetch({
                     reset: true,
                     success: function (model, response, options) {
-                        $('#surveyName').append(model.get('survey_name'));
+                        $('#surveyName').append('<a href="/survey/manage/' + model.get('id')  + '">' + model.get('survey_name') + '</a>');
                     }
                 });
 
