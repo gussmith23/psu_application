@@ -43,6 +43,11 @@ define([
                 if(activeEl) {
                     activeEl.addClass('active');
                 }
+                if(window.location.pathname.indexOf('survey/responses/') > -1) {
+                    $('#navParent').removeClass('contain-to-grid');
+                } else {
+                    $('#navParent').addClass('contain-to-grid');
+                }
             });
         },
 

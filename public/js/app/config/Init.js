@@ -19,7 +19,9 @@ require.config({
         "fastclick": "../libs/plugins/fastclick",
         "placeholder": "../libs/plugins/placeholder",
         "responsivetable": "../libs/plugins/responsive-tables",
-        "foundationDatePicker": "../libs/foundation-datepicker"
+        "foundationDatePicker": "../libs/foundation-datepicker",
+        "backgrid": "../libs/plugins/backgrid",
+        "backgrid-select-all": "../libs/plugins/backgrid-select-all"
     },
     wrapShim: true,
     shim: {
@@ -41,7 +43,12 @@ require.config({
         "foundation": ["jquery", "modernizr", "fastclick", "placeholder"],
         "formValidation": ["jquery"],
         "formValidationFoundation": ["formValidation"],
-        "foundationDatePicker": ["foundation"]
+        "foundationDatePicker": ["foundation"],
+        "backgrid": {
+            "deps": ['jquery', 'backbone', 'underscore'],
+            "exports": 'Backgrid'
+        },
+        "backgrid-select-all": ['backgrid']
     }
 });
 
@@ -59,7 +66,9 @@ require([
     "foundation",
     "formValidation",
     "formValidationFoundation",
-    "foundationDatePicker"
+    "foundationDatePicker",
+    "backgrid",
+    "backgrid-select-all"
 ], function (App, AppRouter, Controller) {
     App.appRouter = new AppRouter({
         controller: new Controller()

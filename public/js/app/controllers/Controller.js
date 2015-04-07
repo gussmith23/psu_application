@@ -90,7 +90,8 @@ define([
 
         responses: function (id) {
             this.session.authenticatedRoute(App.contentRegion.show(new ResponsesView({
-                collection: new SurveyResponses({ survey_id: id })
+                model: new Survey({ id: id }),
+                survey_id: id
             })));
             App.navRegion.$el.show();
         },
