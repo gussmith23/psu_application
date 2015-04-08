@@ -95,7 +95,8 @@ tr.selected {
     background-color: #ECEFF1;
     padding: 8px 20px;
     height: 50px;
-    border-top: 1px solid #B0BEC5;
+    border-top: 1px solid #007095;
+    border-bottom: solid 1px #ddd;
 }
 
 .toolbar-item {
@@ -110,7 +111,7 @@ tr.selected {
     font-size: 0.8em;
     display: table-cell;
     line-height: 24px;
-    transition: border 250ms ease, box-shadow 250ms ease;
+    transition: border 250ms ease, box-shadow 250ms ease, color 250ms ease;
 }
 
 .toolbar-item:hover {
@@ -118,7 +119,7 @@ tr.selected {
     color: #616161;
     box-shadow: 0 0 5px rgba(0,0,0,0.15);
     padding: 5px 20px;
-    transition: border 50ms ease, box-shadow 50ms ease;
+    transition: border 50ms ease, box-shadow 50ms ease, color 50ms ease;
 }
 
 .toolbar-item:active {
@@ -128,4 +129,13 @@ tr.selected {
 .toolbar ul {
     margin: 0;
     display: table-row;
+}
+
+table {
+    border: none !important;
+}
+
+.is-sticky div {
+    box-shadow: 0 0 5px rgba(0,0,0,0.10),
+                0 0 25px rgba(0,0,0,0.05);
 }

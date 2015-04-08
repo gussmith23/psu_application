@@ -16,11 +16,13 @@ define([
             },
 
             ui: {
-                deleteRowsButton: "#deleteRows"
+                deleteRowsButton: "#deleteRows",
+                exportButton: "#exportAll"
             },
 
             events: {
-                "click @ui.deleteRowsButton": "deleteRows"
+                "click @ui.deleteRowsButton": "deleteRows",
+                "click @ui.exportButton": "exportAll"
             },
 
             initialize: function (opts) {
@@ -166,7 +168,7 @@ define([
 
                 this.responsesCollection.fetch({
                     reset: true,
-                    success: function(collection, response, options) {
+                    success: function (collection, response, options) {
                         $('input[type="checkbox"]').css({
                             'margin': '0'
                         });
@@ -179,7 +181,7 @@ define([
                 this.model.fetch({
                     reset: true,
                     success: function (model, response, options) {
-                        $('#surveyName').append('<a href="/survey/manage/' + model.get('id')  + '">' + model.get('survey_name') + '</a>');
+                        $('#surveyName').append('<a href="/survey/manage/' + model.get('id') + '">' + model.get('survey_name') + '</a>');
                     }
                 });
 
@@ -190,8 +192,56 @@ define([
                 this.responsesGrid.clearSelectedModels();
             },
 
+            onShow: function () {
+                var windowHeight = $(document).height();
+                var diff = windowHeight - 167;
+                $('#tableRegion').css({
+                    'min-height':  diff + 'px'
+                });
+                $("#toolcontainer").sticky({topSpacing:0});
+            },
+
             deleteRows: function () {
-                console.log(this.responsesGrid.getSelectedModels());
+                if(!confirm('Are you sure you wish to remove the selected rows?')) return;
+                var _this = this;
+                var selectedModels = this.responsesGrid.getSelectedModels();
+                var idArr = [];
+                _.each(selectedModels, function (model) {
+                    idArr.push(model.get('id'));
+                    //_this.responsesCollection.remove({ id: model.get('id')});
+                });
+                $.ajax({
+                    type: 'DELETE',
+                    url: '/api/survey/responses/' + _this.model.get('id'),
+                    data: { responses_id: idArr },
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('X-Authorization', 'Basic ' + $.cookie('access_token'));
+                    },
+                    success: function (res) {
+                        _.each(idArr, function (id) {
+                            _this.responsesCollection.remove({ id: id });
+                        });
+                        _this.responsesGrid.clearSelectedModels();
+                    },
+                    error: function (err) {
+                        console.error(err.responseText);
+                    }
+                });
+            },
+
+            exportAll: function () {
+                var url = '/api/survey/export/' + this.model.get('id');
+                $.ajax({
+                    type: 'GET',
+                    url: url,
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('X-Authorization', 'Basic ' + $.cookie('access_token'));
+                    },
+                    success: function (res) {
+                        //myWindow = window.open("data:text/csv," + res, "_blank");
+                        //myWindow.focus();
+                    }
+                });
             }
 
         });

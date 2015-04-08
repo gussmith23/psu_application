@@ -143,10 +143,10 @@ $app->post('/api/survey', function () use ($app) {
         ));
     } else {
         $permalink = genPermalink();
-        while(true) {
+        while (true) {
             $permalink = genPermalink();
             $survey = Survey::where('survey_permalink', '=', $permalink)->first();
-            if($survey == null) break;
+            if ($survey == null) break;
         }
         $data = [
             'survey_permalink' => $permalink,
@@ -187,7 +187,7 @@ $app->put('/api/survey/:id', function ($id) use ($app) {
         $survey->survey_status = $data->survey_status;
         $survey->save();
         echo json_encode(array(
-            'status'=> '200'
+            'status' => '200'
         ));
     }
 });
@@ -205,7 +205,7 @@ $app->delete('/api/survey/:id', function ($id) use ($app) {
         ));
     } else {
         $survey = Survey::where('id', '=', $id)->first();
-        if($survey != null) {
+        if ($survey != null) {
             $survey->delete();
             echo json_encode([
                 'status' => 200
@@ -219,4 +219,58 @@ $app->delete('/api/survey/:id', function ($id) use ($app) {
     }
 });
 
+/**
+ * Export survey
+ */
+///api/survey/export/{{id}}
+$app->get('/api/survey/export/:id', function ($id) use ($app) {
+    $app->response->headers->set('Content-Type', 'application/json');
+    if (!ensureAuthenticated()) {
+        $app->response->status(400);
+        echo json_encode(array(
+            'error' => 'invalid_bearer_token'
+        ));
+    } else {
+
+        $table = Survey::find($id)->responsesIST()->get();
+        $survey = Survey::find($id);
+        $survey_name = $survey->survey_name;
+        $survey_name = str_replace(' ', '_', $survey_name);
+
+        $app->response->headers->set('Content-type', 'text/csv');
+        $app->response->headers->set('Pragma', 'public');
+        $app->response->headers->set('Content-Transfer-Encoding', 'binary');
+        $app->response->headers->set('Content-Disposition', 'attachment; filename=' . $survey_name . '.csv');
+
+        $output_header = [
+            'id',
+            'email',
+            'submission date',
+            'first name',
+            'middle initial',
+            'last name',
+            'address',
+            'city',
+            'state',
+            'zip code',
+            'telephone',
+            'date of birth',
+            'high school name',
+            'high school year',
+            'ethnicity',
+            'interests ist',
+            'interests sra',
+            'interests graduate',
+            'other information'
+        ];
+        $output = implode(",", $output_header);
+        $output .= "\n";
+        foreach ($table as $row) {
+            $output .= implode(",", $row->toArray());
+            $output .= "\n";
+        }
+        $output = trim($output, "\n");
+        echo $output;
+    }
+});
 

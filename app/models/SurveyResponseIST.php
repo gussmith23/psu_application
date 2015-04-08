@@ -32,6 +32,11 @@ class SurveyResponseIST extends \Illuminate\Database\Eloquent\Model
         'other_information'
     ];
 
+    protected $hidden = [
+        'updated_at',
+        'created_at'
+    ];
+
     public function survey()
     {
         return $this->belongsTo('Survey');

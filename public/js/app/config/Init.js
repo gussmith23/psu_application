@@ -21,12 +21,14 @@ require.config({
         "responsivetable": "../libs/plugins/responsive-tables",
         "foundationDatePicker": "../libs/foundation-datepicker",
         "backgrid": "../libs/plugins/backgrid",
-        "backgrid-select-all": "../libs/plugins/backgrid-select-all"
+        "backgrid-select-all": "../libs/plugins/backgrid-select-all",
+        "jquerysticky": "../libs/plugins/jquery.sticky"
     },
     wrapShim: true,
     shim: {
         "jqueryui": ["jquery"],
         "jquerycookie": ["jquery"],
+        "jquerysticky": ["jquery"],
         "backbone": {
             "deps": ["underscore"],
             "exports": "Backbone"
@@ -68,7 +70,8 @@ require([
     "formValidationFoundation",
     "foundationDatePicker",
     "backgrid",
-    "backgrid-select-all"
+    "backgrid-select-all",
+    "jquerysticky"
 ], function (App, AppRouter, Controller) {
     App.appRouter = new AppRouter({
         controller: new Controller()

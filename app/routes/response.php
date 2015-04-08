@@ -51,7 +51,7 @@ $app->post('/api/survey/response/:permalink', function ($permalink) use ($app) {
     // Does this route need authentication? If not, it might be a good
     // idea to require the permalink to be able to post.
     $survey = Survey::where('survey_permalink', '=', $permalink)->first();
-    if($survey) {
+    if ($survey) {
 
         $data = [
             'email' => $app->request->post('email'),
@@ -113,7 +113,7 @@ $app->put('/api/survey/response/:survey_id/:response_id', function ($survey_id, 
 /**
  * Delete a response to a survey
  */
-$app->delete('/api/survey/response/:survey_id/:response_id', function ($survey_id, $response_id) use ($app) {
+$app->delete('/api/survey/responses/:survey_id', function ($survey_id) use ($app) {
     $app->response->headers->set('Content-Type', 'application/json');
     if (!ensureAuthenticated()) {
         $app->response->status(400);
@@ -121,9 +121,19 @@ $app->delete('/api/survey/response/:survey_id/:response_id', function ($survey_i
             'error' => 'invalid_bearer_token'
         ));
     } else {
-        $app->response->status(400);
-        echo json_encode(array(
-            'error' => 'route_not_setup'
-        ));
+        $resId = $app->request->delete('responses_id');
+        try{
+            foreach ($resId as $id) {
+                SurveyResponseIST::find($id)->delete();
+            }
+            echo json_encode(array(
+                'status' => 200
+            ));
+        } catch (Exception $e) {
+            $app->response->status(400);
+            echo json_encode(array(
+                'error' => 'could_not_remove_all'
+            ));
+        }
     }
 });
