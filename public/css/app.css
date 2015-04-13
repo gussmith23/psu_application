@@ -28,7 +28,7 @@
 }
 
 .fill {
-    min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+    min-height: 100%; /* Fallback for browsers do NOT support vh unit */
     min-height: 100vh; /* These two lines are counted as one :-)       */
 }
 
@@ -96,7 +96,11 @@ tr.selected {
     padding: 8px 20px;
     height: 50px;
     border-top: 1px solid #007095;
-    border-bottom: solid 1px #ddd;
+    /*border-bottom: solid 1px #ddd;*/
+}
+
+.nostyle {
+    list-style: none;
 }
 
 .toolbar-item {
@@ -117,7 +121,7 @@ tr.selected {
 .toolbar-item:hover {
     border: 1px solid #B0BEC5;
     color: #616161;
-    box-shadow: 0 0 5px rgba(0,0,0,0.15);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
     padding: 5px 20px;
     transition: border 50ms ease, box-shadow 50ms ease, color 50ms ease;
 }
@@ -131,11 +135,47 @@ tr.selected {
     display: table-row;
 }
 
-table {
-    border: none !important;
+.is-sticky div {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.10),
+    0 0 25px rgba(0, 0, 0, 0.05);
 }
 
-.is-sticky div {
-    box-shadow: 0 0 5px rgba(0,0,0,0.10),
-                0 0 25px rgba(0,0,0,0.05);
+.loader {
+    background-color: #007095;
+    z-index: 99999;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    position: absolute;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    color: #ffffff;
+    font-size: 3em;
+    line-height: 100vh;
+    opacity: 1;
+    transition: opacity 500ms ease;
+}
+
+.loader-hidden {
+    opacity: 0;
+    background-color: #007095;
+    z-index: 99999;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    position: absolute;
+    vertical-align: middle;
+    text-align: center;
+    color: #ffffff;
+    font-size: 3em;
+    line-height: 100vh;
+    transition: opacity 500ms ease;
+}
+
+#tableRegion {
+    overflow-x: auto;
+    min-width: 100vw;
 }

@@ -80,6 +80,12 @@ define([
                         cell: 'string'
                     },
                     {
+                        name: 'telephone',
+                        label: 'Telephone',
+                        editable: false,
+                        cell: 'string'
+                    },
+                    {
                         name: 'ethnicity',
                         label: 'Ethnicity',
                         editable: false,
@@ -175,6 +181,7 @@ define([
                         $('input[type="checkbox"]:first').css({
                             'margin': '1.5rem 0 0.3rem 0'
                         });
+                        //$('#loader').removeClass('loader').addClass('loader-hidden');
                     }
                 });
 
@@ -225,21 +232,6 @@ define([
                     },
                     error: function (err) {
                         console.error(err.responseText);
-                    }
-                });
-            },
-
-            exportAll: function () {
-                var url = '/api/survey/export/' + this.model.get('id');
-                $.ajax({
-                    type: 'GET',
-                    url: url,
-                    beforeSend: function (xhr) {
-                        xhr.setRequestHeader('X-Authorization', 'Basic ' + $.cookie('access_token'));
-                    },
-                    success: function (res) {
-                        //myWindow = window.open("data:text/csv," + res, "_blank");
-                        //myWindow.focus();
                     }
                 });
             }

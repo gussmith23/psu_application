@@ -222,10 +222,9 @@ $app->delete('/api/survey/:id', function ($id) use ($app) {
 /**
  * Export survey
  */
-///api/survey/export/{{id}}
 $app->get('/api/survey/export/:id', function ($id) use ($app) {
     $app->response->headers->set('Content-Type', 'application/json');
-    if (!ensureAuthenticated()) {
+    if (!$_SESSION['user']) {
         $app->response->status(400);
         echo json_encode(array(
             'error' => 'invalid_bearer_token'
@@ -244,6 +243,7 @@ $app->get('/api/survey/export/:id', function ($id) use ($app) {
 
         $output_header = [
             'id',
+            'survey_id',
             'email',
             'submission date',
             'first name',
@@ -255,6 +255,7 @@ $app->get('/api/survey/export/:id', function ($id) use ($app) {
             'zip code',
             'telephone',
             'date of birth',
+            'gender',
             'high school name',
             'high school year',
             'ethnicity',

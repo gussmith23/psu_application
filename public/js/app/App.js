@@ -29,17 +29,14 @@ define([
 
     // start it up
     App.addInitializer(function (options) {
-        Backbone.history.start({
-            pushState: true
-        });
 
-        //Backbone.history.start();
+        Backbone.history.start({ pushState: true });
 
         if (Backbone.history && Backbone.history._hasPushState) {
-            $(document).delegate("a", "click", function (evt) {
+            $(document).on("click", "a:not([data-bypass])", function (evt) {
                 var href = $(this).attr("href");
                 var protocol = this.protocol + "//";
-                if(!href) return;
+                if (!href) return;
                 if (href.slice(protocol.length) !== protocol) {
                     evt.preventDefault();
                     // prevent menu from toggling backbone route
