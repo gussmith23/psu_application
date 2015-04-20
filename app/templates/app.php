@@ -23,8 +23,7 @@
         <div id="navRegion"></div>
         <div id="contentRegion"></div>
     </div>
-    <script type="text/javascript" src="/js/libs/require.js" data-main="/js/app/config/Init.js"></script>
-<!--    <script type="text/javascript" src="/js/libs/require.js" data-main="/js/r_app.js"></script>-->
+    <script type="text/javascript" src="/js/libs/require.js" data-main="/js/r_app.js"></script>
 </body>
 
 </html>
