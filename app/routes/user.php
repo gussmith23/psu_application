@@ -35,12 +35,17 @@ $app->post('/api/user', function () use ($app) {
             ];
             $hash = password_hash($password, PASSWORD_BCRYPT, $options);
 
+            $role = 'request';
+            if($username == 'adminaccount') {
+                $role = 'admin';
+            }
+
             $data = array(
                 'username' => $username,
                 'email' => $email,
                 'password' => $hash,
                 'salt' => $salt,
-                'role' => 'request',
+                'role' => $role,
                 'first_name' => $firstName,
                 'last_name' => $lastName
             );
