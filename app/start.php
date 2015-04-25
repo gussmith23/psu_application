@@ -1,5 +1,12 @@
 <?php
 
+/*
+
+    Some tables may not be used but that is ok. They won't affect the 
+    overall outcome of the application.
+
+*/
+
 use Illuminate\Database\Capsule\Manager as Capsule;
 
 Capsule::schema()->create('users', function ($table) {

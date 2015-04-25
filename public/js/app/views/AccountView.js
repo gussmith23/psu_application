@@ -43,13 +43,18 @@ define([
             "emailField": "#emailField",
             "firstNameField": "#firstNameField",
             "lastNameField": "#lastNameField",
-            "deactivateButton": "#deactivateButton"
+            "deactivateButton": "#deactivateButton",
+            "oldPasswordField": "#oldPasswordField",
+            "newPasswordField": "#newPasswordField",
+            "confirmPasswordField": "#confirmPasswordField",
+            "updatePasswordButton": "#updatePasswordButton"
         },
 
         events: {
             "click #cancelButton": "goBack",
             "click @ui.updateButton": "updateAccount",
-            "click @ui.deactivateButton": "deactivateAccount"
+            "click @ui.deactivateButton": "deactivateAccount",
+            "click @ui.updatePasswordButton": "updatePassword"
         },
 
         templateHelpers: function () {
@@ -79,6 +84,44 @@ define([
                     alert('Account updated');
                 }
             });
+        },
+
+        updatePassword: function () {
+            var _this = this;
+
+            var _oldPassword = CryptoJS.SHA256(_this.ui.oldPasswordField[0].value).toString();
+            var _newPassword = CryptoJS.SHA256(_this.ui.newPasswordField[0].value).toString();
+            var _confirmPassword = CryptoJS.SHA256(_this.ui.confirmPasswordField[0].value).toString();
+
+            if(_newPassword != _confirmPassword) {
+                alert('Passwords do not match.');
+            } else {
+                $.ajax({
+                    type: 'PUT',
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('X-Authorization', 'Basic ' + $.cookie('access_token'));
+                    },
+                    url: '/api/user/pw',
+                    data: { 
+                        old_password: _oldPassword,
+                        new_password: _newPassword 
+                    },
+                    success: function (res) {
+                        _this.ui.confirmPasswordField[0].value = ''; 
+                        _this.ui.newPasswordField[0].value = '';
+                        _this.ui.oldPasswordField[0].value = '';
+                        alert('Password updated!');
+                    },
+                    error: function (err) {
+                        console.log(err);
+                        if (err.error == "invalid_bearer_token") App.vent.trigger('session:logout');
+                        _this.ui.confirmPasswordField[0].value = ''; 
+                        _this.ui.newPasswordField[0].value = '';
+                        _this.ui.oldPasswordField[0].value = '';
+                        alert('Old password is incorrect. Try again.');
+                    }
+                });
+            }
         },
 
         deactivateAccount: function () {

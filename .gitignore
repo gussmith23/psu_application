@@ -6,3 +6,4 @@ app/storage/db.sqlite
 .idea
 node_modules
 migrations
+.phpintel

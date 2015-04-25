@@ -1,8 +1,7 @@
 {
   "require": {
     "slim/slim": "2.*",
-    "illuminate/database": "*",
-    "robmorgan/phinx": "*"
+    "illuminate/database": "*"
   },
   "autoload": {
     "classmap": [

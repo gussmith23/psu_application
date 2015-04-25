@@ -35,17 +35,12 @@ $app->post('/api/user', function () use ($app) {
             ];
             $hash = password_hash($password, PASSWORD_BCRYPT, $options);
 
-            $role = 'request';
-            if($username == 'adminaccount') {
-                $role = 'admin';
-            }
-
             $data = array(
                 'username' => $username,
                 'email' => $email,
                 'password' => $hash,
                 'salt' => $salt,
-                'role' => $role,
+                'role' => 'request',
                 'first_name' => $firstName,
                 'last_name' => $lastName
             );
@@ -121,6 +116,38 @@ $app->put('/api/user', function () use ($app) {
         echo json_encode(array(
             'status' => '200'
         ));
+    }
+});
+
+
+$app->put('/api/user/pw', function () use ($app) {
+    $app->response->headers->set('Content-Type', 'application/json');
+    $oldPassword = $app->request->put('old_password');
+    $newPassword = $app->request->put('new_password');
+    if(!ensureAuthenticated()) {
+        $app->response->status(400);
+        echo json_encode(array(
+            'error' => 'invalid_bearer_token'
+        )); 
+    } else {
+        $user = User::where('id', '=', $_SESSION['user'])->first();
+        if(password_verify($oldPassword, $user->password)) {
+            $options = [
+                'salt' => $user->salt,
+                'cost' => 12
+            ];
+            $hash = password_hash($newPassword, PASSWORD_BCRYPT, $options);
+            $user->password = $hash;
+            $user->save();
+            echo json_encode(array(
+                'status' => '200'
+            ));
+        } else {
+            $app->response->status(400);
+            echo json_encode(array(
+                'error' => 'invalid_password'
+            ));
+        }
     }
 });
 
